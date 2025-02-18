@@ -16,4 +16,6 @@ pnpm build:wasm
 pnpm dev
 ```
 
+Rust のコードを変えた場合、 `pnpm build:wasm` で再ビルドしてください。
+
 ## 細かい話 (TBD)
