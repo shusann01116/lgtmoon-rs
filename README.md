@@ -9,6 +9,7 @@ WASM を触ってみたいというだけの理由で作った LGTMoon クロー
 ## とりあえず動かしたいだけの場合
 
 ```bash
+cargo install wasm-pack
 cd web-app
 pnpm install
 pnpm build:wasm
