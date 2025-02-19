@@ -1,21 +1,13 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import * as lgtm from "@/../pkg/lgtmoon_wasm";
 import { cn } from "@/utils/cn";
-import { wasmPath } from "@/utils/wasm";
 
-const Component = () => {
+export const ImageForm = () => {
   const imgRef = useRef<HTMLImageElement>(null);
   const imageName = useRef("");
   const [showImage, setShowImage] = useState(false);
-
-  useEffect(() => {
-    fetch(wasmPath())
-      .then((res) => res.arrayBuffer())
-      .then((bytes) => lgtm.initSync({ module: bytes }));
-  }, []);
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -60,7 +52,3 @@ const Component = () => {
     </div>
   );
 };
-
-export const ImageForm = dynamic(() => Promise.resolve(Component), {
-  ssr: false,
-});
