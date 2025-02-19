@@ -1,35 +1,38 @@
 {
-  "name": "web-app",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "build:wasm": "wasm-pack build ../lgtmoon-wasm --target web --out-dir ../web-app/pkg && mkdir -p ./public/pkg && cp ./pkg/*.wasm ./public/pkg/",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "clsx": "^2.1.1",
-    "next": "15.1.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.1"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@eslint/eslintrc": "^3.2.0",
-    "@types/node": "^20.17.17",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
-    "eslint": "^9.20.1",
-    "eslint-config-next": "15.1.7",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.3",
-    "postcss": "^8.5.2",
-    "prettier": "^3.5.0",
-    "prettier-eslint": "^16.3.0",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.3"
-  }
+	"name": "web-app",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"build:wasm": "wasm-pack build ../lgtmoon-wasm --target web --out-dir ../web-app/pkg && mkdir -p ./public/pkg && cp ./pkg/*.wasm ./public/pkg/",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.475.0",
+		"next": "15.1.7",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"tailwind-merge": "^3.0.1",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@eslint/eslintrc": "^3.2.0",
+		"@types/node": "^20.17.17",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
+		"eslint": "^9.20.1",
+		"eslint-config-next": "15.1.7",
+		"eslint-config-prettier": "^10.0.1",
+		"eslint-plugin-prettier": "^5.2.3",
+		"postcss": "^8.5.2",
+		"prettier": "^3.5.0",
+		"prettier-eslint": "^16.3.0",
+		"tailwindcss": "^3.4.17",
+		"typescript": "^5.7.3"
+	}
 }
