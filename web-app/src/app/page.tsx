@@ -1,4 +1,4 @@
-import { ImageForm } from "@/components/imageForm";
+import { ImageForm } from "@/components/ImageForm";
 import WasmProvider from "@/providers/WasmProvider";
 
 export default function Home() {
