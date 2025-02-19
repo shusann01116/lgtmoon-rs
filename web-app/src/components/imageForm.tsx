@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 import * as lgtm from "@/../pkg/lgtmoon_wasm";
-import { cn } from "@/lib/util";
+import { cn } from "@/utils/cn";
+import { wasmPath } from "@/utils/wasm";
 
 const Component = () => {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -11,7 +12,9 @@ const Component = () => {
   const [showImage, setShowImage] = useState(false);
 
   useEffect(() => {
-    fetch('/pkg/lgtmoon_wasm_bg.wasm').then(res => res.arrayBuffer()).then(bytes => lgtm.initSync({ module: bytes }))
+    fetch(wasmPath())
+      .then((res) => res.arrayBuffer())
+      .then((bytes) => lgtm.initSync({ module: bytes }));
   }, []);
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,8 +39,8 @@ const Component = () => {
       const raw = lgtm.draw_lgtm(new Uint8Array(buffer));
       imgRef.current.src = URL.createObjectURL(new Blob([raw]));
       imageName.current = imgRef.current.src;
-    }
-  }
+    };
+  };
 
   return (
     <div className="flex flex-col">
@@ -55,7 +58,9 @@ const Component = () => {
         alt="Selected image preview"
       />
     </div>
-  )
-}
+  );
+};
 
-export const ImageForm = dynamic(() => Promise.resolve(Component), { ssr: false })
+export const ImageForm = dynamic(() => Promise.resolve(Component), {
+  ssr: false,
+});

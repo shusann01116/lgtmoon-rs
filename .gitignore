@@ -1,3 +1,4 @@
 .DS_Store
 /target
 img
+web-app/public/pkg/lgtmoon_wasm_bg.wasm
