@@ -2,9 +2,10 @@
 
 WASM を触ってみたいというだけの理由で作った LGTMoon クローン
 
-ファイル選択したら LGTM を描いてくれるだけ
+ファイル選択したら LGTM を描いてくれる、ローカルストレージに保存しておけるので好きな画像をいつでも召喚できるよ
 
-<img width="541" alt="image" src="https://github.com/user-attachments/assets/65fc9015-8012-45bf-8143-79f552283d30" />
+<img width="773" alt="image" src="https://github.com/user-attachments/assets/445d091f-e567-4385-991c-de740663dd82" />
+
 
 ## とりあえず動かしたいだけの場合
 
