@@ -1,18 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { useKeepUntilOnPointerLeave } from "@/hooks/useKeepUntilOnPointerLeave";
-import { Check, Clipboard, Download } from "lucide-react";
+import { Check, Clipboard, Download, Trash } from "lucide-react";
 import { useRef } from "react";
 
 type ImageCoverProps = {
 	children: React.ReactNode;
 	onClickCopy?: () => void;
 	onClickDownload?: () => void;
+	onDelete?: () => void;
 };
 
 export function ImageCover({
 	children,
 	onClickCopy,
 	onClickDownload,
+	onDelete,
 }: ImageCoverProps) {
 	const copyButtonRef = useRef<HTMLButtonElement>(null);
 	const [isCopied, onClickCopyButton] = useKeepUntilOnPointerLeave(
@@ -55,6 +57,14 @@ export function ImageCover({
 						) : (
 							<Download className="stroke-primary-foreground" />
 						)}
+					</Button>
+					<Button
+						className="group-hover:inline-flex hover:bg-accent/50 hidden transition-all active:bg-accent"
+						size="icon"
+						variant="ghost"
+						onClick={() => onDelete?.()}
+					>
+						<Trash className="stroke-primary-foreground" />
 					</Button>
 				</div>
 			</div>

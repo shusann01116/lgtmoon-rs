@@ -1,7 +1,7 @@
 "use client";
 
 import { ImageCover } from "@/features/lgtmoon/ImageCover";
-import type { LGTMoonImage } from "@/features/lgtmoon/api/storage";
+import { deleteImage, useLGTMoonDB, type LGTMoonImage } from "@/features/lgtmoon/api/storage";
 import { cn } from "@/utils/cn";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
@@ -9,6 +9,8 @@ import { useRef } from "react";
 export function LGTMImage({ image }: { image: LGTMoonImage }) {
 	const imgRef = useRef<HTMLImageElement>(null);
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [isDeleted, setIsDeleted] = useState(false);
+	const db = useLGTMoonDB();
 
 	useEffect(() => {
 		if (!imgRef.current) return;
@@ -47,14 +49,24 @@ export function LGTMImage({ image }: { image: LGTMoonImage }) {
 		URL.revokeObjectURL(url);
 	};
 
+	const onClickDelete = async () => {
+		if (!db.current) return;
+		await deleteImage(db.current, image.id);
+		setIsDeleted(true);
+	};
+
 	return (
-		<ImageCover onClickCopy={onClickCopy} onClickDownload={onClickDownload}>
-			{/* eslint-disable-next-line @next/next/no-img-element */}
-			<img
-				ref={imgRef}
-				className={cn("rounded-sm w-full block", isLoaded ? "block" : "hidden")}
-				alt="LGTMoon"
-			/>
-		</ImageCover>
+		<>
+			{!isDeleted &&
+				<ImageCover onClickCopy={onClickCopy} onClickDownload={onClickDownload} onDelete={onClickDelete}>
+					{/* eslint-disable-next-line @next/next/no-img-element */}
+					<img
+						ref={imgRef}
+						className={cn("rounded-sm w-full block", isLoaded ? "block" : "hidden")}
+						alt="LGTMoon"
+					/>
+				</ImageCover>
+			}
+		</>
 	);
 }

@@ -32,6 +32,10 @@ export function addImage(db: IDBPDatabase<LGTMoonDB>, image: LGTMoonImage) {
 	return db.add(DBConfig.storeName, image);
 }
 
+export function deleteImage(db: IDBPDatabase<LGTMoonDB>, id: string) {
+	return db.delete(DBConfig.storeName, id);
+}
+
 export function useLGTMoonDB() {
 	const dbRef = useRef<IDBPDatabase<LGTMoonDB> | null>(null);
 	useEffect(() => {
