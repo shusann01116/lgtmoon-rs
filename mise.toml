@@ -1,5 +1,5 @@
 [tools]
 "cargo:wasm-pack" = "0.13.1"
-node = "22"
+node = "23"
 pnpm = "9.15"
 rust = "1.84.0"
