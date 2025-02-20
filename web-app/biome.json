@@ -7,7 +7,14 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["node_modules", ".next", "out", "public"]
+		"ignore": [
+			"node_modules",
+			".next",
+			"out",
+			"public",
+			"pkg",
+			"eslint.config.mjs"
+		]
 	},
 	"formatter": {
 		"enabled": true,

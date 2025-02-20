@@ -1,51 +1,51 @@
 "use client";
 
-import { ImageCover } from "@/features/lgtmoon/ImageCover";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { LGTMImage } from "@/features/lgtmoon/LGTMImage";
+import {
+	type LGTMoonImage,
+	addImage,
+	getAllImages,
+	useLGTMoonDB,
+} from "@/features/lgtmoon/api/storage";
 import { useLgtmoon } from "@/hooks/useLgtmoon";
-import { cn } from "@/utils/cn";
-import { type ChangeEvent, useRef, useState } from "react";
+import { type ChangeEvent, useEffect, useState } from "react";
 
 export function ImageForm() {
-	const imgRef = useRef<HTMLImageElement>(null);
-	const drawLgtmoon = useLgtmoon(imgRef);
-	const [show, setShow] = useState(false);
+	const drawLgtmoon = useLgtmoon();
+	const [images, setImages] = useState<LGTMoonImage[]>([]);
+	const db = useLGTMoonDB();
 
-	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+	useEffect(() => {
+		const fetchImages = async () => {
+			await new Promise((resolve) => setTimeout(resolve, 100));
+			if (!db.current) return;
+			const images = await getAllImages(db.current);
+			setImages(images ?? []);
+		};
+		fetchImages();
+	}, [db]);
+
+	const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+		if (!file) return;
+
 		try {
-			drawLgtmoon(e);
-			setShow(true);
+			const blob = await drawLgtmoon(file);
+			if (!db.current) return;
+			const item = {
+				id: file.name,
+				name: file.name,
+				buffer: await blob.arrayBuffer(),
+				type: file.type,
+				createdAt: new Date(),
+			};
+			await addImage(db.current, item);
+			setImages((await getAllImages(db.current)) ?? []);
 		} catch (error) {
 			console.error(error);
 		}
-	};
-
-	const onClickCopy = async () => {
-		if (!imgRef.current) return;
-
-		const buff = await fetch(imgRef.current.src).then((res) =>
-			res.arrayBuffer(),
-		);
-		await navigator.clipboard.write([
-			new ClipboardItem({
-				"image/png": new Blob([buff], { type: "image/png" }),
-			}),
-		]);
-	};
-
-	const onClickDownload = async () => {
-		if (!imgRef.current) return;
-
-		const buff = await fetch(imgRef.current.src).then((res) =>
-			res.arrayBuffer(),
-		);
-		const url = URL.createObjectURL(new Blob([buff], { type: "image/png" }));
-		const a = document.createElement("a");
-		a.href = url;
-		a.download = "lgtmoon.png";
-		a.click();
-		URL.revokeObjectURL(url);
 	};
 
 	return (
@@ -60,14 +60,11 @@ export function ImageForm() {
 					onChange={onChange}
 				/>
 			</section>
-			<ImageCover onClickCopy={onClickCopy} onClickDownload={onClickDownload}>
-				{/* eslint-disable-next-line @next/next/no-img-element */}
-				<img
-					ref={imgRef}
-					className={cn("rounded-sm w-full", show ? "block" : "hidden")}
-					alt="LGTMoon"
-				/>
-			</ImageCover>
+			<section className="columns-2 gap-4 space-y-4 sm:columns-3">
+				{images.map((image) => {
+					return <LGTMImage key={image.id} image={image} />;
+				})}
+			</section>
 		</div>
 	);
 }
