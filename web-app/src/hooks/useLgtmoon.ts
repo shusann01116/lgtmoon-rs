@@ -20,9 +20,6 @@ export function useLgtmoon(ref: RefObject<HTMLImageElement | null>) {
 		ref.current.src = URL.createObjectURL(file);
 		ref.current.onload = async () => {
 			if (!ref.current) return;
-			if (ref.current) {
-				URL.revokeObjectURL(ref.current.src);
-			}
 
 			// LGTMイメージがレンダリングされていたら終了
 			if (imageName.current === ref.current.src) return;
