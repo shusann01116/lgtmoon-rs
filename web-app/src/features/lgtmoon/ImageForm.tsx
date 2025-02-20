@@ -1,6 +1,6 @@
 "use client";
 
-import { ImageCover } from "@/components/ImageCover";
+import { ImageCover } from "@/features/lgtmoon/ImageCover";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useLgtmoon } from "@/hooks/useLgtmoon";
