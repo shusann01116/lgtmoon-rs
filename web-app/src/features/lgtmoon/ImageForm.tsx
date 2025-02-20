@@ -11,6 +11,7 @@ import {
 } from "@/features/lgtmoon/api/storage";
 import { useLgtmoon } from "@/hooks/useLgtmoon";
 import { type ChangeEvent, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export function ImageForm() {
 	const drawLgtmoon = useLgtmoon();
@@ -30,6 +31,11 @@ export function ImageForm() {
 	const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
 		if (!file) return;
+
+		if (images.some((image) => image.name === file.name)) {
+			toast.error("Image already exists");
+			return;
+		}
 
 		try {
 			const blob = await drawLgtmoon(file);
