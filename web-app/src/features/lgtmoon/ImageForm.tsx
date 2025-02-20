@@ -6,6 +6,7 @@ import { LGTMImage } from "@/features/lgtmoon/LGTMImage";
 import {
 	type LGTMoonImage,
 	addImage,
+	deleteImage,
 	getAllImages,
 	useLGTMoonDB,
 } from "@/features/lgtmoon/api/storage";
@@ -50,8 +51,19 @@ export function ImageForm() {
 			await addImage(db.current, item);
 			setImages([item, ...images]);
 		} catch (error) {
-			console.error(error);
+			if (error instanceof Error) {
+				toast.error("Failed to add image", {
+					description: error.message,
+				});
+			}
+			throw error;
 		}
+	};
+
+	const onDelete = async (id: string) => {
+		if (!db.current) return;
+		await deleteImage(db.current, id);
+		setImages(images.filter((image) => image.id !== id));
 	};
 
 	return (
@@ -68,7 +80,7 @@ export function ImageForm() {
 			</section>
 			<section className="columns-2 gap-4 space-y-4 sm:columns-3">
 				{images.map((image) => {
-					return <LGTMImage key={image.id} image={image} />;
+					return <LGTMImage key={image.id} image={image} onDelete={onDelete} />;
 				})}
 			</section>
 		</div>

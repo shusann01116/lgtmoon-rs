@@ -1,16 +1,17 @@
 "use client";
 
 import { ImageCover } from "@/features/lgtmoon/ImageCover";
-import { deleteImage, useLGTMoonDB, type LGTMoonImage } from "@/features/lgtmoon/api/storage";
+import type { LGTMoonImage } from "@/features/lgtmoon/api/storage";
 import { cn } from "@/utils/cn";
+import { download } from "@/lib/download";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import { getFileExtension, getFileName } from "@/utils/file";
 
-export function LGTMImage({ image }: { image: LGTMoonImage }) {
+export function LGTMImage({ image, onDelete }: { image: LGTMoonImage, onDelete: (id: string) => void }) {
 	const imgRef = useRef<HTMLImageElement>(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [isDeleted, setIsDeleted] = useState(false);
-	const db = useLGTMoonDB();
 
 	useEffect(() => {
 		if (!imgRef.current) return;
@@ -41,22 +42,17 @@ export function LGTMImage({ image }: { image: LGTMoonImage }) {
 		const buff = await fetch(imgRef.current.src).then((res) =>
 			res.arrayBuffer(),
 		);
-		const url = URL.createObjectURL(new Blob([buff], { type: "image/png" }));
-		const a = document.createElement("a");
-		a.href = url;
-		a.download = "lgtmoon.png";
-		a.click();
-		URL.revokeObjectURL(url);
+		await download(new Blob([buff], { type: "image/png" }), `${getFileName(image.name)}-lgtm.${getFileExtension(image.name)}`);
 	};
 
 	const onClickDelete = async () => {
-		if (!db.current) return;
-		await deleteImage(db.current, image.id);
 		setIsDeleted(true);
+		onDelete(image.id);
 	};
 
 	return (
 		<>
+			{!isLoaded && <div className="aspect-square w-full bg-gray-100 animate-pulse" />}
 			{!isDeleted &&
 				<ImageCover onClickCopy={onClickCopy} onClickDownload={onClickDownload} onDelete={onClickDelete}>
 					{/* eslint-disable-next-line @next/next/no-img-element */}
