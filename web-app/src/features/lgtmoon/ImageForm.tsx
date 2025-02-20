@@ -22,7 +22,7 @@ export function ImageForm() {
 			await new Promise((resolve) => setTimeout(resolve, 100));
 			if (!db.current) return;
 			const images = await getAllImages(db.current);
-			setImages(images ?? []);
+			setImages(images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ?? []);
 		};
 		fetchImages();
 	}, [db]);
@@ -42,7 +42,7 @@ export function ImageForm() {
 				createdAt: new Date(),
 			};
 			await addImage(db.current, item);
-			setImages((await getAllImages(db.current)) ?? []);
+			setImages([item, ...images]);
 		} catch (error) {
 			console.error(error);
 		}
