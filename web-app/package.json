@@ -8,7 +8,7 @@
 		"build:wasm": "wasm-pack build ../lgtmoon-wasm --target web --out-dir ../web-app/pkg && mkdir -p ./public/pkg && cp ./pkg/*.wasm ./public/pkg/",
 		"start": "next start",
 		"lint": "next lint",
-		"format": "biome check --write .",
+		"format": "biome check --write",
 		"format:staged": "biome check --write --staged"
 	},
 	"dependencies": {

@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": []
+		"ignore": ["node_modules", ".next", "out", "public"]
 	},
 	"formatter": {
 		"enabled": true,

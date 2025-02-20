@@ -51,7 +51,7 @@ export function ImageForm() {
 				<img
 					ref={imgRef}
 					className={cn("rounded-sm w-full", show ? "block" : "hidden")}
-					alt="Selected image preview"
+					alt="LGTMoon"
 				/>
 			</ImageCover>
 		</div>

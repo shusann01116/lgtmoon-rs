@@ -1,6 +1,6 @@
-import { wasmPath } from "@/utils/wasm";
-import { RefObject, useEffect, useRef } from "react";
 import * as lgtm from "@/../pkg/lgtmoon_wasm";
+import { wasmPath } from "@/utils/wasm";
+import { type RefObject, useEffect, useRef } from "react";
 
 export function useLgtmoon(ref: RefObject<HTMLImageElement | null>) {
 	useEffect(() => {
