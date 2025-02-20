@@ -34,6 +34,20 @@ export function ImageForm() {
 		]);
 	};
 
+	const onClickDownload = async () => {
+		if (!imgRef.current) return;
+
+		const buff = await fetch(imgRef.current.src).then((res) =>
+			res.arrayBuffer(),
+		);
+		const url = URL.createObjectURL(new Blob([buff], { type: "image/png" }));
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = "lgtmoon.png";
+		a.click();
+		URL.revokeObjectURL(url);
+	};
+
 	return (
 		<div className="flex flex-col gap-4">
 			<section className="flex flex-col gap-2">
@@ -46,7 +60,7 @@ export function ImageForm() {
 					onChange={onChange}
 				/>
 			</section>
-			<ImageCover onClickCopy={onClickCopy}>
+			<ImageCover onClickCopy={onClickCopy} onClickDownload={onClickDownload}>
 				{/* eslint-disable-next-line @next/next/no-img-element */}
 				<img
 					ref={imgRef}
