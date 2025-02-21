@@ -11,7 +11,11 @@ export default function Home() {
 			<footer className="text-center text-sm text-muted-foreground">
 				<p>© 2025 shusann01116</p>
 				<p>
-					<Link className="hover:underline" href="https://github.com/shusann01116/LGTMoon-rs" target="_blank">
+					<Link
+						className="hover:underline"
+						href="https://github.com/shusann01116/LGTMoon-rs"
+						target="_blank"
+					>
 						GitHub
 						<ExternalLink className="size-4 inline-block pb-1 pl-1" />
 					</Link>

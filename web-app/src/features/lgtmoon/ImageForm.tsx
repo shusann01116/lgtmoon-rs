@@ -13,6 +13,7 @@ import {
 import { useLgtmoon } from "@/hooks/useLgtmoon";
 import type { IDBPDatabase } from "idb";
 import { PlusIcon } from "lucide-react";
+import Link from "next/link";
 import { type ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 
@@ -71,9 +72,12 @@ export function ImageForm() {
 
 	return (
 		<div className="flex flex-col gap-4">
-			<section className="flex items-center gap-2 text-lg font-extrabold font-sans">
-				<h1 className="flex-1">LGTMoon-rs</h1>
+			<section className="flex items-center gap-4 text-lg font-extrabold font-sans">
+				<Link href="/">
+					<h1>LGTMoon-rs</h1>
+				</Link>
 				<FileInputButton
+					className="ml-auto"
 					icon={<PlusIcon />}
 					accept="image/*"
 					onClick={onChange}

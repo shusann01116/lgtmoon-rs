@@ -2,6 +2,7 @@ import { Button, type ButtonProps } from "@/components/ui/button";
 import { type ChangeEvent, type ReactNode, useRef } from "react";
 
 type FileInputButtonProps = {
+	className?: string;
 	icon: ReactNode;
 	accept: string;
 	onClick: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -9,6 +10,7 @@ type FileInputButtonProps = {
 };
 
 export function FileInputButton({
+	className,
 	icon,
 	accept,
 	onClick,
@@ -29,6 +31,7 @@ export function FileInputButton({
 				variant={variant}
 				size="icon"
 				onClick={() => inputRef.current?.click()}
+				className={className}
 			>
 				{icon}
 			</Button>
