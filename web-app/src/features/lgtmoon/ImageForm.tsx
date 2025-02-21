@@ -19,6 +19,7 @@ export function ImageForm() {
 	const [images, setImages] = useState<LGTMoonImage[]>([]);
 	const db = useLGTMoonDB();
 
+	// TODO: 初期表示の画像は上のコンポーネントで Promise を解消してから渡したい。
 	useEffect(() => {
 		const fetchImages = async () => {
 			await new Promise((resolve) => setTimeout(resolve, 100));
@@ -78,11 +79,14 @@ export function ImageForm() {
 					onChange={onChange}
 				/>
 			</section>
-			<section className="columns-2 gap-4 space-y-4 sm:columns-3">
-				{images.map((image) => {
-					return <LGTMImage key={image.id} image={image} onDelete={onDelete} />;
-				})}
-			</section>
+			{images.length < 1 ?
+				<p className="text-sm text-center">画像を追加して LGTM ライブラリを作ろう ☺️</p> :
+				<section className="columns-2 gap-4 space-y-4 sm:columns-3">
+					{images.map((image) => {
+						return <LGTMImage key={image.id} image={image} onDelete={onDelete} />;
+					})}
+				</section>
+			}
 		</div>
 	);
 }
