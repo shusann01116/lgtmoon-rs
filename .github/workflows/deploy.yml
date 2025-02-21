@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_BASE_PATH: /LGTMoon-rs
+      NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: G-W4PVVMT3PM
     steps:
       - name: Checkout
         uses: actions/checkout@v4
