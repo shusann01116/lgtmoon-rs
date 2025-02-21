@@ -87,7 +87,7 @@ export function ImageForm() {
 					画像を追加して LGTM ライブラリを作ろう ☺️
 				</p>
 			) : (
-				<section className="columns-2 gap-4 space-y-4 sm:columns-3">
+				<section className="columns-2 gap-4 space-y-4 sm:columns-3 lg:columns-5">
 					{images.map((image) => {
 						return (
 							<LGTMImage key={image.id} image={image} onDelete={onDelete} />

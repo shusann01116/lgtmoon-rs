@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Home() {
 	return (
 		<div className="flex flex-col min-h-screen pb-4">
-			<main className="w-full max-w-screen-md pt-4 px-4 mx-auto flex-1">
+			<main className="w-full max-w-screen-xl pt-4 px-4 mx-auto flex-1">
 				<ImageForm />
 			</main>
 			<footer className="text-center text-sm text-muted-foreground">
