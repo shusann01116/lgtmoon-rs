@@ -1,7 +1,6 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { FileInputButton } from "@/components/ui/fileinputbutton";
 import { LGTMImage } from "@/features/lgtmoon/LGTMImage";
 import {
 	type LGTMoonDB,
@@ -13,6 +12,7 @@ import {
 } from "@/features/lgtmoon/api/storage";
 import { useLgtmoon } from "@/hooks/useLgtmoon";
 import type { IDBPDatabase } from "idb";
+import { PlusIcon } from "lucide-react";
 import { type ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 
@@ -24,7 +24,7 @@ export function ImageForm() {
 		const images = await getAllImages(db);
 		setImages(
 			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-			[],
+				[],
 		);
 	};
 
@@ -52,7 +52,7 @@ export function ImageForm() {
 				createdAt: new Date(),
 			};
 			await addImage(db, item);
-			setImages([item, ...images ?? []]);
+			setImages([item, ...(images ?? [])]);
 		} catch (error) {
 			if (error instanceof Error) {
 				toast.error("Failed to add image", {
@@ -71,14 +71,13 @@ export function ImageForm() {
 
 	return (
 		<div className="flex flex-col gap-4">
-			<section className="flex flex-col gap-2">
-				<Label htmlFor="image-input">LGTMoon</Label>
-				<Input
-					id="image-input"
-					type="file"
+			<section className="flex items-center gap-2 text-lg font-extrabold font-sans">
+				<h1 className="flex-1">LGTMoon-rs</h1>
+				<FileInputButton
+					icon={<PlusIcon />}
 					accept="image/*"
-					aria-label="Image file selector"
-					onChange={onChange}
+					onClick={onChange}
+					variant="outline"
 				/>
 			</section>
 			{images && images.length < 1 ? (
