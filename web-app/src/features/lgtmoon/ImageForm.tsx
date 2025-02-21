@@ -25,7 +25,10 @@ export function ImageForm() {
 			await new Promise((resolve) => setTimeout(resolve, 100));
 			if (!db.current) return;
 			const images = await getAllImages(db.current);
-			setImages(images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ?? []);
+			setImages(
+				images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
+					[],
+			);
 		};
 		fetchImages();
 	}, [db]);
@@ -79,14 +82,19 @@ export function ImageForm() {
 					onChange={onChange}
 				/>
 			</section>
-			{images.length < 1 ?
-				<p className="text-sm text-center">画像を追加して LGTM ライブラリを作ろう ☺️</p> :
+			{images.length < 1 ? (
+				<p className="text-sm text-center">
+					画像を追加して LGTM ライブラリを作ろう ☺️
+				</p>
+			) : (
 				<section className="columns-2 gap-4 space-y-4 sm:columns-3">
 					{images.map((image) => {
-						return <LGTMImage key={image.id} image={image} onDelete={onDelete} />;
+						return (
+							<LGTMImage key={image.id} image={image} onDelete={onDelete} />
+						);
 					})}
 				</section>
-			}
+			)}
 		</div>
 	);
 }

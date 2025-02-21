@@ -2,13 +2,16 @@
 
 import { ImageCover } from "@/features/lgtmoon/ImageCover";
 import type { LGTMoonImage } from "@/features/lgtmoon/api/storage";
-import { cn } from "@/utils/cn";
 import { download } from "@/lib/download";
+import { cn } from "@/utils/cn";
+import { getFileExtension, getFileName } from "@/utils/file";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import { getFileExtension, getFileName } from "@/utils/file";
 
-export function LGTMImage({ image, onDelete }: { image: LGTMoonImage, onDelete: (id: string) => void }) {
+export function LGTMImage({
+	image,
+	onDelete,
+}: { image: LGTMoonImage; onDelete: (id: string) => void }) {
 	const imgRef = useRef<HTMLImageElement>(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [isDeleted, setIsDeleted] = useState(false);
@@ -42,7 +45,10 @@ export function LGTMImage({ image, onDelete }: { image: LGTMoonImage, onDelete: 
 		const buff = await fetch(imgRef.current.src).then((res) =>
 			res.arrayBuffer(),
 		);
-		await download(new Blob([buff], { type: "image/png" }), `${getFileName(image.name)}-lgtm.${getFileExtension(image.name)}`);
+		await download(
+			new Blob([buff], { type: "image/png" }),
+			`${getFileName(image.name)}-lgtm.${getFileExtension(image.name)}`,
+		);
 	};
 
 	const onClickDelete = async () => {
@@ -52,17 +58,26 @@ export function LGTMImage({ image, onDelete }: { image: LGTMoonImage, onDelete: 
 
 	return (
 		<>
-			{!isLoaded && <div className="aspect-square w-full bg-gray-100 animate-pulse" />}
-			{!isDeleted &&
-				<ImageCover onClickCopy={onClickCopy} onClickDownload={onClickDownload} onDelete={onClickDelete}>
+			{!isLoaded && (
+				<div className="aspect-square w-full bg-gray-100 animate-pulse" />
+			)}
+			{!isDeleted && (
+				<ImageCover
+					onClickCopy={onClickCopy}
+					onClickDownload={onClickDownload}
+					onDelete={onClickDelete}
+				>
 					{/* eslint-disable-next-line @next/next/no-img-element */}
 					<img
 						ref={imgRef}
-						className={cn("rounded-sm w-full block", isLoaded ? "block" : "hidden")}
+						className={cn(
+							"rounded-sm w-full block",
+							isLoaded ? "block" : "hidden",
+						)}
 						alt="LGTMoon"
 					/>
 				</ImageCover>
-			}
+			)}
 		</>
 	);
 }
