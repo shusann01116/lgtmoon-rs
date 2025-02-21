@@ -1,7 +1,7 @@
 "use client";
 
 import { type DBSchema, type IDBPDatabase, openDB } from "idb";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 const DBConfig = {
 	name: "lgtmoon",
@@ -9,7 +9,7 @@ const DBConfig = {
 	version: 1,
 } as const;
 
-interface LGTMoonDB extends DBSchema {
+export interface LGTMoonDB extends DBSchema {
 	lgtmoon: {
 		key: string;
 		value: LGTMoonImage;
@@ -36,8 +36,12 @@ export function deleteImage(db: IDBPDatabase<LGTMoonDB>, id: string) {
 	return db.delete(DBConfig.storeName, id);
 }
 
-export function useLGTMoonDB() {
-	const dbRef = useRef<IDBPDatabase<LGTMoonDB> | null>(null);
+export function useLGTMoonDB({
+	onReady,
+}: {
+	onReady: (db: IDBPDatabase<LGTMoonDB>) => Promise<void>;
+}) {
+	const [db, setDB] = useState<IDBPDatabase<LGTMoonDB> | null>(null);
 	useEffect(() => {
 		const init = async () => {
 			const db = await openDB<LGTMoonDB>(DBConfig.name, DBConfig.version, {
@@ -45,10 +49,11 @@ export function useLGTMoonDB() {
 					db.createObjectStore(DBConfig.storeName, { keyPath: "id" });
 				},
 			});
-			dbRef.current = db;
+			setDB(db);
+			onReady(db);
 		};
 		init();
-	}, []);
+	}, [onReady]);
 
-	return dbRef;
+	return db;
 }

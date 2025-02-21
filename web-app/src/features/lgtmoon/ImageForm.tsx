@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LGTMImage } from "@/features/lgtmoon/LGTMImage";
 import {
+	type LGTMoonDB,
 	type LGTMoonImage,
 	addImage,
 	deleteImage,
@@ -11,27 +12,25 @@ import {
 	useLGTMoonDB,
 } from "@/features/lgtmoon/api/storage";
 import { useLgtmoon } from "@/hooks/useLgtmoon";
-import { type ChangeEvent, useEffect, useState } from "react";
+import type { IDBPDatabase } from "idb";
+import { type ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 
 export function ImageForm() {
 	const drawLgtmoon = useLgtmoon();
 	const [images, setImages] = useState<LGTMoonImage[]>([]);
-	const db = useLGTMoonDB();
 
-	// TODO: 初期表示の画像は上のコンポーネントで Promise を解消してから渡したい。
-	useEffect(() => {
-		const fetchImages = async () => {
-			await new Promise((resolve) => setTimeout(resolve, 100));
-			if (!db.current) return;
-			const images = await getAllImages(db.current);
-			setImages(
-				images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-					[],
-			);
-		};
-		fetchImages();
-	}, [db]);
+	const onDBReady = async (db: IDBPDatabase<LGTMoonDB>) => {
+		const images = await getAllImages(db);
+		setImages(
+			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
+				[],
+		);
+	};
+
+	const db = useLGTMoonDB({
+		onReady: onDBReady,
+	});
 
 	const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
@@ -44,7 +43,7 @@ export function ImageForm() {
 
 		try {
 			const blob = await drawLgtmoon(file);
-			if (!db.current) return;
+			if (!db) return;
 			const item = {
 				id: file.name,
 				name: file.name,
@@ -52,7 +51,7 @@ export function ImageForm() {
 				type: file.type,
 				createdAt: new Date(),
 			};
-			await addImage(db.current, item);
+			await addImage(db, item);
 			setImages([item, ...images]);
 		} catch (error) {
 			if (error instanceof Error) {
@@ -65,8 +64,8 @@ export function ImageForm() {
 	};
 
 	const onDelete = async (id: string) => {
-		if (!db.current) return;
-		await deleteImage(db.current, id);
+		if (!db) return;
+		await deleteImage(db, id);
 		setImages(images.filter((image) => image.id !== id));
 	};
 
