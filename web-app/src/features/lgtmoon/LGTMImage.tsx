@@ -26,17 +26,20 @@ export function LGTMImage({
 		};
 	}, [image]);
 
-	const onClickCopy = async () => {
+	const onClickCopy = () => {
 		if (!imgRef.current) return;
 
-		const buff = await fetch(imgRef.current.src).then((res) =>
-			res.arrayBuffer(),
-		);
-		await navigator.clipboard.write([
-			new ClipboardItem({
-				"image/png": new Blob([buff], { type: "image/png" }),
+		const item = new ClipboardItem({
+			// biome-ignore lint/suspicious/noAsyncPromiseExecutor: Safari でクリップボードにコピーするためには同期処理でなければいけない
+			"image/png": new Promise(async (resolve) => {
+				if (!imgRef.current) return;
+				const buff = await fetch(imgRef.current.src).then((res) =>
+					res.arrayBuffer(),
+				);
+				resolve(new Blob([buff], { type: "image/png" }));
 			}),
-		]);
+		});
+		navigator.clipboard.write([item]);
 	};
 
 	const onClickDownload = async () => {
