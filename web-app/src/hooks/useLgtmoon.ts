@@ -1,5 +1,5 @@
 import * as lgtm from "@/../pkg/lgtmoon_wasm";
-import { wasmPath } from "@/utils/wasm";
+import { wasmPath } from "@/lib/wasm";
 import { useEffect } from "react";
 
 export function useLgtmoon() {
