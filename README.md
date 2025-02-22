@@ -4,8 +4,7 @@ WASM を触ってみたいというだけの理由で作った LGTMoon クロー
 
 ファイル選択したら LGTM を描いてくれる、ローカルストレージに保存しておけるので好きな画像をいつでも召喚できるよ
 
-<img width="773" alt="image" src="https://github.com/user-attachments/assets/445d091f-e567-4385-991c-de740663dd82" />
-
+![image](https://github.com/user-attachments/assets/76e275a1-1731-4447-a95e-50d175c798ff)
 
 ## とりあえず動かしたいだけの場合
 
