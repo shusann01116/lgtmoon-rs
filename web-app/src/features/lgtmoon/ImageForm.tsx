@@ -27,7 +27,7 @@ export function ImageForm() {
 		const images = await getAllImages(db);
 		setImages(
 			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-			[],
+				[],
 		);
 	};
 
