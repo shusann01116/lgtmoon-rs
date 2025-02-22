@@ -7,6 +7,7 @@ import { cn } from "@/utils/cn";
 import { getFileExtension, getFileName } from "@/utils/file";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import { toast } from "sonner";
 
 export function LGTMImage({
 	image,
@@ -29,17 +30,23 @@ export function LGTMImage({
 	const onClickCopy = () => {
 		if (!imgRef.current) return;
 
-		const item = new ClipboardItem({
-			// biome-ignore lint/suspicious/noAsyncPromiseExecutor: Safari でクリップボードにコピーするためには同期処理でなければいけない
-			"image/png": new Promise(async (resolve) => {
-				if (!imgRef.current) return;
-				const buff = await fetch(imgRef.current.src).then((res) =>
-					res.arrayBuffer(),
-				);
-				resolve(new Blob([buff], { type: "image/png" }));
-			}),
-		});
-		navigator.clipboard.write([item]);
+		try {
+			const item = new ClipboardItem({
+				// biome-ignore lint/suspicious/noAsyncPromiseExecutor: Safari でクリップボードにコピーするためには同期処理でなければいけない
+				"image/png": new Promise(async (resolve) => {
+					if (!imgRef.current) return;
+					const buff = await fetch(imgRef.current.src).then((res) =>
+						res.arrayBuffer(),
+					);
+					resolve(new Blob([buff], { type: "image/png" }));
+				}),
+			});
+			navigator.clipboard.write([item]);
+		} catch (error) {
+			toast.error("Failed to copy to clipboard", {
+				description: error instanceof Error ? error.message : "Unknown error",
+			});
+		}
 	};
 
 	const onClickDownload = async () => {

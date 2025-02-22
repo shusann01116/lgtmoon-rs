@@ -10,6 +10,7 @@ import {
 	getAllImages,
 	useLGTMoonDB,
 } from "@/features/lgtmoon/api/storage";
+import { processImage } from "@/features/lgtmoon/utils/image";
 import { useLgtmoon } from "@/hooks/useLgtmoon";
 import { useOnPaste } from "@/hooks/useUploadFromClipBoard";
 import type { IDBPDatabase } from "idb";
@@ -26,7 +27,7 @@ export function ImageForm() {
 		const images = await getAllImages(db);
 		setImages(
 			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-			[],
+				[],
 		);
 	};
 
@@ -35,32 +36,29 @@ export function ImageForm() {
 	});
 
 	const handleAddImage = async (file: File) => {
+		if (!db) {
+			toast.error("Database not initialized");
+			return;
+		}
+
 		try {
-			const canvas = document.createElement('canvas');
-			const ctx = canvas.getContext('2d');
-			const img = new Image();
-			img.onload = async () => {
-				if (!ctx) return;
-				canvas.width = img.width;
-				canvas.height = img.height;
-				ctx.drawImage(img, 0, 0);
-				canvas.toBlob(async (blob) => {
-					if (!blob) return;
-					const buffer = await blob.arrayBuffer();
-					const drawedBuffer = await drawLgtmoon(new File([buffer], file.name, { type: file.type }));
-					const item: LGTMoonImage = {
-						id: crypto.randomUUID(),
-						name: file.name,
-						buffer: await drawedBuffer.arrayBuffer(),
-						type: file.type,
-						createdAt: new Date(),
-					};
-					if (!db) return;
-					addImage(db, item);
-					setImages([item, ...(images ?? [])]);
-				}, file.type);
+			const canvas = new OffscreenCanvas(1, 1); // Initial size will be updated
+			const blob = await processImage(file, canvas);
+			const drawedBuffer = await drawLgtmoon(
+				await blob.arrayBuffer(),
+				file.type,
+			);
+
+			const item: LGTMoonImage = {
+				id: crypto.randomUUID(),
+				name: file.name,
+				buffer: drawedBuffer,
+				type: file.type,
+				createdAt: new Date(),
 			};
-			img.src = URL.createObjectURL(file);
+
+			await addImage(db, item);
+			setImages([item, ...(images ?? [])]);
 		} catch (error) {
 			if (error instanceof Error) {
 				toast.error("Failed to add image", {
@@ -75,18 +73,19 @@ export function ImageForm() {
 		const files = e.clipboardData?.files;
 		if (!files) return;
 		for (const file of files) {
-			await handleAddImage(file);
+			void handleAddImage(file);
 		}
 	});
 
 	const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
+		e.target.value = "";
 		if (!file) return;
 		if (images?.some((image) => image.name === file.name)) {
 			toast.error("Image already exists");
 			return;
 		}
-		await handleAddImage(file);
+		void handleAddImage(file);
 	};
 
 	const onDelete = async (id: string) => {

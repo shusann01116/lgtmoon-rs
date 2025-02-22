@@ -9,9 +9,8 @@ export function useLgtmoon() {
 			.then((bytes) => lgtm.initSync({ module: bytes }));
 	}, []);
 
-	return async (file: File) => {
-		const buffer = await file.arrayBuffer();
-		const raw = lgtm.draw_lgtm(new Uint8Array(buffer), file.type);
-		return new Blob([raw]);
+	return async (buffer: ArrayBuffer, type: string): Promise<ArrayBuffer> => {
+		const raw = lgtm.draw_lgtm(new Uint8Array(buffer), type);
+		return new Blob([raw]).arrayBuffer();
 	};
 }
