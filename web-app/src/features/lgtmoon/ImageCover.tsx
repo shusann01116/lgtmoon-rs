@@ -93,14 +93,13 @@ export function ImageCover({
 			/>
 			<Popover>
 				<PopoverTrigger asChild>
-					<Button
-						asChild
-						variant="ghost"
-						size="icon"
-						className="absolute stroke-primary-foreground/80 size-11 p-3 right-0 bottom-0 [@media(any-hover:hover)]:hidden"
+					<button
+						type="button"
+						title="Image menu"
+						className="absolute p-3 right-0 bottom-0 [@media(any-hover:hover)]:hidden"
 					>
-						<CircleEllipsis />
-					</Button>
+						<CircleEllipsis className="stroke-primary-foreground/80 rounded-full backdrop-brightness-75" />
+					</button>
 				</PopoverTrigger>
 				<PopoverContent
 					side="bottom"
