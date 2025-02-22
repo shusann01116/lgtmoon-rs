@@ -1,18 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { useKeepUntilOnPointerLeave } from "@/hooks/useKeepUntilOnPointerLeave";
+import { cn } from "@/utils/cn";
 import { Check, Clipboard, Download, Trash } from "lucide-react";
 import { useRef } from "react";
 import { toast } from "sonner";
 
 type ImageCoverProps = {
 	children: React.ReactNode;
-	onClickCopy?: () => void;
-	onClickDownload?: () => void;
-	onDelete?: () => void;
+	className: string;
+	onClickCopy: () => void;
+	onClickDownload: () => void;
+	onDelete: () => void;
 };
 
 export function ImageCover({
 	children,
+	className,
 	onClickCopy,
 	onClickDownload,
 	onDelete,
@@ -30,12 +33,12 @@ export function ImageCover({
 	);
 
 	const onClickCopyForUnHoverable = () => {
-		onClickCopy?.();
+		onClickCopy();
 		toast.success("Copied to clipboard");
 	};
 
 	return (
-		<div className="relative">
+		<div className={cn("relative", className)}>
 			<div className="group absolute inset-0 hover:bg-primary/50 transition-all rounded-sm">
 				<div className="flex items-center justify-center h-full">
 					<Button
