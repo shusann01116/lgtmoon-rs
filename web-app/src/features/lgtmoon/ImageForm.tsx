@@ -26,7 +26,7 @@ export function ImageForm() {
 		const images = await getAllImages(db);
 		setImages(
 			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-				[],
+			[],
 		);
 	};
 
@@ -100,7 +100,7 @@ export function ImageForm() {
 					画像を追加して LGTM ライブラリを作ろう ☺️
 				</p>
 			) : (
-				<section className="columns-2 gap-4 space-y-4 sm:columns-3 lg:columns-5">
+				<section className="columns-3xs space-y-4">
 					{images?.map((image) => {
 						return (
 							<LGTMImage key={image.id} image={image} onDelete={onDelete} />
