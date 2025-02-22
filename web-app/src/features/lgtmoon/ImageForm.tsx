@@ -26,7 +26,7 @@ export function ImageForm() {
 		const images = await getAllImages(db);
 		setImages(
 			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-				[],
+			[],
 		);
 	};
 
@@ -36,17 +36,31 @@ export function ImageForm() {
 
 	const handleAddImage = async (file: File) => {
 		try {
-			const blob = await drawLgtmoon(file);
-			if (!db) return;
-			const item = {
-				id: crypto.randomUUID(),
-				name: file.name,
-				buffer: await blob.arrayBuffer(),
-				type: file.type,
-				createdAt: new Date(),
+			const canvas = document.createElement('canvas');
+			const ctx = canvas.getContext('2d');
+			const img = new Image();
+			img.onload = async () => {
+				if (!ctx) return;
+				canvas.width = img.width;
+				canvas.height = img.height;
+				ctx.drawImage(img, 0, 0);
+				canvas.toBlob(async (blob) => {
+					if (!blob) return;
+					const buffer = await blob.arrayBuffer();
+					const drawedBuffer = await drawLgtmoon(new File([buffer], file.name, { type: file.type }));
+					const item: LGTMoonImage = {
+						id: crypto.randomUUID(),
+						name: file.name,
+						buffer: await drawedBuffer.arrayBuffer(),
+						type: file.type,
+						createdAt: new Date(),
+					};
+					if (!db) return;
+					addImage(db, item);
+					setImages([item, ...(images ?? [])]);
+				}, file.type);
 			};
-			await addImage(db, item);
-			setImages([item, ...(images ?? [])]);
+			img.src = URL.createObjectURL(file);
 		} catch (error) {
 			if (error instanceof Error) {
 				toast.error("Failed to add image", {

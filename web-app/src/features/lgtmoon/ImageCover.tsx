@@ -1,5 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
 import { useKeepUntilOnPointerLeave } from "@/hooks/useKeepUntilOnPointerLeave";
 import { cn } from "@/utils/cn";
 import { PopoverClose } from "@radix-ui/react-popover";
@@ -107,27 +111,14 @@ export function ImageCover({
 					className="w-full p-2 flex flex-col items-start"
 				>
 					<PopoverClose asChild>
-						<Button
-							variant="ghost"
-							size="sm"
-							onClick={onClickDownloadButton}
-						>
-							<Download
-								className="size-4"
-							/>
+						<Button variant="ghost" size="sm" onClick={onClickDownloadButton}>
+							<Download className="size-4" />
 							<p className="text-sm">Download</p>
 						</Button>
 					</PopoverClose>
 					<PopoverClose asChild>
-						<Button
-							variant="ghost"
-							size="sm"
-							onClick={onDelete}
-						>
-							<Trash
-								className="size-4"
-								color="hsl(var(--destructive))"
-							/>
+						<Button variant="ghost" size="sm" onClick={onDelete}>
+							<Trash className="size-4" color="hsl(var(--destructive))" />
 							<p className="text-sm text-destructive">Delete</p>
 						</Button>
 					</PopoverClose>

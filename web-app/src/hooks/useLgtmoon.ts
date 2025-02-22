@@ -11,7 +11,7 @@ export function useLgtmoon() {
 
 	return async (file: File) => {
 		const buffer = await file.arrayBuffer();
-		const raw = lgtm.draw_lgtm(new Uint8Array(buffer));
+		const raw = lgtm.draw_lgtm(new Uint8Array(buffer), file.type);
 		return new Blob([raw]);
 	};
 }
