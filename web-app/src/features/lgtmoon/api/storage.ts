@@ -24,18 +24,22 @@ export type LGTMoonImage = {
 	createdAt: Date;
 };
 
+/** TODO: データアクセスレイヤーを抽象化する */
 export function getAllImages(db: IDBPDatabase<LGTMoonDB>) {
 	return db.getAll(DBConfig.storeName);
 }
 
+/** TODO: データアクセスレイヤーを抽象化する */
 export function addImage(db: IDBPDatabase<LGTMoonDB>, image: LGTMoonImage) {
 	return db.add(DBConfig.storeName, image);
 }
 
+/** TODO: データアクセスレイヤーを抽象化する */
 export function deleteImage(db: IDBPDatabase<LGTMoonDB>, id: string) {
 	return db.delete(DBConfig.storeName, id);
 }
 
+/** TODO: データアクセスレイヤーを抽象化する */
 export function useLGTMoonDB({
 	onReady,
 }: {
