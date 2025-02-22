@@ -11,6 +11,7 @@ import {
 	useLGTMoonDB,
 } from "@/features/lgtmoon/api/storage";
 import { useLgtmoon } from "@/hooks/useLgtmoon";
+import { useOnPaste } from "@/hooks/useUploadFromClipBoard";
 import type { IDBPDatabase } from "idb";
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
@@ -33,20 +34,12 @@ export function ImageForm() {
 		onReady: onDBReady,
 	});
 
-	const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
-		const file = e.target.files?.[0];
-		if (!file) return;
-
-		if (images?.some((image) => image.name === file.name)) {
-			toast.error("Image already exists");
-			return;
-		}
-
+	const handleAddImage = async (file: File) => {
 		try {
 			const blob = await drawLgtmoon(file);
 			if (!db) return;
 			const item = {
-				id: file.name,
+				id: crypto.randomUUID(),
 				name: file.name,
 				buffer: await blob.arrayBuffer(),
 				type: file.type,
@@ -62,6 +55,24 @@ export function ImageForm() {
 			}
 			throw error;
 		}
+	};
+
+	useOnPaste(async (e: ClipboardEvent) => {
+		const files = e.clipboardData?.files;
+		if (!files) return;
+		for (const file of files) {
+			await handleAddImage(file);
+		}
+	});
+
+	const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+		if (!file) return;
+		if (images?.some((image) => image.name === file.name)) {
+			toast.error("Image already exists");
+			return;
+		}
+		await handleAddImage(file);
 	};
 
 	const onDelete = async (id: string) => {
