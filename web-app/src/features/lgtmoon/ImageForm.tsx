@@ -27,7 +27,7 @@ export function ImageForm() {
 		const images = await getAllImages(db);
 		setImages(
 			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-				[],
+			[],
 		);
 	};
 
@@ -109,7 +109,7 @@ export function ImageForm() {
 				/>
 			</section>
 			{images && images.length < 1 ? (
-				<p className="text-sm text-center">
+				<p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 					画像を追加して LGTM ライブラリを作ろう ☺️
 				</p>
 			) : (
