@@ -118,7 +118,7 @@ export function ImageCover({
 					</PopoverClose>
 					<PopoverClose asChild>
 						<Button variant="ghost" size="sm" onClick={onDelete}>
-							<Trash className="size-4" color="hsl(var(--destructive))" />
+							<Trash className="size-4" color="var(--destructive)" />
 							<p className="text-destructive text-sm">Delete</p>
 						</Button>
 					</PopoverClose>
