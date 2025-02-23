@@ -55,7 +55,7 @@ export function ImageCover({
 				<div className="flex h-full items-center justify-center">
 					<Button
 						ref={copyButtonRef}
-						className="hidden transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
+						className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
 						size="icon"
 						variant="ghost"
 						onClick={onClickCopyButton}
@@ -68,7 +68,7 @@ export function ImageCover({
 					</Button>
 					<Button
 						ref={downloadButtonRef}
-						className="hidden transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
+						className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
 						size="icon"
 						variant="ghost"
 						onClick={onClickDownloadButton}
@@ -80,7 +80,7 @@ export function ImageCover({
 						)}
 					</Button>
 					<Button
-						className="hidden transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
+						className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
 						size="icon"
 						variant="ghost"
 						onClick={onDelete}

@@ -1,4 +1,5 @@
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/utils/cn";
 import { type ChangeEvent, type ReactNode, useRef } from "react";
 
 type FileInputButtonProps = {
@@ -6,7 +7,7 @@ type FileInputButtonProps = {
 	icon: ReactNode;
 	accept: string;
 	onClick: (e: ChangeEvent<HTMLInputElement>) => void;
-	variant?: ButtonProps["variant"];
+	variant?: "default" | "outline" | "ghost" | "link";
 };
 
 export function FileInputButton({
@@ -31,7 +32,7 @@ export function FileInputButton({
 				variant={variant}
 				size="icon"
 				onClick={() => inputRef.current?.click()}
-				className={className}
+				className={cn("cursor-pointer", className)}
 			>
 				{icon}
 			</Button>
