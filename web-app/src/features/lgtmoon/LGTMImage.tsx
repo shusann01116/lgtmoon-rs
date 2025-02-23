@@ -73,7 +73,7 @@ export function LGTMImage({
 			)}
 			{!isDeleted && (
 				<ImageCover
-					className="shadow-sm drop-shadow-sm hover:drop-shadow-2xl shadow-accent transition-all"
+					className="shadow-xs drop-shadow-xs hover:drop-shadow-2xl shadow-accent transition-all"
 					onClickCopy={onClickCopy}
 					onClickDownload={onClickDownload}
 					onDelete={onClickDelete}
