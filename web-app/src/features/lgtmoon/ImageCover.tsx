@@ -51,11 +51,11 @@ export function ImageCover({
 
 	return (
 		<article className={cn("relative", className)}>
-			<div className="group absolute inset-0 hover:bg-primary/50 transition-all rounded-sm">
-				<div className="flex items-center justify-center h-full">
+			<div className="group absolute inset-0 rounded-sm transition-all hover:bg-primary/50">
+				<div className="flex h-full items-center justify-center">
 					<Button
 						ref={copyButtonRef}
-						className="group-hover:inline-flex hover:bg-accent/50 hidden transition-all active:bg-accent"
+						className="hidden transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
 						size="icon"
 						variant="ghost"
 						onClick={onClickCopyButton}
@@ -68,7 +68,7 @@ export function ImageCover({
 					</Button>
 					<Button
 						ref={downloadButtonRef}
-						className="group-hover:inline-flex hover:bg-accent/50 hidden transition-all active:bg-accent"
+						className="hidden transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
 						size="icon"
 						variant="ghost"
 						onClick={onClickDownloadButton}
@@ -80,7 +80,7 @@ export function ImageCover({
 						)}
 					</Button>
 					<Button
-						className="group-hover:inline-flex hover:bg-accent/50 hidden transition-all active:bg-accent"
+						className="hidden transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
 						size="icon"
 						variant="ghost"
 						onClick={onDelete}
@@ -100,15 +100,15 @@ export function ImageCover({
 					<button
 						type="button"
 						title="Image menu"
-						className="absolute p-3 right-0 bottom-0 [@media(any-hover:hover)]:hidden"
+						className="absolute right-0 bottom-0 p-3 [@media(any-hover:hover)]:hidden"
 					>
-						<CircleEllipsis className="stroke-primary-foreground/80 rounded-full backdrop-brightness-75" />
+						<CircleEllipsis className="rounded-full stroke-primary-foreground/80 backdrop-brightness-75" />
 					</button>
 				</PopoverTrigger>
 				<PopoverContent
 					side="bottom"
 					align="end"
-					className="w-full p-2 flex flex-col items-start"
+					className="flex w-full flex-col items-start p-2"
 				>
 					<PopoverClose asChild>
 						<Button variant="ghost" size="sm" onClick={onClickDownloadButton}>
@@ -119,7 +119,7 @@ export function ImageCover({
 					<PopoverClose asChild>
 						<Button variant="ghost" size="sm" onClick={onDelete}>
 							<Trash className="size-4" color="hsl(var(--destructive))" />
-							<p className="text-sm text-destructive">Delete</p>
+							<p className="text-destructive text-sm">Delete</p>
 						</Button>
 					</PopoverClose>
 				</PopoverContent>

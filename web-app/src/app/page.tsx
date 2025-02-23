@@ -4,11 +4,11 @@ import Link from "next/link";
 
 export default function Home() {
 	return (
-		<div className="flex flex-col min-h-svh pb-4">
-			<main className="w-full max-w-(--breakpoint-xl) py-4 px-4 mx-auto flex-1">
+		<div className="flex min-h-svh flex-col pb-4">
+			<main className="mx-auto w-full max-w-(--breakpoint-xl) flex-1 px-4 py-4">
 				<ImageForm />
 			</main>
-			<footer className="text-center text-sm text-muted-foreground">
+			<footer className="text-center text-muted-foreground text-sm">
 				<p>© 2025 shusann01116</p>
 				<p>
 					<Link
@@ -17,7 +17,7 @@ export default function Home() {
 						target="_blank"
 					>
 						GitHub
-						<ExternalLink className="size-4 inline-block pb-1 pl-1" />
+						<ExternalLink className="inline-block size-4 pb-1 pl-1" />
 					</Link>
 				</p>
 			</footer>

@@ -27,7 +27,7 @@ export function ImageForm() {
 		const images = await getAllImages(db);
 		setImages(
 			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-			[],
+				[],
 		);
 	};
 
@@ -96,7 +96,7 @@ export function ImageForm() {
 
 	return (
 		<div className="flex flex-col gap-4">
-			<section className="flex items-center gap-4 text-lg font-extrabold font-sans">
+			<section className="flex items-center gap-4 font-extrabold font-sans text-lg">
 				<Link href="/">
 					<h1>LGTMoon-rs</h1>
 				</Link>
@@ -109,7 +109,7 @@ export function ImageForm() {
 				/>
 			</section>
 			{images && images.length < 1 ? (
-				<p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-sm font-light">
+				<p className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 text-center font-light text-sm">
 					画像を追加して LGTM
 					<br className="block sm:hidden" />
 					ライブラリを作ろう ☺️

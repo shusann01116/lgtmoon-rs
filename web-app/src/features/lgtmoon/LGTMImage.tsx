@@ -69,11 +69,11 @@ export function LGTMImage({
 	return (
 		<>
 			{!isLoaded && (
-				<div className="aspect-square w-full bg-gray-100 animate-pulse" />
+				<div className="aspect-square w-full animate-pulse bg-gray-100" />
 			)}
 			{!isDeleted && (
 				<ImageCover
-					className="shadow-xs drop-shadow-xs hover:drop-shadow-2xl shadow-accent transition-all"
+					className="shadow-accent shadow-xs drop-shadow-xs transition-all hover:drop-shadow-2xl"
 					onClickCopy={onClickCopy}
 					onClickDownload={onClickDownload}
 					onDelete={onClickDelete}
@@ -82,7 +82,7 @@ export function LGTMImage({
 					<img
 						ref={imgRef}
 						className={cn(
-							"rounded-sm w-full block",
+							"block w-full rounded-sm",
 							isLoaded ? "block" : "hidden",
 						)}
 						alt="LGTMoon"
