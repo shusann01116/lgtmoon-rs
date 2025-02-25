@@ -11,6 +11,7 @@ import {
 	useLGTMoonDB,
 } from "@/features/lgtmoon/api/storage";
 import { processImage } from "@/features/lgtmoon/utils/image";
+import { LoginButton } from "@/features/user/login-button";
 import { useLgtmoon } from "@/hooks/useLgtmoon";
 import { useOnPaste } from "@/hooks/useUploadFromClipBoard";
 import type { IDBPDatabase } from "idb";
@@ -27,7 +28,7 @@ export function ImageForm() {
 		const images = await getAllImages(db);
 		setImages(
 			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-				[],
+			[],
 		);
 	};
 
@@ -100,13 +101,15 @@ export function ImageForm() {
 				<Link href="/">
 					<h1>LGTMoon-rs</h1>
 				</Link>
-				<FileInputButton
-					className="ml-auto"
-					icon={<PlusIcon />}
-					accept="image/*"
-					onClick={onChange}
-					variant="outline"
-				/>
+				<section className="ml-auto flex items-center gap-4">
+					<LoginButton />
+					<FileInputButton
+						icon={<PlusIcon />}
+						accept="image/*"
+						onClick={onChange}
+						variant="default"
+					/>
+				</section>
 			</section>
 			{images && images.length < 1 ? (
 				<p className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 text-center font-light text-sm">
