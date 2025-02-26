@@ -1,6 +1,6 @@
 "use client";
 
-import { ImageCover } from "@/features/lgtmoon/ImageCover";
+import { ImageCover } from "@/features/lgtmoon/components/ImageCover";
 import type { LGTMoonImage } from "@/features/lgtmoon/api/storage";
 import { download } from "@/lib/download";
 import { cn } from "@/utils/cn";
