@@ -58,13 +58,13 @@ importers:
         specifier: 1.9.4
         version: 1.9.4
       '@eslint/eslintrc':
-        specifier: ^3.3.0
+        specifier: 3.3.0
         version: 3.3.0
       '@tailwindcss/postcss':
-        specifier: ^4.0.8
+        specifier: 4.0.8
         version: 4.0.8
       '@types/node':
-        specifier: ^22.13.5
+        specifier: 22.13.5
         version: 22.13.5
       '@types/react':
         specifier: ^19.0.10
@@ -73,31 +73,31 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.10)
       eslint:
-        specifier: ^9.21.0
+        specifier: 9.21.0
         version: 9.21.0(jiti@2.4.2)
       eslint-config-next:
         specifier: 15.1.7
         version: 15.1.7(eslint@9.21.0(jiti@2.4.2))(typescript@5.7.3)
       eslint-config-prettier:
-        specifier: ^10.0.1
+        specifier: 10.0.1
         version: 10.0.1(eslint@9.21.0(jiti@2.4.2))
       eslint-plugin-prettier:
-        specifier: ^5.2.3
+        specifier: 5.2.3
         version: 5.2.3(eslint-config-prettier@10.0.1(eslint@9.21.0(jiti@2.4.2)))(eslint@9.21.0(jiti@2.4.2))(prettier@3.5.2)
       postcss:
-        specifier: ^8.5.3
+        specifier: 8.5.3
         version: 8.5.3
       prettier:
-        specifier: ^3.5.2
+        specifier: 3.5.2
         version: 3.5.2
       prettier-eslint:
-        specifier: ^16.3.0
+        specifier: 16.3.0
         version: 16.3.0
       tailwindcss:
-        specifier: ^4.0.8
+        specifier: 4.0.8
         version: 4.0.8
       typescript:
-        specifier: ^5.7.3
+        specifier: 5.7.3
         version: 5.7.3
 
 packages:
