@@ -2,5 +2,5 @@
 "cargo:wasm-pack" = "0.13.1"
 node = "23"
 "npm:vercel" = "41.3.0"
-pnpm = "10.4.1"
+pnpm = "10.5.2"
 rust = "1.85.0"
