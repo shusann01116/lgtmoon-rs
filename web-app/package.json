@@ -7,9 +7,7 @@
 		"build": "next build",
 		"build:wasm": "wasm-pack build ../lgtmoon-wasm --target web --out-dir ../web-app/pkg && mkdir -p ./public/pkg && cp ./pkg/*.wasm ./public/pkg/",
 		"start": "next start",
-		"lint": "next lint",
-		"format": "biome check --write",
-		"format:staged": "biome check --write --staged"
+		"lint": "next lint"
 	},
 	"dependencies": {
 		"@next/third-parties": "^15.1.7",
@@ -29,7 +27,6 @@
 		"tailwindcss-animate": "^1.0.7"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
 		"@eslint/eslintrc": "3.3.0",
 		"@tailwindcss/postcss": "4.0.9",
 		"@types/node": "22.13.9",

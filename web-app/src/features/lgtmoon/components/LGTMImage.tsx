@@ -32,7 +32,6 @@ export function LGTMImage({
 
 		try {
 			const item = new ClipboardItem({
-				// biome-ignore lint/suspicious/noAsyncPromiseExecutor: Safari でクリップボードにコピーするためには同期処理でなければいけない
 				"image/png": new Promise(async (resolve) => {
 					if (!imgRef.current) return;
 					const buff = await fetch(imgRef.current.src).then((res) =>
