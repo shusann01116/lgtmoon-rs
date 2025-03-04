@@ -11,7 +11,7 @@ export function useLgtmoon() {
 	}, [])
 
 	return (buffer: ArrayBuffer, type: string): Promise<ArrayBuffer> => {
-		const raw = lgtm.drawLgtm(new Uint8Array(buffer), type)
+		const raw = lgtm.draw_lgtm(new Uint8Array(buffer), type)
 		return new Blob([raw]).arrayBuffer()
 	}
 }
