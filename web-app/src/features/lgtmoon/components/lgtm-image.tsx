@@ -80,7 +80,6 @@ export function LGTMImage({
           onClickDownload={onClickDownload}
           onDelete={onClickDelete}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={imgRef}
             className={cn(
