@@ -8,7 +8,8 @@
     "build": "next build",
     "build:wasm": "wasm-pack build ../lgtmoon-wasm --target web --out-dir ../web-app/pkg && mkdir -p ./public/pkg && cp ./pkg/*.wasm ./public/pkg/",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@next/third-parties": "^15.1.7",
@@ -44,6 +45,8 @@
     "postcss": "8.5.3",
     "prettier": "3.5.3",
     "prettier-eslint": "16.3.0",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "4.0.9",
     "typescript": "5.8.2",
     "typescript-eslint": "^8.26.0"
