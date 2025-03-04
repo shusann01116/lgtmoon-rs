@@ -1,11 +1,11 @@
 'use client';
 
-import { EmptyState } from '@/features/lgtmoon/components/EmptyState';
-import { Header } from '@/features/lgtmoon/components/Header';
-import { ImageGallery } from '@/features/lgtmoon/components/ImageGallery';
-import { useImageStorage } from '@/features/lgtmoon/hooks/useImageStorage';
-import { useOnPaste } from '@/hooks/useUploadFromClipBoard';
+import { EmptyState } from '@/features/lgtmoon/components/empty-state';
+import { ImageGallery } from '@/features/lgtmoon/components/image-gallery';
+import { useImageStorage } from '@/features/lgtmoon/hooks/use-image-storage';
+import { useOnPaste } from '@/hooks/use-pload-from-clipboard';
 import { toast } from 'sonner';
+import { Header } from './hader';
 
 export function ImageForm() {
   const { images, handleAddImage, handleDeleteImage } = useImageStorage();

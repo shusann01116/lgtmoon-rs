@@ -4,7 +4,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { useKeepUntilOnPointerLeave } from '@/hooks/useKeepUntilOnPointerLeave';
+import { useKeepUntilOnPointerLeave } from '@/hooks/use-keep-until-on-pointer-leave';
 import { cn } from '@/utils/cn';
 import { PopoverClose } from '@radix-ui/react-popover';
 import {

@@ -1,4 +1,4 @@
-import { ImageUploadButton } from '@/features/lgtmoon/components/ImageUploadButton';
+import { ImageUploadButton } from '@/features/lgtmoon/components/image-upload-button';
 import Link from 'next/link';
 
 interface HeaderProps {

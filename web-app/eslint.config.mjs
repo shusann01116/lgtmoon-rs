@@ -2,6 +2,8 @@
 
 import nextPlugin from '@next/eslint-plugin-next';
 import prettierConfig from 'eslint-config-prettier';
+import checkFilePlugin from 'eslint-plugin-check-file';
+import importPlugin from 'eslint-plugin-import';
 import reactPlugin from 'eslint-plugin-react';
 import hooksPlugin from 'eslint-plugin-react-hooks';
 import tseslint from 'typescript-eslint';
@@ -27,6 +29,37 @@ const eslintConfig = tseslint.config(
   },
   tseslint.configs.strict,
   prettierConfig,
+  {
+    plugins: {
+      import: importPlugin,
+    },
+    rules: {
+      'import/no-relative-packages': 'error',
+    },
+  },
+  {
+    plugins: {
+      'check-file': checkFilePlugin,
+    },
+    rules: {
+      'check-file/filename-naming-convention': [
+        'error',
+        {
+          '**/*.{js,jsx,ts,tsx}': 'KEBAB_CASE',
+        },
+        {
+          ignoreMiddleExtensions: true,
+        },
+      ],
+      'check-file/folder-naming-convention': [
+        'error',
+        {
+          '!(src/app)/**/*': 'KEBAB_CASE',
+          '!(**/__tests__)/**/*': 'KEBAB_CASE',
+        },
+      ],
+    },
+  },
 );
 
 export default eslintConfig;

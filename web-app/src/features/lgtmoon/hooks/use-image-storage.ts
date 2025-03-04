@@ -7,7 +7,7 @@ import {
   useLGTMoonDB,
 } from '@/features/lgtmoon/api/storage';
 import { processImage } from '@/features/lgtmoon/utils/image';
-import { useLgtmoon } from '@/hooks/useLgtmoon';
+import { useLgtmoon } from '@/hooks/use-lgtmoon';
 import type { IDBPDatabase } from 'idb';
 import { useState } from 'react';
 import { toast } from 'sonner';
