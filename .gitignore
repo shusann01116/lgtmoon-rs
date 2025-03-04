@@ -3,3 +3,4 @@
 img
 web-app/public/pkg/lgtmoon_wasm_bg.wasm
 .vercel
+node_modules
