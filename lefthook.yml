@@ -1,0 +1,11 @@
+pre-commit:
+  parralel: true
+  jobs:
+    - name: format
+      root: web-app
+      run: pnpm format {staged_files}
+      stage_fixed: true
+    - name: lint
+      root: web-app
+      run: pnpm exec eslint --fix "{staged_files}"
+      stage_fixed: true
