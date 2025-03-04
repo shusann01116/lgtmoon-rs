@@ -1,21 +1,17 @@
 // @ts-check
 
-import tseslint from 'typescript-eslint';
 import nextPlugin from '@next/eslint-plugin-next';
+import prettierConfig from 'eslint-config-prettier';
 import reactPlugin from 'eslint-plugin-react';
 import hooksPlugin from 'eslint-plugin-react-hooks';
-import prettierConfig from 'eslint-config-prettier';
+import tseslint from 'typescript-eslint';
 
-const eslintConfig =  tseslint.config(
-	{
-		ignores: [
-			"**/.next/**",
-			"**/node_modules/**",
-			"**/pkg/**",
-		],
-	},
-	{
-		plugins: {
+const eslintConfig = tseslint.config(
+  {
+    ignores: ['**/.next/**', '**/node_modules/**', '**/pkg/**'],
+  },
+  {
+    plugins: {
       react: reactPlugin,
       'react-hooks': hooksPlugin,
       '@next/next': nextPlugin,
@@ -27,10 +23,10 @@ const eslintConfig =  tseslint.config(
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
       '@next/next/no-img-element': 'error',
-		},
-	},
-	tseslint.configs.strict,
-	prettierConfig,
+    },
+  },
+  tseslint.configs.strict,
+  prettierConfig,
 );
 
 export default eslintConfig;
