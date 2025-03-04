@@ -3,6 +3,7 @@ import { env } from '@/config/env'
 import { ThemeProvider } from '@/providers/theme-provider'
 import '@/styles/globals.css'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 
@@ -41,6 +42,7 @@ export default function RootLayout({
 				</ThemeProvider>
 				<Toaster position="top-center" />
 				<GoogleAnalytics gaId={env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+				<SpeedInsights />
 			</body>
 		</html>
 	)

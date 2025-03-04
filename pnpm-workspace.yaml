@@ -1,2 +1,4 @@
 packages:
-  - "web-app"
+  - web-app
+onlyBuiltDependencies:
+  - '@vercel/speed-insights'
