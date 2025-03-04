@@ -1,16 +1,36 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+// @ts-check
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import tseslint from 'typescript-eslint';
+import nextPlugin from '@next/eslint-plugin-next';
+import reactPlugin from 'eslint-plugin-react';
+import hooksPlugin from 'eslint-plugin-react-hooks';
+import prettierConfig from 'eslint-config-prettier';
 
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-	...compat.extends("next/core-web-vitals", "next/typescript"),
-];
+const eslintConfig =  tseslint.config(
+	{
+		ignores: [
+			"**/.next/**",
+			"**/node_modules/**",
+			"**/pkg/**",
+		],
+	},
+	{
+		plugins: {
+      react: reactPlugin,
+      'react-hooks': hooksPlugin,
+      '@next/next': nextPlugin,
+    },
+    // @ts-expect-error - The nextPlugin is not typed
+    rules: {
+      ...reactPlugin.configs['jsx-runtime'].rules,
+      ...hooksPlugin.configs.recommended.rules,
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
+      '@next/next/no-img-element': 'error',
+		},
+	},
+	tseslint.configs.strict,
+	prettierConfig,
+);
 
 export default eslintConfig;

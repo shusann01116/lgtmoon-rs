@@ -32,6 +32,7 @@ export function LGTMImage({
 
 		try {
 			const item = new ClipboardItem({
+				// Safari では ClipboardItem は同期コンテキストのみで動作するため、Promise を無理やり中で解消する必要がある
 				"image/png": new Promise(async (resolve) => {
 					if (!imgRef.current) return;
 					const buff = await fetch(imgRef.current.src).then((res) =>
