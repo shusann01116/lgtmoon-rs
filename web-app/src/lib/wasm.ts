@@ -1,6 +1,5 @@
-import { basePath } from '@/lib/env'
+import { env } from '@/config/env'
 
-const wasmRelativePath = '/pkg/lgtmoon_wasm_bg.wasm'
 export function wasmPath() {
-	return basePath + wasmRelativePath
+	return env.NEXT_PUBLIC_LGTM_WASM_PATH
 }

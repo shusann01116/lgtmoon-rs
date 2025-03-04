@@ -57,6 +57,16 @@
 					}
 				}
 			}
+		},
+		{
+			"include": ["web-app/src/config/env.ts"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useNamingConvention": "off"
+					}
+				}
+			}
 		}
 	]
 }

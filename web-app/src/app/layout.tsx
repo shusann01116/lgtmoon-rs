@@ -1,5 +1,5 @@
-import { Config } from '@/app/config'
 import { Toaster } from '@/components/ui/sonner'
+import { env } from '@/config/env'
 import { ThemeProvider } from '@/providers/theme-provider'
 import '@/styles/globals.css'
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -40,7 +40,7 @@ export default function RootLayout({
 					{children}
 				</ThemeProvider>
 				<Toaster position="top-center" />
-				<GoogleAnalytics gaId={Config.googleAnalytics.gaId ?? 'G-W4PVVMT3PM'} />
+				<GoogleAnalytics gaId={env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
 			</body>
 		</html>
 	)
