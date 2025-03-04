@@ -1,66 +1,68 @@
-'use client';
+'use client'
 
-import { type DBSchema, type IDBPDatabase, openDB } from 'idb';
-import { useEffect, useRef, useState } from 'react';
+import { type DBSchema, type IDBPDatabase, openDB } from 'idb'
+import { useEffect, useRef, useState } from 'react'
 
-const DBConfig = {
-  name: 'lgtmoon',
-  storeName: 'lgtmoon',
-  version: 1,
-} as const;
+const dbConfig = {
+	name: 'lgtmoon',
+	storeName: 'lgtmoon',
+	version: 1,
+} as const
 
-export interface LGTMoonDB extends DBSchema {
-  lgtmoon: {
-    key: string;
-    value: LGTMoonImage;
-  };
+export interface LgtMoonDb extends DBSchema {
+	lgtmoon: {
+		key: string
+		value: LgtMoonImage
+	}
 }
 
-export type LGTMoonImage = {
-  id: string;
-  name: string;
-  buffer: ArrayBuffer;
-  type: string;
-  createdAt: Date;
-};
-
-/** TODO: データアクセスレイヤーを抽象化する */
-export function getAllImages(db: IDBPDatabase<LGTMoonDB>) {
-  return db.getAll(DBConfig.storeName);
+export type LgtMoonImage = {
+	id: string
+	name: string
+	buffer: ArrayBuffer
+	type: string
+	createdAt: Date
 }
 
 /** TODO: データアクセスレイヤーを抽象化する */
-export function addImage(db: IDBPDatabase<LGTMoonDB>, image: LGTMoonImage) {
-  return db.add(DBConfig.storeName, image);
+export function getAllImages(db: IDBPDatabase<LgtMoonDb>) {
+	return db.getAll(dbConfig.storeName)
 }
 
 /** TODO: データアクセスレイヤーを抽象化する */
-export function deleteImage(db: IDBPDatabase<LGTMoonDB>, id: string) {
-  return db.delete(DBConfig.storeName, id);
+export function addImage(db: IDBPDatabase<LgtMoonDb>, image: LgtMoonImage) {
+	return db.add(dbConfig.storeName, image)
 }
 
 /** TODO: データアクセスレイヤーを抽象化する */
-export function useLGTMoonDB({
-  onReady,
+export function deleteImage(db: IDBPDatabase<LgtMoonDb>, id: string) {
+	return db.delete(dbConfig.storeName, id)
+}
+
+/** TODO: データアクセスレイヤーを抽象化する */
+export function useLgtMoonDb({
+	onReady,
 }: {
-  onReady: (db: IDBPDatabase<LGTMoonDB>) => Promise<void>;
+	onReady: (db: IDBPDatabase<LgtMoonDb>) => Promise<void>
 }) {
-  const dbLoaded = useRef(false);
-  const [db, setDB] = useState<IDBPDatabase<LGTMoonDB> | null>(null);
-  useEffect(() => {
-    const init = async () => {
-      if (dbLoaded.current) return;
-      const db = await openDB<LGTMoonDB>(DBConfig.name, DBConfig.version, {
-        upgrade(db) {
-          db.createObjectStore(DBConfig.storeName, { keyPath: 'id' });
-        },
-      });
-      setDB(db);
-      dbLoaded.current = true;
-      onReady(db);
-    };
-    init();
-  }, [onReady]);
+	const dbLoaded = useRef(false)
+	const [db, setDb] = useState<IDBPDatabase<LgtMoonDb> | null>(null)
+	useEffect(() => {
+		const init = async () => {
+			if (dbLoaded.current) {
+				return
+			}
+			const db = await openDB<LgtMoonDb>(dbConfig.name, dbConfig.version, {
+				upgrade(db) {
+					db.createObjectStore(dbConfig.storeName, { keyPath: 'id' })
+				},
+			})
+			setDb(db)
+			dbLoaded.current = true
+			onReady(db)
+		}
+		init()
+	}, [onReady])
 
-  return db;
+	return db
 }
