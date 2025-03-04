@@ -1,15 +1,15 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:best-practices",
-    ":automergePatch",
-    "customManagers:biomeVersions"
-  ],
-  "automergeType": "branch",
-  "packageRules": [
-    {
-      "extends": [":automergeStableNonMajor"],
-      "matchPackageNames": ["lucide-react"]
-    }
-  ]
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:best-practices",
+		":automergePatch",
+		"customManagers:biomeVersions"
+	],
+	"automergeType": "branch",
+	"packageRules": [
+		{
+			"extends": [":automergeStableNonMajor"],
+			"matchPackageNames": ["lucide-react"]
+		}
+	]
 }
