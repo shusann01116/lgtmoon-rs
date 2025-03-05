@@ -1,4 +1,4 @@
-import { FileInputButton } from '@/components/ui/fileinputbutton'
+import { FileInputButton } from '@/components/ui/file-input'
 import { PlusIcon } from 'lucide-react'
 import type { ChangeEvent } from 'react'
 
@@ -17,12 +17,9 @@ export const ImageUploadButton = ({ onAddImage }: ImageUploadButtonProps) => {
 	}
 
 	return (
-		<FileInputButton
-			className="ml-auto"
-			icon={<PlusIcon />}
-			accept="image/*"
-			onClick={handleChange}
-			variant="outline"
-		/>
+		<FileInputButton accept="image/*" onClick={handleChange} variant="default">
+			<PlusIcon className="size-4" />
+			Add Image
+		</FileInputButton>
 	)
 }

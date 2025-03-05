@@ -4,8 +4,15 @@ import Link from 'next/link'
 
 export default function Home() {
 	return (
-		<div className="flex min-h-svh flex-col pb-4">
-			<main className="mx-auto w-full max-w-(--breakpoint-xl) flex-1 px-4 py-4">
+		<div className="sm:8 flex min-h-svh flex-col gap-4 p-4 lg:gap-10">
+			<header className="mx-auto flex w-full max-w-(--breakpoint-xl) gap-4 font-extrabold font-sans text-lg">
+				<Link href="/">
+					<h1 className="scroll-m-20 font-extrabold text-4xl tracking-tight lg:text-5xl">
+						LGTMoon-rs
+					</h1>
+				</Link>
+			</header>
+			<main className="container mx-auto max-w-(--breakpoint-xl) flex-1">
 				<ImageForm />
 			</main>
 			<footer className="text-center text-muted-foreground text-sm">

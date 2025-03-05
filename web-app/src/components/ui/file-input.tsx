@@ -3,8 +3,8 @@ import { cn } from '@/utils/cn'
 import { type ChangeEvent, type ReactNode, useRef } from 'react'
 
 type FileInputButtonProps = {
+	children: ReactNode
 	className?: string
-	icon: ReactNode
 	accept: string
 	onClick: (e: ChangeEvent<HTMLInputElement>) => void
 	variant?: 'default' | 'outline' | 'ghost' | 'link'
@@ -12,10 +12,10 @@ type FileInputButtonProps = {
 
 export function FileInputButton({
 	className,
-	icon,
 	accept,
 	onClick,
 	variant,
+	children,
 }: FileInputButtonProps) {
 	const inputRef = useRef<HTMLInputElement>(null)
 	return (
@@ -30,11 +30,10 @@ export function FileInputButton({
 			/>
 			<Button
 				variant={variant}
-				size="icon"
 				onClick={() => inputRef.current?.click()}
 				className={cn('cursor-pointer', className)}
 			>
-				{icon}
+				{children}
 			</Button>
 		</>
 	)
