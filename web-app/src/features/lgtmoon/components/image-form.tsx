@@ -38,15 +38,20 @@ export function ImageForm() {
 
 	return (
 		<>
-			<FileInputButton
-				className="mb-4"
-				accept="image/*"
-				onClick={onAddImage}
-				variant="default"
-			>
-				<PlusIcon className="size-4" />
-				Add New Image ✨
-			</FileInputButton>
+			<section className="mb-4 flex items-center gap-2">
+				<FileInputButton
+					accept="image/*"
+					onClick={onAddImage}
+					variant="default"
+				>
+					<PlusIcon className="size-4" />
+					Add New Image ✨
+				</FileInputButton>
+				<p className="text-sm/tight">or</p>
+				<kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-medium font-mono text-[10px] text-muted-foreground opacity-100">
+					<span className="text-xs">⌘</span>V
+				</kbd>
+			</section>
 			{images && images.length === 0 ? (
 				<EmptyState />
 			) : (
