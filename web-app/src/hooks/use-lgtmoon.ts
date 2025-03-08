@@ -1,5 +1,5 @@
 import { wasmPath } from '@/lib/wasm'
-import { draw_lgtm, initSync } from 'lgtmoon-wasm'
+import { drawLgtm, initSync } from 'lgtmoon-wasm'
 import { useEffect } from 'react'
 
 export function useLgtmoon() {
@@ -10,7 +10,7 @@ export function useLgtmoon() {
 	}, [])
 
 	return (buffer: ArrayBuffer, type: string): Promise<ArrayBuffer> => {
-		const raw = draw_lgtm(new Uint8Array(buffer), type)
+		const raw = drawLgtm(new Uint8Array(buffer), type)
 		return new Blob([raw]).arrayBuffer()
 	}
 }

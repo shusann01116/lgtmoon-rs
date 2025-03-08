@@ -3,7 +3,7 @@ use lgtmoon_core::Drawer;
 use wasm_bindgen::{prelude::*, Clamped};
 use web_sys::{js_sys::Uint8Array, Blob};
 
-#[wasm_bindgen]
+#[wasm_bindgen(js_name = "drawLgtm")]
 pub fn draw_lgtm(bytes: &Uint8Array, mime_type: &str) -> Blob {
     console_error_panic_hook::set_once();
     let format = ImageFormat::from_mime_type(mime_type).expect("failed to get image format");
