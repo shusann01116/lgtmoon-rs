@@ -12,6 +12,8 @@ importers:
         specifier: 1.9.4
         version: 1.9.4
 
+  lgtmoon-wasm/pkg: {}
+
   web-app:
     dependencies:
       '@next/third-parties':
@@ -38,6 +40,9 @@ importers:
       idb:
         specifier: ^8.0.2
         version: 8.0.2
+      lgtmoon-wasm:
+        specifier: workspace:^
+        version: link:../lgtmoon-wasm/pkg
       lucide-react:
         specifier: ^0.477.0
         version: 0.477.0(react@19.0.0)

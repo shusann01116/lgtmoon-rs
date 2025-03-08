@@ -6,7 +6,6 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"build:wasm": "wasm-pack build ../lgtmoon-wasm --target web --out-dir ../web-app/pkg && mkdir -p ./public/pkg && cp ./pkg/*.wasm ./public/pkg/",
 		"start": "next start",
 		"lint": "biome lint --write",
 		"format": "biome format --write"
@@ -20,6 +19,7 @@
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"idb": "^8.0.2",
+		"lgtmoon-wasm": "workspace:^",
 		"lucide-react": "^0.477.0",
 		"next": "15.2.1",
 		"next-themes": "^0.4.4",

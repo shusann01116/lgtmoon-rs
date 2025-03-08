@@ -1,17 +1,16 @@
-// biome-ignore lint/style/noNamespaceImport: wasm からのインポートのため
-import * as lgtm from '@/../pkg/lgtmoon_wasm'
 import { wasmPath } from '@/lib/wasm'
+import { draw_lgtm, initSync } from 'lgtmoon-wasm'
 import { useEffect } from 'react'
 
 export function useLgtmoon() {
 	useEffect(() => {
 		fetch(wasmPath())
 			.then((res) => res.arrayBuffer())
-			.then((bytes) => lgtm.initSync({ module: bytes }))
+			.then((bytes) => initSync({ module: bytes }))
 	}, [])
 
 	return (buffer: ArrayBuffer, type: string): Promise<ArrayBuffer> => {
-		const raw = lgtm.draw_lgtm(new Uint8Array(buffer), type)
+		const raw = draw_lgtm(new Uint8Array(buffer), type)
 		return new Blob([raw]).arrayBuffer()
 	}
 }

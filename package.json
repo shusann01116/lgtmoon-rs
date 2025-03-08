@@ -1,4 +1,7 @@
 {
+	"scripts": {
+		"build:wasm": "wasm-pack build lgtmoon-wasm --target web && mkdir -p web-app/public/pkg && cp lgtmoon-wasm/pkg/*.wasm web-app/public/pkg/"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4"
 	}
