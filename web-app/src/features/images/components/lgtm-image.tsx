@@ -1,5 +1,6 @@
 'use client'
 
+import { Skeleton } from '@/components/ui/skeleton'
 import type { LgtMoonImage } from '@/features/images/api/storage'
 import { ImageCover } from '@/features/images/components/image-cover'
 import { download } from '@/lib/download'
@@ -65,7 +66,7 @@ export function LgtmImage({
 		const buff = await fetch(imgRef.current.src).then((res) =>
 			res.arrayBuffer(),
 		)
-		await download(
+		download(
 			new Blob([buff], { type: 'image/png' }),
 			`${getFileName(image.name)}-lgtm.${getFileExtension(image.name)}`,
 		)
@@ -79,7 +80,7 @@ export function LgtmImage({
 	return (
 		<>
 			{!isLoaded && (
-				<div className="aspect-square w-full animate-pulse bg-gray-100" />
+				<Skeleton className="aspect-video w-full break-inside-avoid-column rounded-xl" />
 			)}
 			{!isDeleted && (
 				<ImageCover
