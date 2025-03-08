@@ -8,7 +8,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "biome lint --write",
-		"format": "biome format --write"
+		"format": "biome format --write",
+		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@next/third-parties": "^15.1.7",

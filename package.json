@@ -1,8 +1,14 @@
 {
+	"private": true,
 	"scripts": {
-		"build:wasm": "wasm-pack build lgtmoon-wasm --target web && mkdir -p web-app/public/pkg && cp lgtmoon-wasm/pkg/*.wasm web-app/public/pkg/"
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"build:wasm": "wasm-pack build lgtmoon-wasm --target web && mkdir -p web-app/public/pkg && cp lgtmoon-wasm/pkg/*.wasm web-app/public/pkg/",
+		"check-types": "turbo check-types"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4"
-	}
+		"@biomejs/biome": "1.9.4",
+		"turbo": "^2.4.4"
+	},
+	"packageManager": "pnpm@10.6.1"
 }

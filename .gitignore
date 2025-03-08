@@ -1,6 +1,13 @@
-.DS_Store
+# Rust
 /target
-img
-web-app/public/pkg/lgtmoon_wasm_bg.wasm
-.vercel
+
+# Build output
+/web-app/public/pkg/lgtmoon_wasm_bg.wasm
+
+# installed packages
 node_modules
+.vercel
+.turbo
+
+# misc
+.DS_Store
