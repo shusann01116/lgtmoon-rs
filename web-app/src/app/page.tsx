@@ -1,4 +1,4 @@
-import { ImageForm } from '@/features/lgtmoon/components/image-form'
+import { ImageForm } from '@/features/images/components/image-form'
 import { ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 

@@ -1,5 +1,5 @@
-import type { LgtMoonImage } from '@/features/lgtmoon/api/storage'
-import { LgtmImage } from '@/features/lgtmoon/components/lgtm-image'
+import type { LgtMoonImage } from '@/features/images/api/storage'
+import { LgtmImage } from '@/features/images/components/lgtm-image'
 
 interface ImageGalleryProps {
 	images: LgtMoonImage[]

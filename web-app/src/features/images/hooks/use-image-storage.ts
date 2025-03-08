@@ -5,8 +5,8 @@ import {
 	deleteImage,
 	getAllImages,
 	useLgtMoonDb,
-} from '@/features/lgtmoon/api/storage'
-import { processImage } from '@/features/lgtmoon/utils/image'
+} from '@/features/images/api/storage'
+import { processImage } from '@/features/images/utils/image'
 import { useLgtmoon } from '@/hooks/use-lgtmoon'
 import type { IDBPDatabase } from 'idb'
 import { useState } from 'react'
