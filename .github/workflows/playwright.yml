@@ -1,0 +1,35 @@
+name: E2E Tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - name: Setup mise
+      uses: jdx/mise-action@5083fe46898c414b2475087cc79da59e7da859e8 # v2
+      with:
+        experimental: true
+    - name: Install dependencies
+      run: pnpm install
+    - name: Install Playwright Browsers
+      run: pnpm exec playwright install --with-deps
+    - name: Build wasm
+      run: pnpm build:wasm
+    - name: Run Playwright tests
+      run: pnpm exec playwright test
+      working-directory: web-app
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report
+        path: web-app/playwright-report/
+        retention-days: 30

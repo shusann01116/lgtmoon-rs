@@ -67,6 +67,16 @@
 					}
 				}
 			}
+		},
+		{
+			"include": ["web-app/e2e/**/*.ts"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noNodejsModules": "off"
+					}
+				}
+			}
 		}
 	]
 }

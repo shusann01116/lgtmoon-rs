@@ -29,6 +29,7 @@ export function FileInputButton({
 				onChange={onClick}
 			/>
 			<Button
+				aria-hidden="true"
 				variant={variant}
 				onClick={() => inputRef.current?.click()}
 				className={cn('cursor-pointer', className)}
