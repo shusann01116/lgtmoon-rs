@@ -12,7 +12,7 @@ importers:
         specifier: 1.9.4
         version: 1.9.4
       turbo:
-        specifier: ^2.4.4
+        specifier: 2.4.4
         version: 2.4.4
 
   lgtmoon-wasm/pkg: {}
