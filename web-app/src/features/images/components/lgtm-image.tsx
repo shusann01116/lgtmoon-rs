@@ -18,7 +18,6 @@ export function LgtmImage({
 }) {
 	const imgRef = useRef<HTMLImageElement>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
-	const [isDeleted, setIsDeleted] = useState(false)
 
 	useEffect(() => {
 		if (!imgRef.current) {
@@ -72,33 +71,26 @@ export function LgtmImage({
 		)
 	}
 
-	const onClickDelete = () => {
-		setIsDeleted(true)
-		onDelete(image.id)
-	}
-
 	return (
 		<>
 			{!isLoaded && (
 				<Skeleton className="aspect-video w-full break-inside-avoid-column rounded-xl" />
 			)}
-			{!isDeleted && (
-				<ImageCover
-					className="shadow-accent shadow-xs drop-shadow-xs transition-all hover:drop-shadow-2xl"
-					onClickCopy={onClickCopy}
-					onClickDownload={onClickDownload}
-					onDelete={onClickDelete}
-				>
-					<img
-						ref={imgRef}
-						className={cn(
-							'block w-full rounded-sm',
-							isLoaded ? 'block' : 'hidden',
-						)}
-						alt="LGTMoon"
-					/>
-				</ImageCover>
-			)}
+			<ImageCover
+				className="shadow-accent shadow-xs drop-shadow-xs transition-all hover:drop-shadow-2xl"
+				onClickCopy={onClickCopy}
+				onClickDownload={onClickDownload}
+				onDelete={() => onDelete(image.id)}
+			>
+				<img
+					ref={imgRef}
+					className={cn(
+						'block w-full rounded-sm',
+						isLoaded ? 'block' : 'hidden',
+					)}
+					alt="LGTMoon"
+				/>
+			</ImageCover>
 		</>
 	)
 }
