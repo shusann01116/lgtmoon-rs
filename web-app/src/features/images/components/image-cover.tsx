@@ -1,5 +1,14 @@
 import { Button } from '@/components/ui/button'
 import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog'
+import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
@@ -73,14 +82,37 @@ export function ImageCover({
 							<Download className="stroke-primary-foreground" />
 						)}
 					</Button>
-					<Button
-						className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
-						size="icon"
-						variant="ghost"
-						onClick={onDelete}
-					>
-						<Trash className="stroke-primary-foreground" />
-					</Button>
+					<Dialog>
+						<DialogTrigger asChild>
+							<Button
+								className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
+								size="icon"
+								variant="ghost"
+							>
+								<Trash className="stroke-primary-foreground" />
+							</Button>
+						</DialogTrigger>
+						<DialogContent>
+							<DialogTitle>Delete Image</DialogTitle>
+							<DialogDescription>
+								Are you sure you want to delete this image?
+							</DialogDescription>
+							<DialogFooter>
+								<DialogClose asChild>
+									<Button className="cursor-pointer" variant="outline">
+										Cancel
+									</Button>
+								</DialogClose>
+								<Button
+									className="cursor-pointer"
+									variant="destructive"
+									onClick={onDelete}
+								>
+									Delete
+								</Button>
+							</DialogFooter>
+						</DialogContent>
+					</Dialog>
 				</div>
 			</div>
 			<button
