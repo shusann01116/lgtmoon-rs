@@ -8,14 +8,13 @@ WASM を触ってみたいというだけの理由で作った LGTMoon クロー
 
 ## とりあえず動かしたいだけの場合
 
+[mise](https://mise.jdx.dev/getting-started.html) をインストールしていることが前提だよ
+
 ```bash
-cargo install wasm-pack
-cd web-app
+mise install
 pnpm install
 pnpm build:wasm
 pnpm dev
 ```
 
 Rust のコードを変えた場合、 `pnpm build:wasm` で再ビルドしてください。
-
-## 細かい話 (TBD)
