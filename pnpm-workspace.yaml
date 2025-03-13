@@ -1,6 +1,5 @@
 packages:
   - web-app
-  - lgtmoon-wasm/pkg
 onlyBuiltDependencies:
   - '@biomejs/biome'
   - '@vercel/speed-insights'

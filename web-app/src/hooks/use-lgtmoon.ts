@@ -1,5 +1,5 @@
+import { drawLgtm, initSync } from '@/../../lgtmoon-wasm/pkg'
 import { wasmPath } from '@/lib/wasm'
-import { drawLgtm, initSync } from 'lgtmoon-wasm'
 import { useEffect } from 'react'
 
 export function useLgtmoon() {
