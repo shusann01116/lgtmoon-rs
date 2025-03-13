@@ -2,9 +2,6 @@ name: Renovate
 on:
   schedule:
     - cron: '0/15 * * * *'
-  pull_request:
-    branches: main
-    types: [opened, synchronize]
 
 env:
   LOG_LEVEL: debug
