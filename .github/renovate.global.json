@@ -6,5 +6,5 @@
 	"onboardingBranch": "renovate/configure",
 	"platform": "github",
 	"platformCommit": "auto",
-	"repositories": []
+	"repositories": ["shusann01116/lgtmoon-rs"]
 }
