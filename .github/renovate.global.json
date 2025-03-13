@@ -1,0 +1,10 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"branchPrefix": "renovate/",
+	"dependencyDashboardTitle": "Dependency Dashboard",
+	"onboarding": true,
+	"onboardingBranch": "renovate/configure",
+	"platform": "github",
+	"platformCommit": "auto",
+	"repositories": ["shusann01116/lgtmoon-rs"]
+}

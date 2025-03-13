@@ -1,0 +1,33 @@
+name: Renovate
+on:
+  schedule:
+    - cron: '0/15 * * * *'
+
+env:
+  LOG_LEVEL: debug
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get token
+        id: get_token
+        uses: actions/create-github-app-token@v1
+        with:
+          private-key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
+          app-id: ${{ secrets.RENOVATE_APP_ID }}
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+      - name: Setup mise
+        uses: jdx/mise-action@5083fe46898c414b2475087cc79da59e7da859e8 # v2
+        with:
+          experimental: true
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build wasm
+        run: pnpm build:wasm
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v41.0.13
+        with:
+          configurationFile: .github/renovate.global.json
+          token: ${{ steps.get_token.outputs.token }}
