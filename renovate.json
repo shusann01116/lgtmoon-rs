@@ -8,8 +8,9 @@
 	"automergeType": "branch",
 	"packageRules": [
 		{
-			"extends": [":automergeStableNonMajor"],
-			"matchPackageNames": ["lucide-react"]
+			"extends": ["monorepo:lucide"],
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"automerge": true
 		}
 	]
 }
