@@ -13,6 +13,7 @@ const PORT = 3000
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+// biome-ignore lint/style/noDefaultExport: is ok for playwright config
 export default defineConfig({
 	testDir: './e2e',
 	/* Run tests in files in parallel */
