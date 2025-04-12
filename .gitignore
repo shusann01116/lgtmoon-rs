@@ -11,3 +11,6 @@ node_modules
 
 # misc
 .DS_Store
+
+# env files
+.env*.local

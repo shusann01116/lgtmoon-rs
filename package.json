@@ -4,7 +4,8 @@
 		"dev": "turbo dev",
 		"build": "turbo build",
 		"build:wasm": "wasm-pack build lgtmoon-wasm --target web && mkdir -p web-app/public/pkg && cp lgtmoon-wasm/pkg/*.wasm web-app/public/pkg/",
-		"check-types": "turbo check-types"
+		"check-types": "turbo check-types",
+		"pull-env": "vercel env pull web-app/.env.local"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
