@@ -121,7 +121,7 @@ importers:
         specifier: 19.1.2
         version: 19.1.2(@types/react@19.1.1)
       drizzle-kit:
-        specifier: ^0.30.6
+        specifier: 0.30.6
         version: 0.30.6
       postcss:
         specifier: 8.5.3
