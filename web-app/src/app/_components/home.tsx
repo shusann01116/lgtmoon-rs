@@ -8,7 +8,7 @@ export const Home = () => {
 		<div className="sm:8 flex min-h-svh flex-col gap-4 p-4 lg:gap-10">
 			<header className="mx-auto flex w-full max-w-(--breakpoint-xl) items-center gap-4 font-extrabold font-sans text-lg">
 				<Link href="/">
-					<h1 className="scroll-m-20 font-extrabold text-4xl tracking-tight lg:text-5xl">
+					<h1 className="scroll-m-20 font-extrabold text-2xl tracking-tight sm:text-4xl lg:text-5xl">
 						LGTMoon-rs
 					</h1>
 				</Link>

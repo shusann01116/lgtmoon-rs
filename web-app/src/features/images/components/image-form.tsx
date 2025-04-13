@@ -38,7 +38,7 @@ export function ImageForm() {
 
 	return (
 		<>
-			<section className="mb-4 flex items-center gap-2">
+			<section className="mb-4 flex pointer-coarse:hidden items-center gap-2">
 				<FileInputButton
 					accept="image/*"
 					onClick={onAddImage}
@@ -57,6 +57,17 @@ export function ImageForm() {
 			) : (
 				<ImageGallery images={images || []} onDelete={handleDeleteImage} />
 			)}
+			<section className="fixed end-4 bottom-4 pointer-fine:hidden shadow-xl">
+				<FileInputButton
+					accept="image/*"
+					onClick={onAddImage}
+					variant="default"
+					size="icon"
+					className="size-12"
+				>
+					<PlusIcon className="size-8" />
+				</FileInputButton>
+			</section>
 		</>
 	)
 }

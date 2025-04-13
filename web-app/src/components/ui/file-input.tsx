@@ -8,6 +8,7 @@ type FileInputButtonProps = {
 	accept: string
 	onClick: (e: ChangeEvent<HTMLInputElement>) => void
 	variant?: 'default' | 'outline' | 'ghost' | 'link'
+	size?: 'default' | 'sm' | 'lg' | 'icon'
 }
 
 export function FileInputButton({
@@ -15,6 +16,7 @@ export function FileInputButton({
 	accept,
 	onClick,
 	variant,
+	size,
 	children,
 }: FileInputButtonProps) {
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -32,6 +34,7 @@ export function FileInputButton({
 				variant={variant}
 				onClick={() => inputRef.current?.click()}
 				className={cn('cursor-pointer', className)}
+				size={size}
 			>
 				{children}
 			</Button>

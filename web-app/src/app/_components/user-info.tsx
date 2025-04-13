@@ -20,7 +20,7 @@ export const UserInfo = async () => {
 			<PopoverTrigger
 				type="button"
 				title="User Info"
-				className="cursor-pointer"
+				className="cursor-pointer align-middle"
 			>
 				<Image
 					src={session?.user?.image ?? ''}
