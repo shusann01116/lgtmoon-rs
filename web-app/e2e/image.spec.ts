@@ -10,9 +10,9 @@ test('should add and delete an image', async ({ page }) => {
 	await expect(page.getByRole('link', { name: 'LGTMoon-rs' })).toBeVisible()
 
 	// Add a new image
-	await page
-		.getByLabel('Image file selector')
-		.setInputFiles(path.join(__dirname, 'fixtures', 'recipena.png'))
+	const input = await page.getByLabel('Image file selector').all()
+	expect(input).toHaveLength(2)
+	await input[0].setInputFiles(path.join(__dirname, 'fixtures', 'recipena.png'))
 	await expect(page.getByRole('article').locator('div').nth(1)).toBeVisible()
 
 	// Delete the image
