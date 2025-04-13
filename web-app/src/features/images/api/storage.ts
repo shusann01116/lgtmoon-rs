@@ -1,5 +1,6 @@
 'use client'
 
+import type { LgtMoonImage } from '@/types/lgtm-image'
 import { type DBSchema, type IDBPDatabase, openDB } from 'idb'
 import { useEffect, useRef, useState } from 'react'
 
@@ -14,14 +15,6 @@ export interface LgtMoonDb extends DBSchema {
 		key: string
 		value: LgtMoonImage
 	}
-}
-
-export type LgtMoonImage = {
-	id: string
-	name: string
-	buffer: ArrayBuffer
-	type: string
-	createdAt: Date
 }
 
 /** TODO: データアクセスレイヤーを抽象化する */

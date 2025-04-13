@@ -1,6 +1,5 @@
 import {
 	type LgtMoonDb,
-	type LgtMoonImage,
 	addImage,
 	deleteImage,
 	getAllImages,
@@ -8,6 +7,7 @@ import {
 } from '@/features/images/api/storage'
 import { processImage } from '@/features/images/utils/image'
 import { useLgtmoon } from '@/hooks/use-lgtmoon'
+import type { LgtMoonImage } from '@/types/lgtm-image'
 import type { IDBPDatabase } from 'idb'
 import { useState } from 'react'
 import { toast } from 'sonner'

@@ -1,9 +1,9 @@
 'use client'
 
 import { Skeleton } from '@/components/ui/skeleton'
-import type { LgtMoonImage } from '@/features/images/api/storage'
 import { ImageCover } from '@/features/images/components/image-cover'
 import { download } from '@/lib/download'
+import type { LgtMoonImage } from '@/types/lgtm-image'
 import { cn } from '@/utils/cn'
 import { getFileExtension, getFileName } from '@/utils/file'
 import { useEffect, useRef, useState } from 'react'
