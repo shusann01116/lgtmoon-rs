@@ -6,13 +6,7 @@ import {
 	text,
 	timestamp,
 } from 'drizzle-orm/pg-core'
-import { drizzle } from 'drizzle-orm/postgres-js'
 import type { AdapterAccountType } from 'next-auth/adapters'
-import postgres from 'postgres'
-
-const pool = postgres(process.env.POSTGRES_URL ?? '', { max: 1 })
-
-export const db = drizzle(pool)
 
 export const users = pgTable('user', {
 	id: text('id')

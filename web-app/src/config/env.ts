@@ -7,6 +7,7 @@ const createEnv = () => {
 		NEXT_PUBLIC_BASE_PATH: z.string().optional(),
 		NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().default('G-W4PVVMT3PM'),
 		NEXT_PUBLIC_LGTM_WASM_PATH: z.string().default(wasmRelativePath),
+		POSTGRES_URL: z.string().default(''),
 	})
 
 	const envVars = {
@@ -14,6 +15,7 @@ const createEnv = () => {
 		NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:
 			process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
 		NEXT_PUBLIC_LGTM_WASM_PATH: process.env.NEXT_PUBLIC_LGTM_WASM_PATH,
+		POSTGRES_URL: process.env.POSTGRES_URL,
 	}
 
 	const parsedEnv = EnvSchema.safeParse(envVars)
