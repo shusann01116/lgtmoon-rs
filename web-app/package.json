@@ -46,7 +46,7 @@
 		"@playwright/test": "1.51.1",
 		"@tailwindcss/postcss": "4.1.4",
 		"@types/node": "22.14.1",
-		"@types/react": "19.1.1",
+		"@types/react": "19.1.2",
 		"@types/react-dom": "19.1.2",
 		"drizzle-kit": "0.30.6",
 		"postcss": "8.5.3",
