@@ -4,6 +4,8 @@ on:
 
 jobs:
   test:
+    env:
+      POSTGRES_URL: ${{ secrets.TEST_POSTGRES_URL }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:

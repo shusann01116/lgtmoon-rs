@@ -59,7 +59,7 @@
 			}
 		},
 		{
-			"include": ["web-app/src/config/env.ts", "web-app/src/db/schema.ts"],
+			"include": ["web-app/src/config/*env.ts", "web-app/src/db/schema.ts"],
 			"linter": {
 				"rules": {
 					"style": {
