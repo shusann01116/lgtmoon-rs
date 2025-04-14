@@ -1,7 +1,9 @@
 import { UserInfo } from '@/app/_components/user-info'
+import { Skeleton } from '@/components/ui/skeleton'
 import { ImageForm } from '@/features/images/components/image-form'
 import { ExternalLink } from 'lucide-react'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 export const Home = () => {
 	return (
@@ -13,7 +15,11 @@ export const Home = () => {
 					</h1>
 				</Link>
 				<div className="ml-auto">
-					<UserInfo />
+					<Suspense
+						fallback={<Skeleton className="size-[40px] rounded-full" />}
+					>
+						<UserInfo />
+					</Suspense>
 				</div>
 			</header>
 			<main className="container mx-auto max-w-(--breakpoint-xl) flex-1">
