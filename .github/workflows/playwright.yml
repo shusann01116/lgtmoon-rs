@@ -11,6 +11,8 @@ jobs:
       R2_BUCKET_NAME: ""
       CLOUDFLARE_ACCOUNT_ID: ""
       AUTH_SECRET: ""
+      AUTH_GOOGLE_ID: ""
+      AUTH_GOOGLE_SECRET: ""
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
