@@ -7,6 +7,7 @@ const createClientEnv = () => {
 		NEXT_PUBLIC_BASE_PATH: z.string().optional(),
 		NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().default('G-W4PVVMT3PM'),
 		NEXT_PUBLIC_LGTM_WASM_PATH: z.string().default(wasmRelativePath),
+		NEXT_PUBLIC_IMAGE_HOST: z.string().optional(),
 	})
 
 	const envVars = {
@@ -14,6 +15,7 @@ const createClientEnv = () => {
 		NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:
 			process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
 		NEXT_PUBLIC_LGTM_WASM_PATH: process.env.NEXT_PUBLIC_LGTM_WASM_PATH,
+		NEXT_PUBLIC_IMAGE_HOST: process.env.NEXT_PUBLIC_IMAGE_HOST,
 	}
 
 	const parsedEnv = EnvSchema.safeParse(envVars)

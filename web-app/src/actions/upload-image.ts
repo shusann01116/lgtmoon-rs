@@ -7,9 +7,10 @@ import { db } from '@/lib/drizzle'
 import { images } from '@/schema/image'
 import { quota } from '@/schema/quota'
 import { thisMonth } from '@/utils/date'
+import { getImageKey } from '@/utils/server'
 import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
-import { and, count, eq, gte } from 'drizzle-orm'
+import { and, count, eq, gte, isNull } from 'drizzle-orm'
 
 export type UploadImageResult =
 	| {
@@ -80,7 +81,13 @@ export async function uploadImage({
 	const [{ count: imagesUploadedInMonth }] = await db
 		.select({ count: count() })
 		.from(images)
-		.where(and(eq(images.userId, userId), gte(images.createdAt, thisMonth())))
+		.where(
+			and(
+				eq(images.userId, userId),
+				gte(images.createdAt, thisMonth()),
+				isNull(images.deletedAt),
+			),
+		)
 	if (userQuota.imagesInMonth < imagesUploadedInMonth) {
 		return { success: false, error: 'QUOTA_EXCEEDED' }
 	}
@@ -97,9 +104,9 @@ export async function uploadImage({
 		S3,
 		new PutObjectCommand({
 			Bucket: serverEnv.R2_BUCKET_NAME,
-			Key: `images/${userId}/${image.id}.png`,
+			Key: getImageKey(userId, image.id),
 		}),
-		{ expiresIn: 60 * 60 * 24 },
+		{ expiresIn: 60 },
 	)
 
 	return { success: true, url }

@@ -9,4 +9,5 @@ export const images = pgTable('image', {
 		.notNull()
 		.references(() => users.id),
 	createdAt: timestamp('createdAt', { mode: 'date' }).notNull().defaultNow(),
+	deletedAt: timestamp('deletedAt', { mode: 'date' }),
 })

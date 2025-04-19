@@ -1,50 +1,38 @@
 'use client'
 
-import { uploadImage } from '@/actions/upload-image'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ImageCover } from '@/features/images/components/image-cover'
 import { download } from '@/lib/download'
-import type { LgtMoonImage } from '@/types/lgtm-image'
+import type { LgtMoonImage, LocalImage } from '@/types/lgtm-image'
 import { cn } from '@/utils/cn'
-import { getFileExtension, getFileName } from '@/utils/file'
-import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
 export function LgtmImage({
 	image,
+	onUpload: onUploadProp,
 	onDelete,
 }: {
 	image: LgtMoonImage
+	onUpload: (image: LocalImage) => Promise<void>
 	onDelete: (id: string) => void
 }) {
 	const imgRef = useRef<HTMLImageElement>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
+	const [isUploaded, setIsUploaded] = useState(image.storage === 'r2')
 
 	useEffect(() => {
 		if (!imgRef.current) {
 			return
 		}
-		imgRef.current.src = URL.createObjectURL(
-			new Blob([image.buffer], { type: image.type }),
-		)
+		imgRef.current.src =
+			image.storage === 'r2'
+				? image.url
+				: URL.createObjectURL(new Blob([image.buffer], { type: image.type }))
 		imgRef.current.onload = () => {
 			setIsLoaded(true)
 		}
 	}, [image])
-
-	const onUpload = async () => {
-		const result = await uploadImage({ imageId: image.id })
-		if (!result.success) {
-			toast.error(result.error)
-			return
-		}
-		await axios.put(result.url, image.buffer, {
-			headers: {
-				'Content-Type': image.type,
-			},
-		})
-	}
 
 	const onClickCopy = () => {
 		if (!imgRef.current) {
@@ -80,10 +68,22 @@ export function LgtmImage({
 		const buff = await fetch(imgRef.current.src).then((res) =>
 			res.arrayBuffer(),
 		)
-		download(
-			new Blob([buff], { type: 'image/png' }),
-			`${getFileName(image.name)}-lgtm.${getFileExtension(image.name)}`,
-		)
+		download(new Blob([buff], { type: 'image/png' }), `${image.id}.png`)
+	}
+
+	const onUpload = async () => {
+		if (image.storage !== 'local') {
+			return
+		}
+		await onUploadProp(image)
+		setIsUploaded(true)
+	}
+
+	const onClickCopyMdLink = () => {
+		if (!imgRef.current) {
+			return
+		}
+		navigator.clipboard.writeText(`![LGTMoon](${imgRef.current.src})`)
 	}
 
 	return (
@@ -93,7 +93,8 @@ export function LgtmImage({
 			)}
 			<ImageCover
 				className="shadow-accent shadow-xs drop-shadow-xs transition-all hover:drop-shadow-2xl"
-				onUpload={onUpload}
+				onUpload={isUploaded ? undefined : onUpload}
+				onClickCopyMdLink={isUploaded ? onClickCopyMdLink : undefined}
 				onClickCopy={onClickCopy}
 				onClickDownload={onClickDownload}
 				onDelete={() => onDelete(image.id)}

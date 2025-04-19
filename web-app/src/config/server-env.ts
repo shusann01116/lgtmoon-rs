@@ -8,6 +8,7 @@ const createServerEnv = () => {
 		R2_SECRET_ACCESS_KEY: z.string(),
 		R2_BUCKET_NAME: z.string(),
 		CLOUDFLARE_ACCOUNT_ID: z.string(),
+		IMAGE_BASE_PATH: z.string().optional().default(''),
 	})
 
 	const envVars = {
@@ -16,6 +17,7 @@ const createServerEnv = () => {
 		R2_SECRET_ACCESS_KEY: process.env.R2_SECRET_ACCESS_KEY,
 		R2_BUCKET_NAME: process.env.R2_BUCKET_NAME,
 		CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
+		IMAGE_BASE_PATH: process.env.IMAGE_BASE_PATH,
 	}
 
 	const parsedEnv = EnvSchema.safeParse(envVars)

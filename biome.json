@@ -62,7 +62,8 @@
 			"include": [
 				"web-app/src/config/*env.ts",
 				"web-app/src/schema/*",
-				"web-app/src/actions/*"
+				"web-app/src/actions/*",
+				"web-app/src/lib/axios.ts"
 			],
 			"linter": {
 				"rules": {

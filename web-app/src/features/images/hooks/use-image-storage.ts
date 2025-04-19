@@ -1,3 +1,6 @@
+import { deleteImage as deleteR2Image } from '@/actions/delete-image'
+import { listImages as listR2Images } from '@/actions/list-images'
+import { uploadImage } from '@/actions/upload-image'
 import {
 	type LgtMoonDb,
 	addImage,
@@ -7,20 +10,38 @@ import {
 } from '@/features/images/api/storage'
 import { processImage } from '@/features/images/utils/image'
 import { useLgtmoon } from '@/hooks/use-lgtmoon'
-import type { LgtMoonImage } from '@/types/lgtm-image'
+import type { LgtMoonImage, LocalImage, R2Image } from '@/types/lgtm-image'
+import axios from 'axios'
 import type { IDBPDatabase } from 'idb'
+import type { Session } from 'next-auth'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
-export const useImageStorage = () => {
+async function getR2Images(userId: string): Promise<R2Image[]> {
+	const r2Images = await listR2Images({ userId })
+	if (r2Images.success) {
+		return r2Images.images ?? []
+	}
+	return []
+}
+
+export const useImageStorage = ({
+	session,
+}: {
+	session: Session | null
+}) => {
 	const [images, setImages] = useState<LgtMoonImage[] | null>(null)
 	const drawLgtmoon = useLgtmoon()
 
 	const onDbReady = async (db: IDBPDatabase<LgtMoonDb>) => {
+		const userId = session?.user?.id
+
+		const r2Images = userId ? await getR2Images(userId) : []
 		const images = await getAllImages(db)
 		setImages(
-			images.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()) ??
-				[],
+			[...images, ...r2Images].sort(
+				(a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
+			) ?? [],
 		)
 	}
 
@@ -42,7 +63,8 @@ export const useImageStorage = () => {
 				file.type,
 			)
 
-			const item: LgtMoonImage = {
+			const item: LocalImage = {
+				storage: 'local',
 				id: crypto.randomUUID(),
 				name: file.name,
 				buffer: drawedBuffer,
@@ -67,12 +89,47 @@ export const useImageStorage = () => {
 			return
 		}
 		await deleteImage(db, id)
+
+		if (session) {
+			const result = await deleteR2Image({ imageId: id })
+			if (!result.success && result.error !== 'IMAGE_NOT_FOUND') {
+				toast.error(result.error)
+				return
+			}
+		}
+
 		setImages(images?.filter((image) => image.id !== id) ?? [])
+	}
+
+	const handleUploadImage = async (image: LocalImage) => {
+		if (!session) {
+			toast.error('Please sign in to upload images')
+			return
+		}
+		const result = await uploadImage({ imageId: image.id })
+		if (!result.success) {
+			toast.error(result.error)
+			return
+		}
+		const putResult = await axios.put(result.url, image.buffer, {
+			headers: {
+				'Content-Type': image.type,
+			},
+		})
+		if (putResult.status !== 200) {
+			toast.error('Failed to upload image')
+			return
+		}
+
+		if (db) {
+			await deleteImage(db, image.id)
+		}
 	}
 
 	return {
 		images,
 		handleAddImage,
 		handleDeleteImage,
+		handleUploadImage,
 	}
 }

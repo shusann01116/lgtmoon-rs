@@ -6,11 +6,20 @@ import { ImageGallery } from '@/features/images/components/image-gallery'
 import { useImageStorage } from '@/features/images/hooks/use-image-storage'
 import { useOnPaste } from '@/hooks/use-upload-from-clipboard'
 import { PlusIcon } from 'lucide-react'
-import type { ChangeEvent } from 'react'
+import type { Session } from 'next-auth'
+import { type ChangeEvent, use } from 'react'
 import { toast } from 'sonner'
 
-export function ImageForm() {
-	const { images, handleAddImage, handleDeleteImage } = useImageStorage()
+export function ImageForm({
+	sessionPromise,
+}: {
+	sessionPromise: Promise<Session | null>
+}) {
+	const session = use(sessionPromise)
+	const { images, handleAddImage, handleDeleteImage, handleUploadImage } =
+		useImageStorage({
+			session,
+		})
 
 	useOnPaste((e: ClipboardEvent) => {
 		const files = e.clipboardData?.files
@@ -24,7 +33,14 @@ export function ImageForm() {
 
 	const onAddImage = (e: ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0]
-		if (images?.some((image) => image.name === file?.name)) {
+		if (
+			images?.some((image) => {
+				if (image.storage === 'local') {
+					return image.name === file?.name
+				}
+				return false
+			})
+		) {
 			toast.error('Image already exists')
 			return
 		}
@@ -55,7 +71,11 @@ export function ImageForm() {
 			{images && images.length === 0 ? (
 				<EmptyState />
 			) : (
-				<ImageGallery images={images || []} onDelete={handleDeleteImage} />
+				<ImageGallery
+					images={images || []}
+					onUpload={handleUploadImage}
+					onDelete={handleDeleteImage}
+				/>
 			)}
 			<section className="fixed end-4 bottom-4 pointer-fine:hidden shadow-xl">
 				<FileInputButton
