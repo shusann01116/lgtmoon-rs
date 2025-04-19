@@ -27,10 +27,11 @@ import {
 	Clipboard,
 	Download,
 	Link,
+	Loader2,
 	Trash,
 	Upload,
 } from 'lucide-react'
-import { useRef } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
 type ImageCoverProps = {
@@ -40,7 +41,7 @@ type ImageCoverProps = {
 	onClickCopyMdLink?: () => void
 	onClickCopy?: () => void
 	onClickDownload?: () => void
-	onDelete?: () => void
+	onDelete?: () => Promise<void>
 }
 
 export function ImageCover({
@@ -76,10 +77,17 @@ export function ImageCover({
 		onClickDownload,
 	)
 
-	const onClickCopyForUnHoverable = () => {
+	const [isDeleting, setIsDeleting] = useState(false)
+	const onClickDeleteButton = useCallback(async () => {
+		setIsDeleting(true)
+		await onDelete?.()
+		setIsDeleting(false)
+	}, [onDelete])
+
+	const onClickCopyForUnHoverable = useCallback(() => {
 		onClickCopy?.()
 		toast.success('Copied to clipboard')
-	}
+	}, [onClickCopy])
 
 	return (
 		<article className={cn('relative', className)}>
@@ -207,18 +215,32 @@ export function ImageCover({
 									Are you sure you want to delete this image?
 								</DialogDescription>
 								<DialogFooter>
-									<DialogClose asChild>
-										<Button className="cursor-pointer" variant="outline">
-											Cancel
+									<div className="flex flex-row-reverse gap-2">
+										<Button
+											className="cursor-pointer align-middle"
+											variant="destructive"
+											onClick={onClickDeleteButton}
+											onKeyDown={async (event) => {
+												if (event.key === 'Enter') {
+													await onClickDeleteButton()
+												}
+											}}
+										>
+											<span>Delete</span>
+											<span className="size-4">
+												{isDeleting ? (
+													<Loader2 className="animate-spin" />
+												) : (
+													<>↵</>
+												)}
+											</span>
 										</Button>
-									</DialogClose>
-									<Button
-										className="cursor-pointer"
-										variant="destructive"
-										onClick={onDelete}
-									>
-										Delete
-									</Button>
+										<DialogClose asChild>
+											<Button className="cursor-pointer" variant="outline">
+												Cancel
+											</Button>
+										</DialogClose>
+									</div>
 								</DialogFooter>
 							</DialogContent>
 						</Dialog>

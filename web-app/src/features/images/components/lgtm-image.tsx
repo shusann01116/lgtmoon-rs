@@ -16,7 +16,7 @@ export function LgtmImage({
 }: {
 	image: LgtMoonImage
 	onUpload: (image: LocalImage) => Promise<HandleUploadImageResult>
-	onDelete: (id: string) => void
+	onDelete: (id: string) => Promise<void>
 }) {
 	const imgRef = useRef<HTMLImageElement>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
