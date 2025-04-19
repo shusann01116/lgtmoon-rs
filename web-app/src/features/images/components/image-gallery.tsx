@@ -1,9 +1,10 @@
 import { LgtmImage } from '@/features/images/components/lgtm-image'
+import type { HandleUploadImageResult } from '@/features/images/hooks/use-image-storage'
 import type { LgtMoonImage, LocalImage } from '@/types/lgtm-image'
 
 interface ImageGalleryProps {
 	images: LgtMoonImage[]
-	onUpload: (image: LocalImage) => Promise<void>
+	onUpload: (image: LocalImage) => Promise<HandleUploadImageResult>
 	onDelete: (id: string) => Promise<void>
 }
 

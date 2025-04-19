@@ -2,6 +2,7 @@
 
 import { Skeleton } from '@/components/ui/skeleton'
 import { ImageCover } from '@/features/images/components/image-cover'
+import type { HandleUploadImageResult } from '@/features/images/hooks/use-image-storage'
 import { download } from '@/lib/download'
 import type { LgtMoonImage, LocalImage } from '@/types/lgtm-image'
 import { cn } from '@/utils/cn'
@@ -14,7 +15,7 @@ export function LgtmImage({
 	onDelete,
 }: {
 	image: LgtMoonImage
-	onUpload: (image: LocalImage) => Promise<void>
+	onUpload: (image: LocalImage) => Promise<HandleUploadImageResult>
 	onDelete: (id: string) => void
 }) {
 	const imgRef = useRef<HTMLImageElement>(null)
@@ -75,8 +76,12 @@ export function LgtmImage({
 		if (image.storage !== 'local') {
 			return
 		}
-		await onUploadProp(image)
-		setIsUploaded(true)
+		const result = await onUploadProp(image)
+		if (result.success) {
+			setIsUploaded(true)
+		} else {
+			toast.error(result.error)
+		}
 	}
 
 	const onClickCopyMdLink = () => {

@@ -17,6 +17,15 @@ import type { Session } from 'next-auth'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
+export type HandleUploadImageResult =
+	| {
+			success: true
+	  }
+	| {
+			success: false
+			error: string
+	  }
+
 async function getR2Images(userId: string): Promise<R2Image[]> {
 	const r2Images = await listR2Images({ userId })
 	if (r2Images.success) {
@@ -101,18 +110,18 @@ export const useImageStorage = ({
 		setImages(images?.filter((image) => image.id !== id) ?? [])
 	}
 
-	const handleUploadImage = async (image: LocalImage) => {
+	const handleUploadImage = async (
+		image: LocalImage,
+	): Promise<HandleUploadImageResult> => {
 		if (!session) {
-			toast.error('Please sign in to upload images')
-			return
+			return { success: false, error: 'Please sign in to upload images' }
 		}
 		const result = await uploadImage({
 			imageId: image.id,
 			createdAt: image.createdAt,
 		})
 		if (!result.success) {
-			toast.error(result.error)
-			return
+			return { success: false, error: result.error }
 		}
 		const putResult = await axios.put(result.uploadUrl, image.buffer, {
 			headers: {
@@ -120,8 +129,7 @@ export const useImageStorage = ({
 			},
 		})
 		if (putResult.status !== 200) {
-			toast.error('Failed to upload image')
-			return
+			return { success: false, error: 'Failed to upload image' }
 		}
 
 		if (db) {
@@ -138,6 +146,7 @@ export const useImageStorage = ({
 				return result.image
 			})
 		})
+		return { success: true }
 	}
 
 	return {
