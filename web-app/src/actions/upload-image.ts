@@ -59,7 +59,8 @@ const getUserQuota = async (userId: string) => {
 
 export async function uploadImage({
 	imageId,
-}: { imageId: string }): Promise<UploadImageResult> {
+	createdAt,
+}: { imageId: string; createdAt: Date }): Promise<UploadImageResult> {
 	const session = await auth()
 	if (!session) {
 		return { success: false, error: 'UNAUTHORIZED' }
@@ -99,6 +100,7 @@ export async function uploadImage({
 		.values({
 			id: imageId,
 			userId: userId,
+			createdAt,
 		})
 		.returning()
 
