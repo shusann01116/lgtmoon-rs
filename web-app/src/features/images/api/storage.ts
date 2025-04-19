@@ -1,6 +1,6 @@
 'use client'
 
-import type { LgtMoonImage } from '@/types/lgtm-image'
+import type { LocalImage } from '@/types/lgtm-image'
 import { type DBSchema, type IDBPDatabase, openDB } from 'idb'
 import { useEffect, useRef, useState } from 'react'
 
@@ -13,7 +13,7 @@ const dbConfig = {
 export interface LgtMoonDb extends DBSchema {
 	lgtmoon: {
 		key: string
-		value: LgtMoonImage
+		value: LocalImage
 	}
 }
 
@@ -23,7 +23,7 @@ export function getAllImages(db: IDBPDatabase<LgtMoonDb>) {
 }
 
 /** TODO: データアクセスレイヤーを抽象化する */
-export function addImage(db: IDBPDatabase<LgtMoonDb>, image: LgtMoonImage) {
+export function addImage(db: IDBPDatabase<LgtMoonDb>, image: LocalImage) {
 	return db.add(dbConfig.storeName, image)
 }
 

@@ -10,7 +10,7 @@ export const MainErrorFallback = () => {
 				Ooops, something went wrong :({' '}
 			</h2>
 			<Button
-				className="mt-4"
+				className="mt-4 cursor-pointer"
 				onClick={() => window.location.assign(window.location.origin)}
 			>
 				Refresh

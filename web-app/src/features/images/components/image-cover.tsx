@@ -21,25 +21,49 @@ import {
 import { useKeepUntilOnPointerLeave } from '@/hooks/use-keep-until-on-pointer-leave'
 import { cn } from '@/utils/cn'
 import { PopoverClose } from '@radix-ui/react-popover'
-import { Check, CircleEllipsis, Clipboard, Download, Trash } from 'lucide-react'
+import {
+	Check,
+	CircleEllipsis,
+	Clipboard,
+	Download,
+	Link,
+	Trash,
+	Upload,
+} from 'lucide-react'
 import { useRef } from 'react'
 import { toast } from 'sonner'
 
 type ImageCoverProps = {
 	children: React.ReactNode
 	className: string
-	onClickCopy: () => void
-	onClickDownload: () => void
-	onDelete: () => void
+	onUpload?: () => void
+	onClickCopyMdLink?: () => void
+	onClickCopy?: () => void
+	onClickDownload?: () => void
+	onDelete?: () => void
 }
 
 export function ImageCover({
 	children,
 	className,
+	onUpload,
+	onClickCopyMdLink,
 	onClickCopy,
 	onClickDownload,
 	onDelete,
 }: ImageCoverProps) {
+	const uploadButtonRef = useRef<HTMLButtonElement>(null)
+	const [isUploaded, onClickUploadButton] = useKeepUntilOnPointerLeave(
+		uploadButtonRef,
+		onUpload,
+	)
+
+	const copyMdLinkButtonRef = useRef<HTMLButtonElement>(null)
+	const [isCopiedMdLink, onClickCopyMdLinkButton] = useKeepUntilOnPointerLeave(
+		copyMdLinkButtonRef,
+		onClickCopyMdLink,
+	)
+
 	const copyButtonRef = useRef<HTMLButtonElement>(null)
 	const [isCopied, onClickCopyButton] = useKeepUntilOnPointerLeave(
 		copyButtonRef,
@@ -53,19 +77,72 @@ export function ImageCover({
 	)
 
 	const onClickCopyForUnHoverable = () => {
-		onClickCopy()
+		onClickCopy?.()
 		toast.success('Copied to clipboard')
 	}
 
 	return (
 		<article className={cn('relative', className)}>
 			<div className="group absolute inset-0 rounded-sm transition-all hover:bg-primary/50">
-				<div className="flex h-full items-center justify-center">
+				<div className="flex h-full items-center justify-center transition-all">
+					<Tooltip delayDuration={700}>
+						<TooltipTrigger asChild>
+							<Button
+								ref={uploadButtonRef}
+								className={cn(
+									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+									onUpload ? '' : 'group-hover:hidden',
+								)}
+								size="icon"
+								variant="ghost"
+								onClick={onClickUploadButton}
+							>
+								{isUploaded ? (
+									<Check className="stroke-primary-foreground" />
+								) : (
+									<Upload className="stroke-primary-foreground" />
+								)}
+							</Button>
+						</TooltipTrigger>
+						<TooltipContent>
+							<div className="flex items-center gap-2">
+								<p>Upload</p>
+							</div>
+						</TooltipContent>
+					</Tooltip>
+					<Tooltip delayDuration={700}>
+						<TooltipTrigger asChild>
+							<Button
+								ref={copyMdLinkButtonRef}
+								className={cn(
+									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+									onClickCopyMdLink ? '' : 'group-hover:hidden',
+								)}
+								size="icon"
+								variant="ghost"
+								onClick={onClickCopyMdLinkButton}
+							>
+								{isCopiedMdLink ? (
+									<Check className="stroke-primary-foreground" />
+								) : (
+									<Link className="stroke-primary-foreground" />
+								)}
+							</Button>
+						</TooltipTrigger>
+						<TooltipContent>
+							<div className="flex items-center gap-2">
+								<p>Copy md link to clipboard</p>
+							</div>
+						</TooltipContent>
+					</Tooltip>
 					<Tooltip delayDuration={700}>
 						<TooltipTrigger asChild>
 							<Button
 								ref={copyButtonRef}
-								className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
+								className={cn(
+									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+									onClickCopy ? '' : 'group-hover:hidden',
+								)}
 								size="icon"
 								variant="ghost"
 								onClick={onClickCopyButton}
@@ -87,7 +164,10 @@ export function ImageCover({
 						<TooltipTrigger asChild>
 							<Button
 								ref={downloadButtonRef}
-								className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
+								className={cn(
+									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+									onClickDownload ? '' : 'group-hover:hidden',
+								)}
 								size="icon"
 								variant="ghost"
 								onClick={onClickDownloadButton}
@@ -110,7 +190,10 @@ export function ImageCover({
 							<DialogTrigger asChild>
 								<TooltipTrigger asChild>
 									<Button
-										className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
+										className={cn(
+											'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+											onDelete ? '' : 'group-hover:hidden',
+										)}
 										size="icon"
 										variant="ghost"
 									>

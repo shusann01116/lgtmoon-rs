@@ -1,6 +1,7 @@
 import { UserInfo } from '@/app/_components/user-info'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ImageForm } from '@/features/images/components/image-form'
+import { auth } from '@/lib/auth'
 import { ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { Suspense } from 'react'
@@ -23,7 +24,9 @@ export const Home = () => {
 				</div>
 			</header>
 			<main className="container mx-auto max-w-(--breakpoint-xl) flex-1">
-				<ImageForm />
+				<Suspense fallback={<Skeleton className="h-full" />}>
+					<ImageForm sessionPromise={auth()} />
+				</Suspense>
 			</main>
 			<footer className="text-center text-muted-foreground text-sm">
 				<p>© 2025 shusann01116</p>
