@@ -21,13 +21,21 @@ import {
 import { useKeepUntilOnPointerLeave } from '@/hooks/use-keep-until-on-pointer-leave'
 import { cn } from '@/utils/cn'
 import { PopoverClose } from '@radix-ui/react-popover'
-import { Check, CircleEllipsis, Clipboard, Download, Trash } from 'lucide-react'
+import {
+	Check,
+	CircleEllipsis,
+	Clipboard,
+	Download,
+	Trash,
+	Upload,
+} from 'lucide-react'
 import { useRef } from 'react'
 import { toast } from 'sonner'
 
 type ImageCoverProps = {
 	children: React.ReactNode
 	className: string
+	onUpload: () => void
 	onClickCopy: () => void
 	onClickDownload: () => void
 	onDelete: () => void
@@ -36,10 +44,17 @@ type ImageCoverProps = {
 export function ImageCover({
 	children,
 	className,
+	onUpload,
 	onClickCopy,
 	onClickDownload,
 	onDelete,
 }: ImageCoverProps) {
+	const uploadButtonRef = useRef<HTMLButtonElement>(null)
+	const [isUploaded, onClickUploadButton] = useKeepUntilOnPointerLeave(
+		uploadButtonRef,
+		onUpload,
+	)
+
 	const copyButtonRef = useRef<HTMLButtonElement>(null)
 	const [isCopied, onClickCopyButton] = useKeepUntilOnPointerLeave(
 		copyButtonRef,
@@ -61,6 +76,28 @@ export function ImageCover({
 		<article className={cn('relative', className)}>
 			<div className="group absolute inset-0 rounded-sm transition-all hover:bg-primary/50">
 				<div className="flex h-full items-center justify-center">
+					<Tooltip delayDuration={700}>
+						<TooltipTrigger asChild>
+							<Button
+								ref={uploadButtonRef}
+								className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
+								size="icon"
+								variant="ghost"
+								onClick={onClickUploadButton}
+							>
+								{isUploaded ? (
+									<Check className="stroke-primary-foreground" />
+								) : (
+									<Upload className="stroke-primary-foreground" />
+								)}
+							</Button>
+						</TooltipTrigger>
+						<TooltipContent>
+							<div className="flex items-center gap-2">
+								<p>Upload</p>
+							</div>
+						</TooltipContent>
+					</Tooltip>
 					<Tooltip delayDuration={700}>
 						<TooltipTrigger asChild>
 							<Button

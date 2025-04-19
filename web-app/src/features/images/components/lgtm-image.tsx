@@ -1,11 +1,13 @@
 'use client'
 
+import { uploadImage } from '@/actions/upload-image'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ImageCover } from '@/features/images/components/image-cover'
 import { download } from '@/lib/download'
 import type { LgtMoonImage } from '@/types/lgtm-image'
 import { cn } from '@/utils/cn'
 import { getFileExtension, getFileName } from '@/utils/file'
+import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -30,6 +32,19 @@ export function LgtmImage({
 			setIsLoaded(true)
 		}
 	}, [image])
+
+	const onUpload = async () => {
+		const result = await uploadImage({ imageId: image.id })
+		if (!result.success) {
+			toast.error(result.error)
+			return
+		}
+		await axios.put(result.url, image.buffer, {
+			headers: {
+				'Content-Type': image.type,
+			},
+		})
+	}
 
 	const onClickCopy = () => {
 		if (!imgRef.current) {
@@ -78,6 +93,7 @@ export function LgtmImage({
 			)}
 			<ImageCover
 				className="shadow-accent shadow-xs drop-shadow-xs transition-all hover:drop-shadow-2xl"
+				onUpload={onUpload}
 				onClickCopy={onClickCopy}
 				onClickDownload={onClickDownload}
 				onDelete={() => onDelete(image.id)}

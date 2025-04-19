@@ -14,7 +14,6 @@ const createClientEnv = () => {
 		NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:
 			process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
 		NEXT_PUBLIC_LGTM_WASM_PATH: process.env.NEXT_PUBLIC_LGTM_WASM_PATH,
-		POSTGRES_URL: process.env.POSTGRES_URL,
 	}
 
 	const parsedEnv = EnvSchema.safeParse(envVars)
