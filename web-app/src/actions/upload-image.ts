@@ -67,16 +67,6 @@ export async function uploadImage({
 		return { success: false, error: 'UNAUTHORIZED' }
 	}
 
-	const userQuota = await getUserQuota(userId)
-
-	const [{ count: imagesUploadedInMonth }] = await db
-		.select({ count: count() })
-		.from(images)
-		.where(and(eq(images.userId, userId), gte(images.createdAt, thisMonth())))
-	if (userQuota.imagesInMonth < imagesUploadedInMonth) {
-		return { success: false, error: 'QUOTA_EXCEEDED' }
-	}
-
 	const [{ count: imageCount }] = await db
 		.select({ count: count() })
 		.from(images)
@@ -84,6 +74,15 @@ export async function uploadImage({
 		.limit(1)
 	if (imageCount > 0) {
 		return { success: false, error: 'IMAGE_ALREADY_EXISTS' }
+	}
+
+	const userQuota = await getUserQuota(userId)
+	const [{ count: imagesUploadedInMonth }] = await db
+		.select({ count: count() })
+		.from(images)
+		.where(and(eq(images.userId, userId), gte(images.createdAt, thisMonth())))
+	if (userQuota.imagesInMonth < imagesUploadedInMonth) {
+		return { success: false, error: 'QUOTA_EXCEEDED' }
 	}
 
 	const [image] = await db
