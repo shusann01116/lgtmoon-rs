@@ -17,7 +17,7 @@ test('should add and delete an image', async ({ page }) => {
 
 	// Delete the image
 	await page.getByRole('article').hover()
-	const deleteButton = page.getByRole('article').getByRole('button').nth(2)
+	const deleteButton = page.getByRole('article').getByRole('button').nth(3)
 	await deleteButton.waitFor({ state: 'visible' })
 	await deleteButton.click()
 	await page.getByRole('button', { name: 'Delete' }).click()
