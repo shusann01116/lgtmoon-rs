@@ -9,7 +9,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"playwright": "1.51.1",
+		"playwright": "1.52.0",
 		"turbo": "2.5.0"
 	},
 	"packageManager": "pnpm@10.8.1"
