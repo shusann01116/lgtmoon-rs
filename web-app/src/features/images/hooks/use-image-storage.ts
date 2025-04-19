@@ -111,7 +111,7 @@ export const useImageStorage = ({
 			toast.error(result.error)
 			return
 		}
-		const putResult = await axios.put(result.url, image.buffer, {
+		const putResult = await axios.put(result.uploadUrl, image.buffer, {
 			headers: {
 				'Content-Type': image.type,
 			},
@@ -124,6 +124,17 @@ export const useImageStorage = ({
 		if (db) {
 			await deleteImage(db, image.id)
 		}
+		setImages((prev) => {
+			if (!prev) {
+				return null
+			}
+			return prev.map((i) => {
+				if (i.id !== image.id) {
+					return i
+				}
+				return result.image
+			})
+		})
 	}
 
 	return {

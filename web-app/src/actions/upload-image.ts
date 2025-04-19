@@ -6,8 +6,9 @@ import { S3 } from '@/lib/aws'
 import { db } from '@/lib/drizzle'
 import { images } from '@/schema/image'
 import { quota } from '@/schema/quota'
+import type { R2Image } from '@/types/lgtm-image'
 import { thisMonth } from '@/utils/date'
-import { getImageKey } from '@/utils/server'
+import { getImageKey, getImageURI } from '@/utils/server'
 import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { and, count, eq, gte, isNull } from 'drizzle-orm'
@@ -15,7 +16,8 @@ import { and, count, eq, gte, isNull } from 'drizzle-orm'
 export type UploadImageResult =
 	| {
 			success: true
-			url: string
+			image: R2Image
+			uploadUrl: string
 	  }
 	| {
 			success: false
@@ -109,5 +111,9 @@ export async function uploadImage({
 		{ expiresIn: 60 },
 	)
 
-	return { success: true, url }
+	return {
+		success: true,
+		image: { storage: 'r2', ...image, url: getImageURI(userId, image.id) },
+		uploadUrl: url,
+	}
 }

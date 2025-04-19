@@ -85,144 +85,149 @@ export function ImageCover({
 		<article className={cn('relative', className)}>
 			<div className="group absolute inset-0 rounded-sm transition-all hover:bg-primary/50">
 				<div className="flex h-full items-center justify-center transition-all">
-					{onUpload && (
-						<Tooltip delayDuration={700}>
-							<TooltipTrigger asChild>
-								<Button
-									ref={uploadButtonRef}
-									className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
-									size="icon"
-									variant="ghost"
-									onClick={onClickUploadButton}
-								>
-									{isUploaded ? (
-										<Check className="stroke-primary-foreground" />
-									) : (
-										<Upload className="stroke-primary-foreground" />
-									)}
-								</Button>
-							</TooltipTrigger>
-							<TooltipContent>
-								<div className="flex items-center gap-2">
-									<p>Upload</p>
-								</div>
-							</TooltipContent>
-						</Tooltip>
-					)}
-					{onClickCopyMdLink && (
-						<Tooltip delayDuration={700}>
-							<TooltipTrigger asChild>
-								<Button
-									ref={copyMdLinkButtonRef}
-									className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
-									size="icon"
-									variant="ghost"
-									onClick={onClickCopyMdLinkButton}
-								>
-									{isCopiedMdLink ? (
-										<Check className="stroke-primary-foreground" />
-									) : (
-										<Link className="stroke-primary-foreground" />
-									)}
-								</Button>
-							</TooltipTrigger>
-							<TooltipContent>
-								<div className="flex items-center gap-2">
-									<p>Copy md link to clipboard</p>
-								</div>
-							</TooltipContent>
-						</Tooltip>
-					)}
-					{onClickCopy && (
-						<Tooltip delayDuration={700}>
-							<TooltipTrigger asChild>
-								<Button
-									ref={copyButtonRef}
-									className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
-									size="icon"
-									variant="ghost"
-									onClick={onClickCopyButton}
-								>
-									{isCopied ? (
-										<Check className="stroke-primary-foreground" />
-									) : (
-										<Clipboard className="stroke-primary-foreground" />
-									)}
-								</Button>
-							</TooltipTrigger>
-							<TooltipContent>
-								<div className="flex items-center gap-2">
-									<p>Copy to clipboard</p>
-								</div>
-							</TooltipContent>
-						</Tooltip>
-					)}
-					{onClickDownload && (
-						<Tooltip delayDuration={700}>
-							<TooltipTrigger asChild>
-								<Button
-									ref={downloadButtonRef}
-									className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
-									size="icon"
-									variant="ghost"
-									onClick={onClickDownloadButton}
-								>
-									{isDownloaded ? (
-										<Check className="stroke-primary-foreground" />
-									) : (
-										<Download className="stroke-primary-foreground" />
-									)}
-								</Button>
-							</TooltipTrigger>
-							<TooltipContent>
-								<div className="flex items-center gap-2">
-									<p>Download</p>
-								</div>
-							</TooltipContent>
-						</Tooltip>
-					)}
-					{onDelete && (
-						<Tooltip delayDuration={700}>
-							<Dialog>
-								<DialogTrigger asChild>
-									<TooltipTrigger asChild>
-										<Button
-											className="hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex"
-											size="icon"
-											variant="ghost"
-										>
-											<Trash className="stroke-primary-foreground" />
+					<Tooltip delayDuration={700}>
+						<TooltipTrigger asChild>
+							<Button
+								ref={uploadButtonRef}
+								className={cn(
+									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+									onUpload ? '' : 'group-hover:hidden',
+								)}
+								size="icon"
+								variant="ghost"
+								onClick={onClickUploadButton}
+							>
+								{isUploaded ? (
+									<Check className="stroke-primary-foreground" />
+								) : (
+									<Upload className="stroke-primary-foreground" />
+								)}
+							</Button>
+						</TooltipTrigger>
+						<TooltipContent>
+							<div className="flex items-center gap-2">
+								<p>Upload</p>
+							</div>
+						</TooltipContent>
+					</Tooltip>
+					<Tooltip delayDuration={700}>
+						<TooltipTrigger asChild>
+							<Button
+								ref={copyMdLinkButtonRef}
+								className={cn(
+									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+									onClickCopyMdLink ? '' : 'group-hover:hidden',
+								)}
+								size="icon"
+								variant="ghost"
+								onClick={onClickCopyMdLinkButton}
+							>
+								{isCopiedMdLink ? (
+									<Check className="stroke-primary-foreground" />
+								) : (
+									<Link className="stroke-primary-foreground" />
+								)}
+							</Button>
+						</TooltipTrigger>
+						<TooltipContent>
+							<div className="flex items-center gap-2">
+								<p>Copy md link to clipboard</p>
+							</div>
+						</TooltipContent>
+					</Tooltip>
+					<Tooltip delayDuration={700}>
+						<TooltipTrigger asChild>
+							<Button
+								ref={copyButtonRef}
+								className={cn(
+									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+									onClickCopy ? '' : 'group-hover:hidden',
+								)}
+								size="icon"
+								variant="ghost"
+								onClick={onClickCopyButton}
+							>
+								{isCopied ? (
+									<Check className="stroke-primary-foreground" />
+								) : (
+									<Clipboard className="stroke-primary-foreground" />
+								)}
+							</Button>
+						</TooltipTrigger>
+						<TooltipContent>
+							<div className="flex items-center gap-2">
+								<p>Copy to clipboard</p>
+							</div>
+						</TooltipContent>
+					</Tooltip>
+					<Tooltip delayDuration={700}>
+						<TooltipTrigger asChild>
+							<Button
+								ref={downloadButtonRef}
+								className={cn(
+									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+									onClickDownload ? '' : 'group-hover:hidden',
+								)}
+								size="icon"
+								variant="ghost"
+								onClick={onClickDownloadButton}
+							>
+								{isDownloaded ? (
+									<Check className="stroke-primary-foreground" />
+								) : (
+									<Download className="stroke-primary-foreground" />
+								)}
+							</Button>
+						</TooltipTrigger>
+						<TooltipContent>
+							<div className="flex items-center gap-2">
+								<p>Download</p>
+							</div>
+						</TooltipContent>
+					</Tooltip>
+					<Tooltip delayDuration={700}>
+						<Dialog>
+							<DialogTrigger asChild>
+								<TooltipTrigger asChild>
+									<Button
+										className={cn(
+											'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
+											onDelete ? '' : 'group-hover:hidden',
+										)}
+										size="icon"
+										variant="ghost"
+									>
+										<Trash className="stroke-primary-foreground" />
+									</Button>
+								</TooltipTrigger>
+							</DialogTrigger>
+							<DialogContent>
+								<DialogTitle>Delete Image</DialogTitle>
+								<DialogDescription>
+									Are you sure you want to delete this image?
+								</DialogDescription>
+								<DialogFooter>
+									<DialogClose asChild>
+										<Button className="cursor-pointer" variant="outline">
+											Cancel
 										</Button>
-									</TooltipTrigger>
-								</DialogTrigger>
-								<DialogContent>
-									<DialogTitle>Delete Image</DialogTitle>
-									<DialogDescription>
-										Are you sure you want to delete this image?
-									</DialogDescription>
-									<DialogFooter>
-										<DialogClose asChild>
-											<Button className="cursor-pointer" variant="outline">
-												Cancel
-											</Button>
-										</DialogClose>
-										<Button
-											className="cursor-pointer"
-											variant="destructive"
-											onClick={onDelete}
-										>
-											Delete
-										</Button>
-									</DialogFooter>
-								</DialogContent>
-							</Dialog>
-							<TooltipContent>
-								<div className="flex items-center gap-2">
-									<p>Delete</p>
-								</div>
-							</TooltipContent>
-						</Tooltip>
-					)}
+									</DialogClose>
+									<Button
+										className="cursor-pointer"
+										variant="destructive"
+										onClick={onDelete}
+									>
+										Delete
+									</Button>
+								</DialogFooter>
+							</DialogContent>
+						</Dialog>
+						<TooltipContent>
+							<div className="flex items-center gap-2">
+								<p>Delete</p>
+							</div>
+						</TooltipContent>
+					</Tooltip>
 				</div>
 			</div>
 			<button
