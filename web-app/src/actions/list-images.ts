@@ -4,7 +4,7 @@ import { auth } from '@/lib/auth'
 import { db } from '@/lib/drizzle'
 import { images } from '@/schema/image'
 import type { R2Image } from '@/types/lgtm-image'
-import { getImageURI } from '@/utils/server'
+import { getImageUri } from '@/utils/server'
 import { and, desc, eq, isNull } from 'drizzle-orm'
 
 export type ListImageResult = {
@@ -38,7 +38,7 @@ export async function listImages({
 		return {
 			storage: 'r2',
 			id: i.id,
-			url: getImageURI(userId, i.id),
+			url: getImageUri(userId, i.id),
 			createdAt: i.createdAt,
 		}
 	})

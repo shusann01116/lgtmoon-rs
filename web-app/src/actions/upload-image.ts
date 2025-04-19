@@ -8,7 +8,7 @@ import { images } from '@/schema/image'
 import { quota } from '@/schema/quota'
 import type { R2Image } from '@/types/lgtm-image'
 import { thisMonth } from '@/utils/date'
-import { getImageKey, getImageURI } from '@/utils/server'
+import { getImageKey, getImageUri } from '@/utils/server'
 import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { and, count, eq, gte, isNull } from 'drizzle-orm'
@@ -115,7 +115,7 @@ export async function uploadImage({
 
 	return {
 		success: true,
-		image: { storage: 'r2', ...image, url: getImageURI(userId, image.id) },
+		image: { storage: 'r2', ...image, url: getImageUri(userId, image.id) },
 		uploadUrl: url,
 	}
 }

@@ -106,7 +106,10 @@ export const useImageStorage = ({
 			toast.error('Please sign in to upload images')
 			return
 		}
-		const result = await uploadImage({ imageId: image.id })
+		const result = await uploadImage({
+			imageId: image.id,
+			createdAt: image.createdAt,
+		})
 		if (!result.success) {
 			toast.error(result.error)
 			return
