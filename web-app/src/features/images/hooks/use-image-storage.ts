@@ -11,7 +11,6 @@ import {
 import { processImage } from '@/features/images/utils/image'
 import { useLgtmoon } from '@/hooks/use-lgtmoon'
 import type { LgtMoonImage, LocalImage, R2Image } from '@/types/lgtm-image'
-import axios from 'axios'
 import type { IDBPDatabase } from 'idb'
 import type { Session } from 'next-auth'
 import { useState } from 'react'
@@ -123,12 +122,16 @@ export const useImageStorage = ({
 		if (!result.success) {
 			return { success: false, error: result.error }
 		}
-		const putResult = await axios.put(result.uploadUrl, image.buffer, {
+
+		const response = await fetch(result.uploadUrl, {
+			method: 'PUT',
 			headers: {
 				'Content-Type': image.type,
 			},
+			body: image.buffer,
 		})
-		if (putResult.status !== 200) {
+
+		if (!response.ok) {
 			return { success: false, error: 'Failed to upload image' }
 		}
 
