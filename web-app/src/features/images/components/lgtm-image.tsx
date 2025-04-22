@@ -6,7 +6,7 @@ import type { HandleUploadImageResult } from '@/features/images/hooks/use-image-
 import { download } from '@/lib/download'
 import type { LgtMoonImage, LocalImage } from '@/types/lgtm-image'
 import { cn } from '@/utils/cn'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { toast } from 'sonner'
 
 export function LgtmImage({
@@ -21,19 +21,6 @@ export function LgtmImage({
 	const imgRef = useRef<HTMLImageElement>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [isUploaded, setIsUploaded] = useState(image.storage === 'r2')
-
-	useEffect(() => {
-		if (!imgRef.current) {
-			return
-		}
-		imgRef.current.src =
-			image.storage === 'r2'
-				? image.url
-				: URL.createObjectURL(new Blob([image.buffer], { type: image.type }))
-		imgRef.current.onload = () => {
-			setIsLoaded(true)
-		}
-	}, [image])
 
 	const onClickCopy = () => {
 		if (!imgRef.current) {
@@ -106,6 +93,14 @@ export function LgtmImage({
 			>
 				<img
 					ref={imgRef}
+					src={
+						image.storage === 'r2'
+							? image.url
+							: URL.createObjectURL(
+									new Blob([image.buffer], { type: image.type }),
+								)
+					}
+					onLoad={() => setIsLoaded(true)}
 					className={cn(
 						'block w-full rounded-sm',
 						isLoaded ? 'block' : 'hidden',
