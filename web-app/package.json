@@ -46,14 +46,14 @@
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@playwright/test": "1.52.0",
-		"@tailwindcss/postcss": "4.1.6",
+		"@tailwindcss/postcss": "4.1.7",
 		"@types/node": "22.15.18",
 		"@types/react": "19.1.4",
 		"@types/react-dom": "19.1.5",
 		"dotenv": "16.5.0",
 		"drizzle-kit": "0.31.1",
 		"postcss": "8.5.3",
-		"tailwindcss": "4.1.6",
+		"tailwindcss": "4.1.7",
 		"typescript": "5.8.3"
 	}
 }
