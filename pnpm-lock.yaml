@@ -34,7 +34,7 @@ importers:
         version: 3.806.0
       '@icons-pack/react-simple-icons':
         specifier: ^12.5.0
-        version: 12.7.0(react@19.1.0)
+        version: 12.8.0(react@19.1.0)
       '@neondatabase/serverless':
         specifier: ^1.0.0
         version: 1.0.0
@@ -100,7 +100,7 @@ importers:
         version: 2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       tailwind-merge:
         specifier: ^3.0.2
-        version: 3.2.0
+        version: 3.3.0
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.1.7)
@@ -699,8 +699,8 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
-  '@icons-pack/react-simple-icons@12.7.0':
-    resolution: {integrity: sha512-XpG7e8buAco8AbvCar+4LX5do0L98d/NaeHoTuW4awyUH33id7HQiiMomK+cS1MRxfLNMmhW2W0223/fMC0unw==}
+  '@icons-pack/react-simple-icons@12.8.0':
+    resolution: {integrity: sha512-Xj6tBadpPYVaoDaXqKpSJc5AXtcXSBk+se+GsceRouYin9XvKv2at0fO5GSr1dNDc3WfZSVc1Gs7KGwUY8PfHA==}
     peerDependencies:
       react: ^16.13 || ^17 || ^18 || ^19
 
@@ -2074,8 +2074,8 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  tailwind-merge@3.2.0:
-    resolution: {integrity: sha512-FQT/OVqCD+7edmmJpsgCsY820RTD5AkBryuG5IUqR5YQZSdj5xlH5nLgH7YPths7WsLPSpSBNneJdM8aS8aeFA==}
+  tailwind-merge@3.3.0:
+    resolution: {integrity: sha512-fyW/pEfcQSiigd5SNn0nApUOxx0zB/dm6UDU/rEwc2c3sX2smWUNbapHv+QRqLGVp9GWX3THIa7MUGPo+YkDzQ==}
 
   tailwindcss-animate@1.0.7:
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
@@ -2901,7 +2901,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@icons-pack/react-simple-icons@12.7.0(react@19.1.0)':
+  '@icons-pack/react-simple-icons@12.8.0(react@19.1.0)':
     dependencies:
       react: 19.1.0
 
@@ -4195,7 +4195,7 @@ snapshots:
       client-only: 0.0.1
       react: 19.1.0
 
-  tailwind-merge@3.2.0: {}
+  tailwind-merge@3.3.0: {}
 
   tailwindcss-animate@1.0.7(tailwindcss@4.1.7):
     dependencies:
