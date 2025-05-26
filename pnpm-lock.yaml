@@ -34,7 +34,7 @@ importers:
         version: 3.817.0
       '@icons-pack/react-simple-icons':
         specifier: ^12.5.0
-        version: 12.8.0(react@19.1.0)
+        version: 12.9.0(react@19.1.0)
       '@neondatabase/serverless':
         specifier: ^1.0.0
         version: 1.0.0
@@ -106,7 +106,7 @@ importers:
         version: 1.0.7(tailwindcss@4.1.7)
       zod:
         specifier: ^3.24.2
-        version: 3.25.28
+        version: 3.25.29
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -699,8 +699,8 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
-  '@icons-pack/react-simple-icons@12.8.0':
-    resolution: {integrity: sha512-Xj6tBadpPYVaoDaXqKpSJc5AXtcXSBk+se+GsceRouYin9XvKv2at0fO5GSr1dNDc3WfZSVc1Gs7KGwUY8PfHA==}
+  '@icons-pack/react-simple-icons@12.9.0':
+    resolution: {integrity: sha512-GLb2ayO78ZjjmI7GMpCDlXcELEr3DPO89nordI/JC8dMiJDMzuPb3qeOTt+SWcFOyJ+SAh9C/feUCpiBSM8ZLQ==}
     peerDependencies:
       react: ^16.13 || ^17 || ^18 || ^19
 
@@ -2224,8 +2224,8 @@ packages:
     resolution: {integrity: sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw==}
     engines: {node: '>=18'}
 
-  zod@3.25.28:
-    resolution: {integrity: sha512-/nt/67WYKnr5by3YS7LroZJbtcCBurDKKPBPWWzaxvVCGuG/NOsiKkrjoOhI8mJ+SQUXEbUzeB3S+6XDUEEj7Q==}
+  zod@3.25.29:
+    resolution: {integrity: sha512-xetH/muIYuAyN7YJGKh99jkBQq/XbGEyTkv7JC4YYsWppHmfoU1MDoQa441WD1QMDaeCaEBO0e0hl1iSmluNQQ==}
 
 snapshots:
 
@@ -2952,7 +2952,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@icons-pack/react-simple-icons@12.8.0(react@19.1.0)':
+  '@icons-pack/react-simple-icons@12.9.0(react@19.1.0)':
     dependencies:
       react: 19.1.0
 
@@ -4383,4 +4383,4 @@ snapshots:
 
   yallist@5.0.0: {}
 
-  zod@3.25.28: {}
+  zod@3.25.29: {}
