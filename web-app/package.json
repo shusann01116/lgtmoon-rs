@@ -17,7 +17,7 @@
 		"@auth/neon-adapter": "^1.8.0",
 		"@aws-sdk/client-s3": "^3.787.0",
 		"@aws-sdk/s3-request-presigner": "^3.787.0",
-		"@icons-pack/react-simple-icons": "^12.5.0",
+		"@icons-pack/react-simple-icons": "^13.0.0",
 		"@neondatabase/serverless": "^1.0.0",
 		"@next/third-parties": "^15.1.7",
 		"@radix-ui/react-dialog": "^1.1.6",
