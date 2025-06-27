@@ -2,6 +2,6 @@
 "cargo:wasm-pack" = "0.13.1"
 "go:github.com/evilmartians/lefthook" = "latest"
 node = "23"
-"npm:vercel" = "44.2.6"
+"npm:vercel" = "44.2.7"
 pnpm = "10.12.4"
 rust = "1.87.0"
