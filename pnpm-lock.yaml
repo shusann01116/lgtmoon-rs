@@ -352,6 +352,7 @@ packages:
   '@biomejs/biome@2.0.5':
     resolution: {integrity: sha512-MztFGhE6cVjf3QmomWu83GpTFyWY8KIcskgRf2AqVEMSH4qI4rNdBLdpAQ11TNK9pUfLGz3IIOC1ZYwgBePtig==}
     engines: {node: '>=14.21.3'}
+    deprecated: This version of Biome has a broken manifest and we don't recommend to use it. Please update to v2.0.4 or later.
     hasBin: true
 
   '@biomejs/cli-darwin-arm64@2.0.5':
