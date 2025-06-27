@@ -127,8 +127,8 @@ importers:
         specifier: 19.1.6
         version: 19.1.6(@types/react@19.1.8)
       dotenv:
-        specifier: 16.5.0
-        version: 16.5.0
+        specifier: 16.6.0
+        version: 16.6.0
       drizzle-kit:
         specifier: 0.31.3
         version: 0.31.3
@@ -1605,8 +1605,8 @@ packages:
   detect-node-es@1.1.0:
     resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}
 
-  dotenv@16.5.0:
-    resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
+  dotenv@16.6.0:
+    resolution: {integrity: sha512-Omf1L8paOy2VJhILjyhrhqwLIdstqm1BvcDPKg4NGAlkwEu9ODyrFbvk8UymUOMCT+HXo31jg1lArIrVAAhuGA==}
     engines: {node: '>=12'}
 
   drizzle-kit@0.31.3:
@@ -3821,7 +3821,7 @@ snapshots:
 
   detect-node-es@1.1.0: {}
 
-  dotenv@16.5.0: {}
+  dotenv@16.6.0: {}
 
   drizzle-kit@0.31.3:
     dependencies:
