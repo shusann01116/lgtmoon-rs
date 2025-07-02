@@ -22,7 +22,7 @@ importers:
     dependencies:
       '@auth/drizzle-adapter':
         specifier: ^1.8.0
-        version: 1.9.1
+        version: 1.10.0
       '@auth/neon-adapter':
         specifier: ^1.8.0
         version: 1.9.1
@@ -180,8 +180,8 @@ packages:
       nodemailer:
         optional: true
 
-  '@auth/drizzle-adapter@1.9.1':
-    resolution: {integrity: sha512-WQ4vtDxpo3jAPfSLJbrjFx++/lMO1HJbV7ZwzCUBEkhqYMTrqQBJhLb+vcusDu95wiekVOUCPe1y6QSNbMeeYA==}
+  '@auth/drizzle-adapter@1.10.0':
+    resolution: {integrity: sha512-3MKsdAINTfvV4QKev8PFMNG93HJEUHh9sggDXnmUmriFogRf8qLvgqnPsTlfUyWcLwTzzrrYjeu8CGM+4IxHwQ==}
 
   '@auth/neon-adapter@1.9.1':
     resolution: {integrity: sha512-9Pg1tvLFsskNoYF01BllOvrS/8wddWiZucYRXA9Z3U/ttYheL+dgLuhqlWeSlz/ijnE11cKZe++qc/b2Uwf5vw==}
@@ -1908,6 +1908,9 @@ packages:
   oauth4webapi@3.5.1:
     resolution: {integrity: sha512-txg/jZQwcbaF7PMJgY7aoxc9QuCxHVFMiEkDIJ60DwDz3PbtXPQnrzo+3X4IRYGChIwWLabRBRpf1k9hO9+xrQ==}
 
+  oauth4webapi@3.5.5:
+    resolution: {integrity: sha512-1K88D2GiAydGblHo39NBro5TebGXa+7tYoyIbxvqv3+haDDry7CBE1eSYuNbOSsYCCU6y0gdynVZAkm4YPw4hg==}
+
   obuf@1.1.2:
     resolution: {integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==}
 
@@ -2211,13 +2214,13 @@ snapshots:
     dependencies:
       '@panva/hkdf': 1.2.1
       jose: 6.0.11
-      oauth4webapi: 3.5.1
+      oauth4webapi: 3.5.5
       preact: 10.24.3
       preact-render-to-string: 6.5.11(preact@10.24.3)
 
-  '@auth/drizzle-adapter@1.9.1':
+  '@auth/drizzle-adapter@1.10.0':
     dependencies:
-      '@auth/core': 0.39.1
+      '@auth/core': 0.40.0
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
@@ -4049,6 +4052,8 @@ snapshots:
       - babel-plugin-macros
 
   oauth4webapi@3.5.1: {}
+
+  oauth4webapi@3.5.5: {}
 
   obuf@1.1.2: {}
 
