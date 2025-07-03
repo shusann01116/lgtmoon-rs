@@ -118,8 +118,8 @@ importers:
         specifier: 4.1.11
         version: 4.1.11
       '@types/node':
-        specifier: 22.15.35
-        version: 22.15.35
+        specifier: 22.16.0
+        version: 22.16.0
       '@types/react':
         specifier: 19.1.8
         version: 19.1.8
@@ -151,20 +151,6 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
-
-  '@auth/core@0.39.1':
-    resolution: {integrity: sha512-McD8slui0oOA1pjR5sPjLPl5Zm//nLP/8T3kr8hxIsvNLvsiudYvPHhDFPjh1KcZ2nFxCkZmP6bRxaaPd/AnLA==}
-    peerDependencies:
-      '@simplewebauthn/browser': ^9.0.1
-      '@simplewebauthn/server': ^9.0.2
-      nodemailer: ^6.8.0
-    peerDependenciesMeta:
-      '@simplewebauthn/browser':
-        optional: true
-      '@simplewebauthn/server':
-        optional: true
-      nodemailer:
-        optional: true
 
   '@auth/core@0.40.0':
     resolution: {integrity: sha512-n53uJE0RH5SqZ7N1xZoMKekbHfQgjd0sAEyUbE+IYJnmuQkbvuZnXItCU7d+i7Fj8VGOgqvNO7Mw4YfBTlZeQw==}
@@ -1501,8 +1487,8 @@ packages:
   '@tailwindcss/postcss@4.1.11':
     resolution: {integrity: sha512-q/EAIIpF6WpLhKEuQSEVMZNMIY8KhWoAemZ9eylNAih9jxMGAYPPWBn3I9QL/2jZ+e7OEz/tZkX5HwbBR4HohA==}
 
-  '@types/node@22.15.35':
-    resolution: {integrity: sha512-stV91mHxlWpDksiUiivmFfQzjy2JLlb2NUTxKipiANEbxBZsdbDU9fSrT7SHY4uoCXAxYfJZVasn3x2/hqpd3g==}
+  '@types/node@22.16.0':
+    resolution: {integrity: sha512-B2egV9wALML1JCpv3VQoQ+yesQKAmNMBIAY7OteVrikcOcAkWm+dGL6qpeCktPjAv6N1JLnhbNiqS35UpFyBsQ==}
 
   '@types/pg@8.11.12':
     resolution: {integrity: sha512-D8qPxnq0rgpvZPYwMxAZffxvlk2mtgimLC5kos8uM7+3wPKfTESxtpD49cfB5w1UnodZL7oYnjFHT5+cB3Gw9Q==}
@@ -1905,9 +1891,6 @@ packages:
       sass:
         optional: true
 
-  oauth4webapi@3.5.1:
-    resolution: {integrity: sha512-txg/jZQwcbaF7PMJgY7aoxc9QuCxHVFMiEkDIJ60DwDz3PbtXPQnrzo+3X4IRYGChIwWLabRBRpf1k9hO9+xrQ==}
-
   oauth4webapi@3.5.5:
     resolution: {integrity: sha512-1K88D2GiAydGblHo39NBro5TebGXa+7tYoyIbxvqv3+haDDry7CBE1eSYuNbOSsYCCU6y0gdynVZAkm4YPw4hg==}
 
@@ -2204,14 +2187,6 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
-
-  '@auth/core@0.39.1':
-    dependencies:
-      '@panva/hkdf': 1.2.1
-      jose: 6.0.11
-      oauth4webapi: 3.5.1
-      preact: 10.24.3
-      preact-render-to-string: 6.5.11(preact@10.24.3)
 
   '@auth/core@0.40.0':
     dependencies:
@@ -3042,7 +3017,7 @@ snapshots:
 
   '@neondatabase/serverless@1.0.1':
     dependencies:
-      '@types/node': 22.15.35
+      '@types/node': 22.16.0
       '@types/pg': 8.11.12
 
   '@next/env@15.3.4': {}
@@ -3744,19 +3719,19 @@ snapshots:
       postcss: 8.5.6
       tailwindcss: 4.1.11
 
-  '@types/node@22.15.35':
+  '@types/node@22.16.0':
     dependencies:
       undici-types: 6.21.0
 
   '@types/pg@8.11.12':
     dependencies:
-      '@types/node': 22.15.35
+      '@types/node': 22.16.0
       pg-protocol: 1.8.0
       pg-types: 4.0.2
 
   '@types/pg@8.11.6':
     dependencies:
-      '@types/node': 22.15.35
+      '@types/node': 22.16.0
       pg-protocol: 1.10.3
       pg-types: 4.0.2
 
@@ -4053,8 +4028,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
-
-  oauth4webapi@3.5.1: {}
 
   oauth4webapi@3.5.5: {}
 
