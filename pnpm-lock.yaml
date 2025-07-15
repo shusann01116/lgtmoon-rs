@@ -34,7 +34,7 @@ importers:
         version: 3.844.0
       '@icons-pack/react-simple-icons':
         specifier: ^13.0.0
-        version: 13.4.0(react@19.1.0)
+        version: 13.5.0(react@19.1.0)
       '@neondatabase/serverless':
         specifier: ^1.0.0
         version: 1.0.1
@@ -699,8 +699,8 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
-  '@icons-pack/react-simple-icons@13.4.0':
-    resolution: {integrity: sha512-SBBR2Jq88IEhr5NEg22MtF5WxlC6B5uRgXCL8tFHS/CBr5WBepEIFIcHG8ijNjfjIQa8YuO73Q2UvVHoM148fA==}
+  '@icons-pack/react-simple-icons@13.5.0':
+    resolution: {integrity: sha512-00/E53YOt967SomgPWyH4eTtHdUDLAeaowl0CAU7UnEuBOrHznrKhFQHccdN0wShR5CVXxYh41qeYl6ZGJ/OSg==}
     peerDependencies:
       react: ^16.13 || ^17 || ^18 || ^19
 
@@ -2915,7 +2915,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@icons-pack/react-simple-icons@13.4.0(react@19.1.0)':
+  '@icons-pack/react-simple-icons@13.5.0(react@19.1.0)':
     dependencies:
       react: 19.1.0
 
