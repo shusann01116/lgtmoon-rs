@@ -118,8 +118,8 @@ importers:
         specifier: 4.1.12
         version: 4.1.12
       '@types/node':
-        specifier: 22.17.1
-        version: 22.17.1
+        specifier: 22.17.2
+        version: 22.17.2
       '@types/react':
         specifier: 19.1.10
         version: 19.1.10
@@ -1495,8 +1495,8 @@ packages:
   '@tailwindcss/postcss@4.1.12':
     resolution: {integrity: sha512-5PpLYhCAwf9SJEeIsSmCDLgyVfdBhdBpzX1OJ87anT9IVR0Z9pjM0FNixCAUAHGnMBGB8K99SwAheXrT0Kh6QQ==}
 
-  '@types/node@22.17.1':
-    resolution: {integrity: sha512-y3tBaz+rjspDTylNjAX37jEC3TETEFGNJL6uQDxwF9/8GLLIjW1rvVHlynyuUKMnMr1Roq8jOv3vkopBjC4/VA==}
+  '@types/node@22.17.2':
+    resolution: {integrity: sha512-gL6z5N9Jm9mhY+U2KXZpteb+09zyffliRkZyZOHODGATyC5B1Jt/7TzuuiLkFsSUMLbS1OLmlj/E+/3KF4Q/4w==}
 
   '@types/pg@8.11.12':
     resolution: {integrity: sha512-D8qPxnq0rgpvZPYwMxAZffxvlk2mtgimLC5kos8uM7+3wPKfTESxtpD49cfB5w1UnodZL7oYnjFHT5+cB3Gw9Q==}
@@ -3031,7 +3031,7 @@ snapshots:
 
   '@neondatabase/serverless@1.0.1':
     dependencies:
-      '@types/node': 22.17.1
+      '@types/node': 22.17.2
       '@types/pg': 8.11.12
 
   '@next/env@15.4.6': {}
@@ -3734,19 +3734,19 @@ snapshots:
       postcss: 8.5.6
       tailwindcss: 4.1.12
 
-  '@types/node@22.17.1':
+  '@types/node@22.17.2':
     dependencies:
       undici-types: 6.21.0
 
   '@types/pg@8.11.12':
     dependencies:
-      '@types/node': 22.17.1
+      '@types/node': 22.17.2
       pg-protocol: 1.8.0
       pg-types: 4.0.2
 
   '@types/pg@8.11.6':
     dependencies:
-      '@types/node': 22.17.1
+      '@types/node': 22.17.2
       pg-protocol: 1.10.3
       pg-types: 4.0.2
 

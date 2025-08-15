@@ -47,7 +47,7 @@
 		"@biomejs/biome": "2.1.4",
 		"@playwright/test": "1.54.2",
 		"@tailwindcss/postcss": "4.1.12",
-		"@types/node": "22.17.1",
+		"@types/node": "22.17.2",
 		"@types/react": "19.1.10",
 		"@types/react-dom": "19.1.7",
 		"dotenv": "17.2.1",
