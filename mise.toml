@@ -3,5 +3,5 @@
 "go:github.com/evilmartians/lefthook" = "latest"
 node = "23"
 "npm:vercel" = "46.0.2"
-pnpm = "10.14.0"
+pnpm = "10.15.0"
 rust = "1.89.0"
