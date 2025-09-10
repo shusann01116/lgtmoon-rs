@@ -10,7 +10,10 @@ struct TextScale {
 }
 
 #[derive(Debug, Clone, Copy)]
-struct Coordinate(i32, i32);
+struct Coordinate {
+    x: i32,
+    y: i32,
+}
 
 pub struct Drawer {
     font: FontArc,
@@ -49,8 +52,8 @@ impl Drawer {
         let image = imageproc::drawing::draw_text(
             image,
             Rgb([255, 255, 255]),
-            placement_point.0 .0,
-            placement_point.0 .1,
+            placement_point.0.x,
+            placement_point.0.y,
             text_scale.big,
             &self.font,
             Self::LGTM_BIG_TEXT,
@@ -59,8 +62,8 @@ impl Drawer {
         imageproc::drawing::draw_text(
             &image,
             Rgb([255, 255, 255]),
-            placement_point.1 .0,
-            placement_point.1 .1,
+            placement_point.1.x,
+            placement_point.1.y,
             text_scale.small,
             &self.font,
             Self::LGTM_SMALL_TEXT,
@@ -111,14 +114,14 @@ impl Drawer {
             self.get_text_box_size(Self::LGTM_SMALL_TEXT, text_scale.small);
         let text_box_height = big_text_height * Self::LINE_HEIGHT_RATIO + small_text_height;
 
-        let big_text_coordinates = Coordinate(
-            (image_center_x - big_text_width / 2.0) as i32,
-            (dimensions.1 as f32 - text_box_height) as i32 / 2,
-        );
-        let small_text_coordinates = Coordinate(
-            (image_center_x - small_text_width / 2.0) as i32,
-            big_text_coordinates.1 + (big_text_height * Self::LINE_HEIGHT_RATIO) as i32,
-        );
+        let big_text_coordinates = Coordinate {
+            x: (image_center_x - big_text_width / 2.0) as i32,
+            y: (dimensions.1 as f32 - text_box_height) as i32 / 2,
+        };
+        let small_text_coordinates = Coordinate {
+            x: (image_center_x - small_text_width / 2.0) as i32,
+            y: big_text_coordinates.y + (big_text_height * Self::LINE_HEIGHT_RATIO) as i32,
+        };
 
         (big_text_coordinates, small_text_coordinates)
     }
