@@ -1,6 +1,9 @@
 packages:
   - web-app
+
 onlyBuiltDependencies:
   - '@biomejs/biome'
+  - '@tailwindcss/oxide'
   - '@vercel/speed-insights'
+  - esbuild
   - sharp
