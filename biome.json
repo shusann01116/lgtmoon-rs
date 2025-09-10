@@ -7,10 +7,20 @@
 		"defaultBranch": "main"
 	},
 	"files": {
-		"ignore": ["public", "node_modules", "lgtmoon-wasm/pkg", ".next"]
+		"includes": [
+			"**",
+			"!public",
+			"!node_modules",
+			"!lgtmoon-wasm/pkg",
+			"!.next"
+		]
 	},
-	"organizeImports": {
-		"enabled": true
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
 	},
 	"javascript": {
 		"formatter": {
@@ -21,7 +31,6 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"all": true,
 			"suspicious": {
 				"noReactSpecificProps": "off"
 			},
@@ -39,7 +48,7 @@
 	},
 	"overrides": [
 		{
-			"include": [
+			"includes": [
 				"next.config.ts",
 				"postcss.config.mjs",
 				"tailwind.config.ts",
@@ -59,7 +68,7 @@
 			}
 		},
 		{
-			"include": [
+			"includes": [
 				"web-app/src/config/*env.ts",
 				"web-app/src/schema/*",
 				"web-app/src/actions/*",
@@ -74,7 +83,7 @@
 			}
 		},
 		{
-			"include": ["web-app/e2e/**/*.ts"],
+			"includes": ["web-app/e2e/**/*.ts"],
 			"linter": {
 				"rules": {
 					"correctness": {
