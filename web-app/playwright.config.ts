@@ -1,6 +1,6 @@
-import { defineConfig, devices } from '@playwright/test'
+import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 3000
+const PORT = 3000;
 
 /**
  * Read environment variables from file.
@@ -13,9 +13,8 @@ const PORT = 3000
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-// biome-ignore lint/style/noDefaultExport: is ok for playwright config
 export default defineConfig({
-	testDir: './e2e',
+	testDir: "./e2e",
 	/* Run tests in files in parallel */
 	fullyParallel: true,
 	/* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -25,21 +24,21 @@ export default defineConfig({
 	/* Opt out of parallel tests on CI. */
 	workers: process.env.CI ? 1 : undefined,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
-	reporter: 'html',
+	reporter: "html",
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Base URL to use in actions like `await page.goto('/')`. */
 		// baseURL: 'http://127.0.0.1:3000',
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: 'on-first-retry',
+		trace: "on-first-retry",
 	},
 
 	/* Configure projects for major browsers */
 	projects: [
 		{
-			name: 'chromium',
-			use: { ...devices['Desktop Chrome'] },
+			name: "chromium",
+			use: { ...devices["Desktop Chrome"] },
 		},
 
 		// Disabled temporarily because hover event is not working on Safari
@@ -77,9 +76,9 @@ export default defineConfig({
 
 	/* Run your local dev server before starting the tests */
 	webServer: {
-		command: 'pnpm dev',
+		command: "pnpm dev",
 		timeout: 10 * 1000,
 		port: PORT,
 		reuseExistingServer: !process.env.CI,
 	},
-})
+});

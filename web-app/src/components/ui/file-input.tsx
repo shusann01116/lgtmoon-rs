@@ -1,15 +1,15 @@
-import { Button } from '@/components/ui/button'
-import { cn } from '@/utils/cn'
-import { type ChangeEvent, type ReactNode, useRef } from 'react'
+import { type ChangeEvent, type ReactNode, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/utils/cn";
 
 type FileInputButtonProps = {
-	children: ReactNode
-	className?: string
-	accept: string
-	onClick: (e: ChangeEvent<HTMLInputElement>) => void
-	variant?: 'default' | 'outline' | 'ghost' | 'link'
-	size?: 'default' | 'sm' | 'lg' | 'icon'
-}
+	children: ReactNode;
+	className?: string;
+	accept: string;
+	onClick: (e: ChangeEvent<HTMLInputElement>) => void;
+	variant?: "default" | "outline" | "ghost" | "link";
+	size?: "default" | "sm" | "lg" | "icon";
+};
 
 export function FileInputButton({
 	className,
@@ -19,7 +19,7 @@ export function FileInputButton({
 	size,
 	children,
 }: FileInputButtonProps) {
-	const inputRef = useRef<HTMLInputElement>(null)
+	const inputRef = useRef<HTMLInputElement>(null);
 	return (
 		<>
 			<input
@@ -33,11 +33,11 @@ export function FileInputButton({
 			<Button
 				variant={variant}
 				onClick={() => inputRef.current?.click()}
-				className={cn('cursor-pointer', className)}
+				className={cn("cursor-pointer", className)}
 				size={size}
 			>
 				{children}
 			</Button>
 		</>
-	)
+	);
 }

@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { MainErrorFallback } from '@/components/errors/main'
-import { Toaster } from '@/components/ui/sonner'
-import { TooltipProvider } from '@/components/ui/tooltip'
-import { clientEnv } from '@/config/env'
-import { ThemeProvider } from '@/providers/theme-provider'
-import { GoogleAnalytics } from '@next/third-parties/google'
-import { SpeedInsights } from '@vercel/speed-insights/next'
-import { ErrorBoundary } from 'react-error-boundary'
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ErrorBoundary } from "react-error-boundary";
+import { MainErrorFallback } from "@/components/errors/main";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { clientEnv } from "@/config/env";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
 	return (
@@ -24,5 +24,5 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 			<GoogleAnalytics gaId={clientEnv.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
 			<SpeedInsights />
 		</ErrorBoundary>
-	)
+	);
 }

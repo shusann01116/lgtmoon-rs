@@ -1,26 +1,4 @@
-import { Button } from '@/components/ui/button'
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogTitle,
-	DialogTrigger,
-} from '@/components/ui/dialog'
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '@/components/ui/popover'
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from '@/components/ui/tooltip'
-import { useKeepUntilOnPointerLeave } from '@/hooks/use-keep-until-on-pointer-leave'
-import { cn } from '@/utils/cn'
-import { PopoverClose } from '@radix-ui/react-popover'
+import { PopoverClose } from "@radix-ui/react-popover";
 import {
 	Check,
 	CircleEllipsis,
@@ -30,19 +8,41 @@ import {
 	Loader2,
 	Trash,
 	Upload,
-} from 'lucide-react'
-import { useCallback, useRef, useState } from 'react'
-import { toast } from 'sonner'
+} from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogTitle,
+	DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { useKeepUntilOnPointerLeave } from "@/hooks/use-keep-until-on-pointer-leave";
+import { cn } from "@/utils/cn";
 
 type ImageCoverProps = {
-	children: React.ReactNode
-	className: string
-	onUpload?: () => void
-	onClickCopyMdLink?: () => void
-	onClickCopy?: () => void
-	onClickDownload?: () => void
-	onDelete?: () => Promise<void>
-}
+	children: React.ReactNode;
+	className: string;
+	onUpload?: () => void;
+	onClickCopyMdLink?: () => void;
+	onClickCopy?: () => void;
+	onClickDownload?: () => void;
+	onDelete?: () => Promise<void>;
+};
 
 export function ImageCover({
 	children,
@@ -53,44 +53,44 @@ export function ImageCover({
 	onClickDownload,
 	onDelete,
 }: ImageCoverProps) {
-	const uploadButtonRef = useRef<HTMLButtonElement>(null)
+	const uploadButtonRef = useRef<HTMLButtonElement>(null);
 	const [isUploaded, onClickUploadButton] = useKeepUntilOnPointerLeave(
 		uploadButtonRef,
 		onUpload,
-	)
+	);
 
-	const copyMdLinkButtonRef = useRef<HTMLButtonElement>(null)
+	const copyMdLinkButtonRef = useRef<HTMLButtonElement>(null);
 	const [isCopiedMdLink, onClickCopyMdLinkButton] = useKeepUntilOnPointerLeave(
 		copyMdLinkButtonRef,
 		onClickCopyMdLink,
-	)
+	);
 
-	const copyButtonRef = useRef<HTMLButtonElement>(null)
+	const copyButtonRef = useRef<HTMLButtonElement>(null);
 	const [isCopied, onClickCopyButton] = useKeepUntilOnPointerLeave(
 		copyButtonRef,
 		onClickCopy,
-	)
+	);
 
-	const downloadButtonRef = useRef<HTMLButtonElement>(null)
+	const downloadButtonRef = useRef<HTMLButtonElement>(null);
 	const [isDownloaded, onClickDownloadButton] = useKeepUntilOnPointerLeave(
 		downloadButtonRef,
 		onClickDownload,
-	)
+	);
 
-	const [isDeleting, setIsDeleting] = useState(false)
+	const [isDeleting, setIsDeleting] = useState(false);
 	const onClickDeleteButton = useCallback(async () => {
-		setIsDeleting(true)
-		await onDelete?.()
-		setIsDeleting(false)
-	}, [onDelete])
+		setIsDeleting(true);
+		await onDelete?.();
+		setIsDeleting(false);
+	}, [onDelete]);
 
 	const onClickCopyForUnHoverable = useCallback(() => {
-		onClickCopy?.()
-		toast.success('Copied to clipboard')
-	}, [onClickCopy])
+		onClickCopy?.();
+		toast.success("Copied to clipboard");
+	}, [onClickCopy]);
 
 	return (
-		<article className={cn('relative', className)}>
+		<article className={cn("relative", className)}>
 			<div className="group absolute inset-0 rounded-sm transition-all hover:bg-primary/50">
 				<div className="flex h-full items-center justify-center transition-all">
 					<Tooltip delayDuration={700}>
@@ -98,8 +98,8 @@ export function ImageCover({
 							<Button
 								ref={uploadButtonRef}
 								className={cn(
-									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
-									onUpload ? '' : 'group-hover:hidden',
+									"hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex",
+									onUpload ? "" : "group-hover:hidden",
 								)}
 								size="icon"
 								variant="ghost"
@@ -123,8 +123,8 @@ export function ImageCover({
 							<Button
 								ref={copyMdLinkButtonRef}
 								className={cn(
-									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
-									onClickCopyMdLink ? '' : 'group-hover:hidden',
+									"hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex",
+									onClickCopyMdLink ? "" : "group-hover:hidden",
 								)}
 								size="icon"
 								variant="ghost"
@@ -148,8 +148,8 @@ export function ImageCover({
 							<Button
 								ref={copyButtonRef}
 								className={cn(
-									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
-									onClickCopy ? '' : 'group-hover:hidden',
+									"hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex",
+									onClickCopy ? "" : "group-hover:hidden",
 								)}
 								size="icon"
 								variant="ghost"
@@ -173,8 +173,8 @@ export function ImageCover({
 							<Button
 								ref={downloadButtonRef}
 								className={cn(
-									'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
-									onClickDownload ? '' : 'group-hover:hidden',
+									"hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex",
+									onClickDownload ? "" : "group-hover:hidden",
 								)}
 								size="icon"
 								variant="ghost"
@@ -199,8 +199,8 @@ export function ImageCover({
 								<TooltipTrigger asChild>
 									<Button
 										className={cn(
-											'hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex',
-											onDelete ? '' : 'group-hover:hidden',
+											"hidden cursor-pointer transition-all hover:bg-accent/50 active:bg-accent group-hover:inline-flex",
+											onDelete ? "" : "group-hover:hidden",
 										)}
 										size="icon"
 										variant="ghost"
@@ -221,8 +221,8 @@ export function ImageCover({
 											variant="destructive"
 											onClick={onClickDeleteButton}
 											onKeyDown={async (event) => {
-												if (event.key === 'Enter') {
-													await onClickDeleteButton()
+												if (event.key === "Enter") {
+													await onClickDeleteButton();
 												}
 											}}
 										>
@@ -231,7 +231,7 @@ export function ImageCover({
 												{isDeleting ? (
 													<Loader2 className="animate-spin" />
 												) : (
-													<>↵</>
+													"↵"
 												)}
 											</span>
 										</Button>
@@ -289,5 +289,5 @@ export function ImageCover({
 			</Popover>
 			{children}
 		</article>
-	)
+	);
 }

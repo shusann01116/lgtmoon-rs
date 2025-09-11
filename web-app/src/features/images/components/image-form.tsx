@@ -1,56 +1,56 @@
-'use client'
+"use client";
 
-import { FileInputButton } from '@/components/ui/file-input'
-import { EmptyState } from '@/features/images/components/empty-state'
-import { ImageGallery } from '@/features/images/components/image-gallery'
-import { useImageStorage } from '@/features/images/hooks/use-image-storage'
-import { useOnPaste } from '@/hooks/use-upload-from-clipboard'
-import { PlusIcon } from 'lucide-react'
-import type { Session } from 'next-auth'
-import { type ChangeEvent, use } from 'react'
-import { toast } from 'sonner'
+import { PlusIcon } from "lucide-react";
+import type { Session } from "next-auth";
+import { type ChangeEvent, use } from "react";
+import { toast } from "sonner";
+import { FileInputButton } from "@/components/ui/file-input";
+import { EmptyState } from "@/features/images/components/empty-state";
+import { ImageGallery } from "@/features/images/components/image-gallery";
+import { useImageStorage } from "@/features/images/hooks/use-image-storage";
+import { useOnPaste } from "@/hooks/use-upload-from-clipboard";
 
 export function ImageForm({
 	sessionPromise,
 }: {
-	sessionPromise: Promise<Session | null>
+	sessionPromise: Promise<Session | null>;
 }) {
-	const session = use(sessionPromise)
+	const session = use(sessionPromise);
 	const { images, handleAddImage, handleDeleteImage, handleUploadImage } =
 		useImageStorage({
 			session,
-		})
+		});
 
 	useOnPaste((e: ClipboardEvent) => {
-		const files = e.clipboardData?.files
+		const files = e.clipboardData?.files;
 		if (!files) {
-			return
+			return;
 		}
 		for (const file of files) {
-			handleAddImage(file)
+			handleAddImage(file);
 		}
-	})
+	});
 
 	const onAddImage = (e: ChangeEvent<HTMLInputElement>) => {
-		const file = e.target.files?.[0]
+		const file = e.target.files?.[0];
 		if (
 			images?.some((image) => {
-				if (image.storage === 'local') {
-					return image.name === file?.name
+				if (image.storage === "local") {
+					return image.name === file?.name;
 				}
-				return false
+				return false;
 			})
 		) {
-			toast.error('Image already exists')
-			return
+			toast.error("Image already exists");
+			return;
 		}
 
-		e.target.value = ''
+		e.target.value = "";
 		if (!file) {
-			return
+			return;
 		}
-		handleAddImage(file)
-	}
+		handleAddImage(file);
+	};
 
 	return (
 		<>
@@ -89,5 +89,5 @@ export function ImageForm({
 				</FileInputButton>
 			</section>
 		</>
-	)
+	);
 }

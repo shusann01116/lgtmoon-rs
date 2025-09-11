@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from "@/components/ui/button";
 
 export const MainErrorFallback = () => {
 	return (
@@ -7,7 +7,7 @@ export const MainErrorFallback = () => {
 			role="alert"
 		>
 			<h2 className="font-semibold text-lg text-secondary-foreground">
-				Ooops, something went wrong :({' '}
+				Ooops, something went wrong :({" "}
 			</h2>
 			<Button
 				className="mt-4 cursor-pointer"
@@ -16,5 +16,5 @@ export const MainErrorFallback = () => {
 				Refresh
 			</Button>
 		</div>
-	)
-}
+	);
+};

@@ -1,18 +1,18 @@
-import { Button } from '@/components/ui/button'
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
-} from '@/components/ui/popover'
-import { SignIn } from '@/components/ui/sign-in'
-import { auth, signOut } from '@/lib/auth'
-import Image from 'next/image'
+} from "@/components/ui/popover";
+import { SignIn } from "@/components/ui/sign-in";
+import { auth, signOut } from "@/lib/auth";
 
 export const UserInfo = async () => {
-	const session = await auth()
+	const session = await auth();
 
 	if (!session) {
-		return <SignIn />
+		return <SignIn />;
 	}
 
 	return (
@@ -23,7 +23,7 @@ export const UserInfo = async () => {
 				className="cursor-pointer align-middle"
 			>
 				<Image
-					src={session?.user?.image ?? ''}
+					src={session?.user?.image ?? ""}
 					alt="user"
 					width={40}
 					height={40}
@@ -36,8 +36,8 @@ export const UserInfo = async () => {
 					<p className="font-light text-sm">{session?.user?.email}</p>
 					<Button
 						onClick={async () => {
-							'use server'
-							await signOut()
+							"use server";
+							await signOut();
 						}}
 						variant="secondary"
 						className="cursor-pointer"
@@ -47,5 +47,5 @@ export const UserInfo = async () => {
 				</div>
 			</PopoverContent>
 		</Popover>
-	)
-}
+	);
+};

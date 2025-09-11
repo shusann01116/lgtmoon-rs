@@ -1,10 +1,10 @@
-import { UserInfo } from '@/app/_components/user-info'
-import { Skeleton } from '@/components/ui/skeleton'
-import { ImageForm } from '@/features/images/components/image-form'
-import { auth } from '@/lib/auth'
-import { ExternalLink } from 'lucide-react'
-import Link from 'next/link'
-import { Suspense } from 'react'
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { Suspense } from "react";
+import { UserInfo } from "@/app/_components/user-info";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ImageForm } from "@/features/images/components/image-form";
+import { auth } from "@/lib/auth";
 
 export const Home = () => {
 	return (
@@ -42,5 +42,5 @@ export const Home = () => {
 				</p>
 			</footer>
 		</div>
-	)
-}
+	);
+};

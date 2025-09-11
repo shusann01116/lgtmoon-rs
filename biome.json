@@ -22,17 +22,12 @@
 			}
 		}
 	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "single",
-			"semicolons": "asNeeded"
-		}
-	},
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"suspicious": {
-				"noReactSpecificProps": "off"
+				"noReactSpecificProps": "off",
+				"noUnknownAtRules": "off"
 			},
 			"style": {
 				"noImplicitBoolean": "off"

@@ -1,36 +1,36 @@
-'use server'
+"use server";
 
-import { serverEnv } from '@/config/server-env'
-import { auth } from '@/lib/auth'
-import { S3 } from '@/lib/aws'
-import { db } from '@/lib/drizzle'
-import { images } from '@/schema/image'
-import { quota } from '@/schema/quota'
-import type { R2Image } from '@/types/lgtm-image'
-import { thisMonth } from '@/utils/date'
-import { getImageKey, getImageUri } from '@/utils/server'
-import { PutObjectCommand } from '@aws-sdk/client-s3'
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
-import { and, count, eq, gte, isNull } from 'drizzle-orm'
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { and, count, eq, gte, isNull } from "drizzle-orm";
+import { serverEnv } from "@/config/server-env";
+import { auth } from "@/lib/auth";
+import { S3 } from "@/lib/aws";
+import { db } from "@/lib/drizzle";
+import { images } from "@/schema/image";
+import { quota } from "@/schema/quota";
+import type { R2Image } from "@/types/lgtm-image";
+import { thisMonth } from "@/utils/date";
+import { getImageKey, getImageUri } from "@/utils/server";
 
 export type UploadImageResult =
 	| {
-			success: true
-			image: R2Image
-			uploadUrl: string
+			success: true;
+			image: R2Image;
+			uploadUrl: string;
 	  }
 	| {
-			success: false
-			error: 'UNAUTHORIZED'
+			success: false;
+			error: "UNAUTHORIZED";
 	  }
 	| {
-			success: false
-			error: 'QUOTA_EXCEEDED'
+			success: false;
+			error: "QUOTA_EXCEEDED";
 	  }
 	| {
-			success: false
-			error: 'IMAGE_ALREADY_EXISTS'
-	  }
+			success: false;
+			error: "IMAGE_ALREADY_EXISTS";
+	  };
 
 /**
  * Get user quota
@@ -42,7 +42,7 @@ const getUserQuota = async (userId: string) => {
 	const [userQuota] = await db
 		.select()
 		.from(quota)
-		.where(eq(quota.userId, userId))
+		.where(eq(quota.userId, userId));
 
 	if (!userQuota) {
 		const [newUserQuota] = await db
@@ -50,37 +50,40 @@ const getUserQuota = async (userId: string) => {
 			.values({
 				userId,
 			})
-			.returning()
-		return newUserQuota
+			.returning();
+		return newUserQuota;
 	}
 
-	return userQuota
-}
+	return userQuota;
+};
 
 export async function uploadImage({
 	imageId,
 	createdAt,
-}: { imageId: string; createdAt: Date }): Promise<UploadImageResult> {
-	const session = await auth()
+}: {
+	imageId: string;
+	createdAt: Date;
+}): Promise<UploadImageResult> {
+	const session = await auth();
 	if (!session) {
-		return { success: false, error: 'UNAUTHORIZED' }
+		return { success: false, error: "UNAUTHORIZED" };
 	}
 
-	const userId = session.user?.id
+	const userId = session.user?.id;
 	if (!userId) {
-		return { success: false, error: 'UNAUTHORIZED' }
+		return { success: false, error: "UNAUTHORIZED" };
 	}
 
 	const [{ count: imageCount }] = await db
 		.select({ count: count() })
 		.from(images)
 		.where(eq(images.id, imageId))
-		.limit(1)
+		.limit(1);
 	if (imageCount > 0) {
-		return { success: false, error: 'IMAGE_ALREADY_EXISTS' }
+		return { success: false, error: "IMAGE_ALREADY_EXISTS" };
 	}
 
-	const userQuota = await getUserQuota(userId)
+	const userQuota = await getUserQuota(userId);
 	const [{ count: imagesUploadedInMonth }] = await db
 		.select({ count: count() })
 		.from(images)
@@ -90,9 +93,9 @@ export async function uploadImage({
 				gte(images.createdAt, thisMonth()),
 				isNull(images.deletedAt),
 			),
-		)
+		);
 	if (userQuota.imagesInMonth < imagesUploadedInMonth) {
-		return { success: false, error: 'QUOTA_EXCEEDED' }
+		return { success: false, error: "QUOTA_EXCEEDED" };
 	}
 
 	const [image] = await db
@@ -102,7 +105,7 @@ export async function uploadImage({
 			userId: userId,
 			createdAt,
 		})
-		.returning()
+		.returning();
 
 	const url = await getSignedUrl(
 		S3,
@@ -111,11 +114,11 @@ export async function uploadImage({
 			Key: getImageKey(userId, image.id),
 		}),
 		{ expiresIn: 60 },
-	)
+	);
 
 	return {
 		success: true,
-		image: { storage: 'r2', ...image, url: getImageUri(userId, image.id) },
+		image: { storage: "r2", ...image, url: getImageUri(userId, image.id) },
 		uploadUrl: url,
-	}
+	};
 }
