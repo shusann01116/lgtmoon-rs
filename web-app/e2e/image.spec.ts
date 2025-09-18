@@ -22,8 +22,8 @@ test("should add and delete an image", async ({ page }) => {
 	const deleteButton = page.getByRole("article").getByRole("button").nth(3);
 	await deleteButton.waitFor({ state: "visible" });
 	await deleteButton.click();
-	await page.getByRole("button", { name: "Delete" }).click();
+	await page.getByRole("button", { name: "Delete ↵" }).click();
 	await expect(
-		page.getByText("画像を追加して LGTMライブラリを作ろう ☺️"),
+		page.getByText("画像を追加して LGTMライブラリを作ろう ☺"),
 	).toBeVisible();
 });
