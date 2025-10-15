@@ -22,7 +22,7 @@ importers:
     dependencies:
       '@auth/drizzle-adapter':
         specifier: ^1.8.0
-        version: 1.10.0
+        version: 1.11.0
       '@auth/neon-adapter':
         specifier: ^1.8.0
         version: 1.11.0(@neondatabase/serverless@1.0.2)
@@ -176,8 +176,8 @@ packages:
       nodemailer:
         optional: true
 
-  '@auth/drizzle-adapter@1.10.0':
-    resolution: {integrity: sha512-3MKsdAINTfvV4QKev8PFMNG93HJEUHh9sggDXnmUmriFogRf8qLvgqnPsTlfUyWcLwTzzrrYjeu8CGM+4IxHwQ==}
+  '@auth/drizzle-adapter@1.11.0':
+    resolution: {integrity: sha512-7YHi5bTZZs4+D6TQIT/AWgZ2PLL7Zc9fS7bteHKMrsEMemarbdv3H5eF8RfF1FpRtyK8MAj4EQV4BWf0gCzAYw==}
 
   '@auth/neon-adapter@1.11.0':
     resolution: {integrity: sha512-jpMWRMQVsGSjkB7wAuH/Wq8+DwW2MHuI5DyY6na3fUNmjI6C7ywZefhWxR8SIOt3k6EigVYqA/4QEnck7BW1uA==}
@@ -2210,9 +2210,9 @@ snapshots:
       preact: 10.24.3
       preact-render-to-string: 6.5.11(preact@10.24.3)
 
-  '@auth/drizzle-adapter@1.10.0':
+  '@auth/drizzle-adapter@1.11.0':
     dependencies:
-      '@auth/core': 0.40.0
+      '@auth/core': 0.41.0
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
