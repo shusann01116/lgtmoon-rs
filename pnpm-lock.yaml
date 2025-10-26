@@ -25,7 +25,7 @@ importers:
         version: 1.11.1
       '@auth/neon-adapter':
         specifier: ^1.8.0
-        version: 1.11.0(@neondatabase/serverless@1.0.2)
+        version: 1.11.1(@neondatabase/serverless@1.0.2)
       '@aws-sdk/client-s3':
         specifier: ^3.787.0
         version: 3.913.0
@@ -162,20 +162,6 @@ packages:
       nodemailer:
         optional: true
 
-  '@auth/core@0.41.0':
-    resolution: {integrity: sha512-Wd7mHPQ/8zy6Qj7f4T46vg3aoor8fskJm6g2Zyj064oQ3+p0xNZXAV60ww0hY+MbTesfu29kK14Zk5d5JTazXQ==}
-    peerDependencies:
-      '@simplewebauthn/browser': ^9.0.1
-      '@simplewebauthn/server': ^9.0.2
-      nodemailer: ^6.8.0
-    peerDependenciesMeta:
-      '@simplewebauthn/browser':
-        optional: true
-      '@simplewebauthn/server':
-        optional: true
-      nodemailer:
-        optional: true
-
   '@auth/core@0.41.1':
     resolution: {integrity: sha512-t9cJ2zNYAdWMacGRMT6+r4xr1uybIdmYa49calBPeTqwgAFPV/88ac9TEvCR85pvATiSPt8VaNf+Gt24JIT/uw==}
     peerDependencies:
@@ -193,8 +179,8 @@ packages:
   '@auth/drizzle-adapter@1.11.1':
     resolution: {integrity: sha512-cQTvDZqsyF7RPhDm/B6SvqdVP9EzQhy3oM4Muu7fjjmSYFLbSR203E6dH631ZHSKDn2b4WZkfMnjPDzRsPSAeA==}
 
-  '@auth/neon-adapter@1.11.0':
-    resolution: {integrity: sha512-jpMWRMQVsGSjkB7wAuH/Wq8+DwW2MHuI5DyY6na3fUNmjI6C7ywZefhWxR8SIOt3k6EigVYqA/4QEnck7BW1uA==}
+  '@auth/neon-adapter@1.11.1':
+    resolution: {integrity: sha512-4qfuLtp+CdmjHAXxj9eiym91rX2iRQJjVGrIrFGhFlhRy/LvPIeHoErf+W9nyceigDzNlLUor/d+UeAuRBzvog==}
     peerDependencies:
       '@neondatabase/serverless': ^0.10.4 || ^1.0.0
 
@@ -2193,14 +2179,6 @@ snapshots:
       preact: 10.24.3
       preact-render-to-string: 6.5.11(preact@10.24.3)
 
-  '@auth/core@0.41.0':
-    dependencies:
-      '@panva/hkdf': 1.2.1
-      jose: 6.1.0
-      oauth4webapi: 3.8.2
-      preact: 10.24.3
-      preact-render-to-string: 6.5.11(preact@10.24.3)
-
   '@auth/core@0.41.1':
     dependencies:
       '@panva/hkdf': 1.2.1
@@ -2217,9 +2195,9 @@ snapshots:
       - '@simplewebauthn/server'
       - nodemailer
 
-  '@auth/neon-adapter@1.11.0(@neondatabase/serverless@1.0.2)':
+  '@auth/neon-adapter@1.11.1(@neondatabase/serverless@1.0.2)':
     dependencies:
-      '@auth/core': 0.41.0
+      '@auth/core': 0.41.1
       '@neondatabase/serverless': 1.0.2
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
