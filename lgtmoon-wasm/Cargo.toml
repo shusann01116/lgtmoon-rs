@@ -22,4 +22,4 @@ image = "0.25.5"
 console_error_panic_hook = "0.1.7"
 
 [dev-dependencies]
-wasm-bindgen-test = "=0.3.55"
+wasm-bindgen-test = "=0.3.56"
