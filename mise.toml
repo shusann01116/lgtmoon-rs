@@ -1,5 +1,5 @@
 [tools]
-"cargo:wasm-pack" = "0.13.1"
+"cargo:wasm-pack" = "0.14.0"
 "go:github.com/evilmartians/lefthook" = "latest"
 node = "24"
 "npm:vercel" = "50.1.6"
