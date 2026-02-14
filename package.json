@@ -12,5 +12,5 @@
 		"playwright": "1.58.2",
 		"turbo": "2.8.6"
 	},
-	"packageManager": "pnpm@10.29.2"
+	"packageManager": "pnpm@10.29.3"
 }
