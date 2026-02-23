@@ -8,7 +8,7 @@
 		"pull-env": "vercel env pull web-app/.env.local"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.3",
+		"@biomejs/biome": "2.4.4",
 		"playwright": "1.58.2",
 		"turbo": "2.8.10"
 	},
